@@ -101,20 +101,20 @@
   width: 70%;
   height: 40px;
   margin-bottom: 15px;
+  padding-left: 3%;
 }
 
 .modal input[type=text]::placeholder {
-  padding-left: 3%;
   font-size: 15px;
 }
 
 .modal input[type=password] {
   width: 70%;
   height: 40px;
+  padding-left: 3%;
 }
 
 .modal input[type=password]::placeholder {
-  padding-left: 3%;
   font-size: 15px;
 }
 
