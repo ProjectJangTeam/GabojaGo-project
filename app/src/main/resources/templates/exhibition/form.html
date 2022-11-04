@@ -11,7 +11,61 @@
 
 
 </head>
-<body>
+
+
+<body  class="pt-5" >
+<!-- Navigation 사실상의 header -->
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
+  <div class="container">
+    <a class="navbar-brand" href="/app">가보자GO</a>
+
+
+    <div class="collapse navbar-collapse" id="navbarResponsive">
+
+      <ul class="navbar-nav ml-auto">
+
+        <li class="nav-item"><a class="nav-link" href="#">Search</a></li>
+        <li class="nav-item">
+          <a class="nav-link" href="#">코스추천</a>
+        </li>
+
+
+        <li class="nav-item active">
+          <a class="nav-link" href="#">전시회
+            <span class="sr-only">(current)</span>
+          </a>
+        </li>
+
+        <li class="nav-item">
+          <a class="nav-link" href="#">고객지원</a>
+        </li>
+        <li class="nav-item" th:if="${session.loginMember != null}">
+          <a
+              class="nav-link"
+              href="auth/logout"
+              th:text="${session.loginMember.name}+'(로그아웃)'"
+          >홍길동(로그아웃)</a
+          >
+        </li>
+        <li class="nav-item" th:if="${session.loginMember == null}">
+          <span class="nav-link btn-open-popup">로그인</span>
+        </li>
+
+        <li class="nav-item">
+          <a class="nav-link" href="auth/register">회원가입</a>
+        </li>
+
+
+        <li class="nav-item">
+          <a class="nav-link" href="#">
+            <img src="./images/mypage.png" width="90%" height="25"
+            /></a>
+        </li>
+      </ul>
+    </div>
+  </div>
+</nav>
+
 <h1>전시회 입력</h1>
 
 
