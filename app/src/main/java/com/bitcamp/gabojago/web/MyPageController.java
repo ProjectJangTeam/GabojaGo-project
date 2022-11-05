@@ -10,19 +10,21 @@ import javax.servlet.ServletContext;
 
 @Controller
 @RequestMapping("/mypage")
-public class MypageController {
+public class MyPageController {
 
     ServletContext sc;
-    NoticeService noticeService;
+    //MyPageService myPageService;
 
 
-    public MypageController(NoticeService noticeService, ServletContext sc) {
-        this.noticeService = noticeService;
-        this.sc = sc;
-    }
+//    public MyPageController(ServletContext sc, MyPageService myPageService) {
+//        this.sc = sc;
+//        this.myPageService = myPageService;
+//    }
+
+
 
     @GetMapping("/")
-    public String support() {
+    public String myPage() {
         return "mypage/mypage";
     }
 

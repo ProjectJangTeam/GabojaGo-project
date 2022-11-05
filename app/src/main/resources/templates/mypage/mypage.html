@@ -177,7 +177,9 @@
         </div>
     </div>
     <div class="buttons">
-        <button>프로필 수정</button>
+        <button onclick="location.href='profileModification.html'"
+                th:onclick="|location.href='@{/mypage/profileModification}'|"
+                type="button">프로필 수정</button>
         <button>개인정보 수정</button>
     </div>
 </div>
