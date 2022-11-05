@@ -1,160 +1,74 @@
 <!DOCTYPE html>
-<html lang="ko">
+<html xmlns:th="http://www.thymeleaf.org">
 <head>
-  <meta charset="UTF-8">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Document</title>
-<style> 
-* {
-  margin: 0px;
-  padding: 0px;
-  text-decoration: none;
-  font-family:sans-serif;
-
-}
-body {
-  background-image:#34495e;
-}
-.joinForm {
-  position:absolute;
-  width:400px;
-  height:400px;
-  padding: 30px, 20px;
-  background-color:#FFFFFF;
-  text-align:center;
-  top:40%;
-  left:50%;
-  transform: translate(-50%,-50%);
-  border-radius: 15px;
-}
-
-.joinForm h2 {
-  text-align: center;
-  margin: 30px;
-}
-
-.textForm {
-  border-bottom: 2px solid #adadad;
-  margin: 30px;
-  padding: 10px 10px;
-}
-
-
-.id {
-  width: 100%;
-  border:none;
-  outline:none;
-  color: #636e72;
-  font-size:16px;
-  height:25px;
-  background: none;
-}
-
-.pw {
-  width: 100%;
-  border:none;
-  outline:none;
-  color: #636e72;
-  font-size:16px;
-  height:25px;
-  background: none;
-}
-
-.name {
-  width: 100%;
-  border:none;
-  outline:none;
-  color: #636e72;
-  font-size:16px;
-  height:25px;
-  background: none;
-}
-
-.email {
-  width: 100%;
-  border:none;
-  outline:none;
-  color: #636e72;
-  font-size:16px;
-  height:25px;
-  background: none;
-}
-
-.nickname {
-  width: 100%;
-  border:none;
-  outline:none;
-  color: #636e72;
-  font-size:16px;
-  height:25px;
-  background: none;
-}
-
-.cellphoneNo {
-  width: 100%;
-  border:none;
-  outline:none;
-  color: #636e72;
-  font-size:16px;
-  height:25px;
-  background: none;
-}
-
-.btn {
-  position:relative;
-  left:40%;
-  transform: translateX(-50%);
-  margin-bottom: 40px;
-  width:80%;
-  height:40px;
-  background: linear-gradient(125deg,#81ecec,#6c5ce7,#81ecec);
-  background-position: left;
-  background-size: 200%;
-  color:white;
-  font-weight: bold;
-  border:none;
-  cursor:pointer;
-  transition: 0.4s;
-  display:inline;
-}
-
-.btn:hover {
-  background-position: right;
-}</style>
-
-
+  <meta charset="UTF-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>가보자GO</title>
+  <meta name="description" content="회원가입 정보기입 페이지"/>
+  <link rel="stylesheet" href="../css/main-base.css"/>
+  <link rel="stylesheet" href="../css/auth/register.css"/>
 
 </head>
 <body>
 
 
-  <form action="doJoin" method="POST" class="joinForm" onsubmit="DoJoinForm__submit(this); return false;">
-                                                                                               
+  <form id="join_Form" action="join" method="POST" class="joinForm" onsubmit="DoJoinForm__submit(this); return false;">
+
+
     <h2>회원가입</h2>
+
     <div class="textForm">
-      <input name="loginId" type="text" class="id" placeholder="아이디">
-      </input>
+      <input id="idBox" name="id" type="text" class="id" placeholder="아이디">
     </div>
+    <span id="idCheckBox" style="display: block; position: absolute; left: 8.2%; top: 17.4%; font-size: 13px;"></span>
     <div class="textForm">
-      <input name="loginPw" type="password" class="pw" placeholder="비밀번호">
-    </div>
-     <div class="textForm">
-      <input name="loginPwConfirm" type="password" class="pw" placeholder="비밀번호 확인">
+      <input id="password" name="password" type="password" class="pw" placeholder="비밀번호">
     </div>
     <div class="textForm">
-      <input name="name" type="password" class="name" placeholder="이름">
+      <input  id="passwordConfirm" name="passwordConfirm" type="password" class="pw" placeholder="비밀번호 확인">
     </div>
-     <div class="textForm">
+    <div class="textForm">
+      <input name="name" type="text" class="name" placeholder="이름">
+    </div>
+
+
+
+    <div class="textForm">
       <input name="email" type="text" class="email" placeholder="이메일">
     </div>
-    <div class="textForm">
-      <input name="nickname" type="text" class="nickname" placeholder="닉네임">
+    <div class="c-btn">
+      <button type="button" class="c-btn-code">이메일 인증</button>
     </div>
+    <span id="emailCodeBox" style="display: block; position: absolute; left: 8.2%; top: 56.6%; font-size: 13px;"></span>
+
+
     <div class="textForm">
-      <input name="cellphoneNo" type="number" class="cellphoneNo" placeholder="전화번호">
+      <input name="code" type="text" class="code" placeholder="인증코드">
     </div>
-    <input type="submit" class="btn" value="J O I N"/>
+    <div class="s-btn">
+      <button type="button" class="s-btn-code">인증코드확인</button>
+    </div>
+    <span id="codeConfirmBox" style="display: block; position: absolute; left: 8.2%; top: 66.4%; font-size: 13px;"></span>
+
+    <div class="textForm">
+      <input id="nickNameBox" name="nickName" type="text" class="nickName" placeholder="별명">
+    </div>
+    <span id="nickNameCheckBox" style="display: block; position: absolute; left: 8.2%; top: 76.3%; font-size: 13px;"></span>
+    <div class="textForm">
+      <input name="phoneNo" type="text" class="cellphoneNo" placeholder="전화번호">
+    </div>
+    <span id="phoneNoCheckBox" style="display: block; position: absolute; left: 8.2%; top: 86%; font-size: 13px;"></span>
+    <input id="submitBtn" type="submit" class="btn" value="J O I N"/>
   </form>
+
+  <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+  <script src="../js/auth/join.js"></script>
+  <script th:inline="javascript">
+    var checkResult = [[${checkResult}]];
+    if (checkResult != null) {
+    alert("이미 가입하신 이메일 또는 전화번호가 있습니다.");
+    }
+  </script>
 </body>
 </html>

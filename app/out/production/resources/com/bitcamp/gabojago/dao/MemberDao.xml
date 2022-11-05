@@ -36,4 +36,45 @@
             ID=#{id} and PWD=sha2(#{password},256)
     </select>
 
+    <select id="findById" resultMap="memberMap">
+        select
+            ID
+        from
+            jang_member
+        where
+            ID=#{id}
+    </select>
+
+    <select id="findByNickName" resultMap="memberMap">
+        select
+            NNAME
+        from
+            jang_member
+        where
+            NNAME=#{nickName}
+    </select>
+
+    <select id="findByEmail" resultMap="memberMap">
+        select
+            EMAIL, PNUM
+        from
+            jang_member
+        where
+            EMAIL=#{email}
+    </select>
+
+    <select id="findByPhoneNo" resultMap="memberMap">
+        select
+            EMAIL, PNUM
+        from
+            jang_member
+        where
+            PNUM=#{phoneNo}
+    </select>
+
+    <insert id="join" parameterType="Member">
+        insert into jang_member(ID,PWD,NAME,EMAIL,NNAME,PNUM)
+        values(#{id},sha2(#{password},256),#{name},#{email},#{nickName},#{phoneNo})
+    </insert>
+
 </mapper>

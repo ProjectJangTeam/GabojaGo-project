@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8" />
+  <title>가보자GO 코스추천_입력페이지</title>
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+</head>
+<body>
+<h1>코스추천_입력페이지</h1>
+
+<form action="recommendationAdd" method="post" enctype="multipart/form-data">
+  <input name="title" type="text" size="60" placeholder="한줄에 사로잡는 제목"/>
+
+  <br />
+  <br />
+
+  <select name="구 선택">
+    <option value="강남구">강남구</option>
+    <option value="노원구">노원구</option>
+    <option value="동작구">동작구</option>
+    <option value="마포구">마포구</option>
+    <option value="영등포구">영등포구</option>
+  </select>
+
+  <br>
+  <br>
+
+  <input type="text" placeholder="입력하실 장소의 주소를 검색해주세요" size="60"/>
+  <button type="button">검색</button>
+
+  <br>
+  <br>
+
+  <button id="add-form-btn" class="add-form-btn" type="button">추가</button>
+
+  <div id="total-form-div" style="border: solid">
+    <div class="copied-form" style="border: solid; color: red">
+      <input name="files" type="file" multiple />
+      <input name="cont" type="text" placeholder="해당 장소에 대하여 설명을 적어주세요" size="100"/>
+    </div>
+  </div>
+
+  <p>
+    <button id="add-jang-so-review-btn" type="submit">저장</button>
+    <a href="recommendationList">취소</a>
+  </p>
+</form>
+
+<script>
+  document.getElementById("add-form-btn").onclick = () => {
+    var tot = document.getElementById("total-form-div");
+    var origin = tot.innerHTML;
+    tot.innerHTML =
+            origin +
+            `      <div class="copied-form" style="border: solid; color: red;">
+      <input type="file" multiple>
+      <input type="text" placeholder="해당 장소에 대하여 설명을 적어주세요" size="100">
+    </div>`;
+  };
+</script>
+</body>
+</html>
