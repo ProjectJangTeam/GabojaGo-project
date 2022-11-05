@@ -1,0 +1,198 @@
+GET http://localhost:9999/app/support/noticeDetail
+
+<> 2022-11-04T212944.500.json
+
+###
+
+GET http://localhost:9999/app/support/noticeDetail
+
+<> 2022-11-04T211024.500.json
+
+###
+
+GET http://localhost:9999/app/support/noticeDetail
+
+<> 2022-11-04T201332.500.json
+
+###
+
+GET http://localhost:9999/app/support/noticeDetail
+
+<> 2022-11-04T164852.500.json
+
+###
+
+GET http://localhost:9999/app/support/noticeDetail
+
+<> 2022-11-03T221222.500.json
+
+###
+
+POST http://localhost:9999/app/support/noticeAdd
+
+<> 2022-11-03T210952.500.json
+
+###
+
+POST http://localhost:9999/app/support/noticeAdd
+
+<> 2022-11-03T210857.500.json
+
+###
+
+POST http://localhost:9999/app/support/noticeAdd
+
+<> 2022-11-03T153043.500.json
+
+###
+
+POST http://localhost:9999/app/support/noticeAdd
+
+<> 2022-11-03T153029.200.html
+
+###
+
+POST http://localhost:9999/app/support/noticeAdd
+
+<> 2022-11-03T152607.200.html
+
+###
+
+POST http://localhost:9999/app/support/noticeAdd
+
+<> 2022-11-03T152400.500.json
+
+###
+
+POST http://localhost:9999/app/support/noticeAdd
+
+<> 2022-11-03T152203.500.json
+
+###
+
+POST http://localhost:9999/app/support/noticeAdd
+
+<> 2022-11-03T152054.500.json
+
+###
+
+POST http://localhost:9999/app/support/noticeAdd
+
+<> 2022-11-03T151901.500.json
+
+###
+
+GET http://localhost:9999/app/support/noticeList
+
+<> 2022-11-03T151840.200.html
+
+###
+
+POST http://localhost:9999/app/support/noticeAdd
+
+<> 2022-11-03T150921.500.json
+
+###
+
+GET http://localhost:9999/app/support/noticeDetail
+
+<> 2022-11-02T201554.500.json
+
+###
+
+GET http://localhost:9999/app/support/noticeDetail
+
+<> 2022-11-02T195729.500.json
+
+###
+
+GET http://localhost:9999/app/support/noticeDetail
+
+<> 2022-11-02T195406.500.json
+
+###
+
+GET http://localhost:9999/app/support/noticeList
+
+<> 2022-11-02T195402.200.html
+
+###
+
+GET http://localhost:9999/app/support/noticeList
+
+<> 2022-11-02T195343.200.html
+
+###
+
+GET http://localhost:9999/app/support/noticeList
+
+<> 2022-11-02T195328.200.html
+
+###
+
+GET http://localhost:9999/app/support/noticeDetail
+
+<> 2022-11-02T194904.500.json
+
+###
+
+GET http://localhost:9999/app/support/noticeDetail
+
+<> 2022-11-02T194617.500.json
+
+###
+
+GET http://localhost:9999/app/support/noticeDetail
+
+<> 2022-11-02T194444.500.json
+
+###
+
+POST http://localhost:9999/app/support/noticeAdd
+
+<> 2022-11-02T155155.500.json
+
+###
+
+POST http://localhost:9999/app/support/noticeAdd
+
+<> 2022-11-02T100954.500.json
+
+###
+
+POST http://localhost:9999/app/support/noticeAdd
+
+<> 2022-11-02T032440.500.json
+
+###
+
+POST http://localhost:9999/app/support/noticeAdd
+
+<> 2022-11-02T031912.404.json
+
+###
+
+POST http://localhost:9999/app/support/noticeAdd
+
+<> 2022-11-02T031809.404.json
+
+###
+
+POST http://localhost:9999/app/support/noticeAdd
+
+<> 2022-11-02T031539.500.json
+
+###
+
+POST http://localhost:9999/app/support/noticeAdd
+
+<> 2022-11-02T031303.500.json
+
+###
+
+POST http://localhost:9999/app/support/noticeAdd
+
+<> 2022-11-02T030221.500.json
+
+###
+
