@@ -1,49 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <dataSource name="@localhost">
   <database-model serializer="dbm" dbms="MARIADB" family-id="MARIADB" format-version="4.43">
-    <root id="1">
-      <DefaultCasing>lower/lower</DefaultCasing>
-      <DefaultEngine>InnoDB</DefaultEngine>
-      <Grants>jangdb|schema||study|localhost|ALTER|G
-jangdb|schema||study|localhost|ALTER ROUTINE|G
-jangdb|schema||study|localhost|CREATE|G
-jangdb|schema||study|localhost|CREATE ROUTINE|G
-jangdb|schema||study|localhost|CREATE TEMPORARY TABLES|G
-jangdb|schema||study|localhost|CREATE VIEW|G
-jangdb|schema||study|localhost|DELETE|G
-jangdb|schema||study|localhost|DELETE HISTORY|G
-jangdb|schema||study|localhost|DROP|G
-jangdb|schema||study|localhost|EVENT|G
-jangdb|schema||study|localhost|EXECUTE|G
-jangdb|schema||study|localhost|INDEX|G
-jangdb|schema||study|localhost|INSERT|G
-jangdb|schema||study|localhost|LOCK TABLES|G
-jangdb|schema||study|localhost|REFERENCES|G
-jangdb|schema||study|localhost|SELECT|G
-jangdb|schema||study|localhost|SHOW VIEW|G
-jangdb|schema||study|localhost|TRIGGER|G
-jangdb|schema||study|localhost|UPDATE|G
-studydb|schema||study|localhost|ALTER|G
-studydb|schema||study|localhost|ALTER ROUTINE|G
-studydb|schema||study|localhost|CREATE|G
-studydb|schema||study|localhost|CREATE ROUTINE|G
-studydb|schema||study|localhost|CREATE TEMPORARY TABLES|G
-studydb|schema||study|localhost|CREATE VIEW|G
-studydb|schema||study|localhost|DELETE|G
-studydb|schema||study|localhost|DELETE HISTORY|G
-studydb|schema||study|localhost|DROP|G
-studydb|schema||study|localhost|EVENT|G
-studydb|schema||study|localhost|EXECUTE|G
-studydb|schema||study|localhost|INDEX|G
-studydb|schema||study|localhost|INSERT|G
-studydb|schema||study|localhost|LOCK TABLES|G
-studydb|schema||study|localhost|REFERENCES|G
-studydb|schema||study|localhost|SELECT|G
-studydb|schema||study|localhost|SHOW VIEW|G
-studydb|schema||study|localhost|TRIGGER|G
-studydb|schema||study|localhost|UPDATE|G</Grants>
-      <ServerVersion>10.9.2</ServerVersion>
-    </root>
+    <root id="1"/>
     <collation id="2" parent="1" name="big5_chinese_ci">
       <Charset>big5</Charset>
       <DefaultForCharset>1</DefaultForCharset>
