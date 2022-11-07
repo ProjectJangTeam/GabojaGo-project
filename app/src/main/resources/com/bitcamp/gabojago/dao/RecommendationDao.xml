@@ -1,0 +1,107 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.bitcamp.gabojago.dao.RecommendationDao">
+
+    <!-- 자바 객체의 프로퍼티와 컬럼 이름을 연결 -->
+    <resultMap type="recommendation" id="recommendationMap">
+        <result column="RECONO" property="recono"/>
+        <result column="TITLE" property="title"/>
+        <result column="CNT" property="cnt"/>
+        <result column="WDATE" property="wdate"/>
+        <result column="ACT" property="act"/>
+        <result column="PET" property="pet"/>
+        <result column="FRD" property="frd"/>
+        <result column="CPLE" property="cple"/>
+        <result column="FMLY" property="fmly"/>
+        <result column="SOLO" property="solo"/>
+        <result column="TPNO" property="tpno"/>
+
+        <collection property="jangSoReview" ofType="jangSoReview">
+            <id column="PRVNO" property="prvno"/>
+            <result column="CONT" property="cont"/>
+        </collection>
+
+        <!--        <collection property="jangSo" javaType="jangSo">-->
+        <!--            <id column="PLNO" property="plno"/>-->
+        <!--            <result column="PLNAME" property="plname"/>-->
+        <!--        </collection>-->
+    </resultMap>
+
+
+    <select id="recommendationList" resultMap="recommendationMap">
+        select
+        recono, title, wdate
+        from
+        jang_so_recommendation
+    </select>
+
+    <insert id="recommendationAdd" parameterType="recommendation">
+        insert into jang_so_recommendation(id, title, wdate, cnt, act, frd, cple, fmly, solo, tpno)
+        values('user8', #{title} , '2022-11-03', 9, true, true, true, true, true, 1)
+    </insert>
+
+    <select id="getRecommendation" resultMap="recommendationMap">
+        select
+        recono,
+        title,
+        cnt,
+        wdate,
+        act,
+        pet,
+        frd,
+        cple,
+        fmly,
+        solo,
+        tpno
+        from
+        jang_so_recommendation
+        where recono = #{value}
+    </select>
+
+    <!-- 상세보기-->
+    <!--    <select id="exhibitionSelect"  resultMap="exhibitionMap">-->
+    <!--        select  * from jang_exhibition-->
+    <!--        left join jang_exhibition_file on jang_exhibition.EXNO = jang_exhibition_file.EXNO-->
+    <!--        left join jang_exhibition_review on jang_exhibition.EXNO = jang_exhibition_review.EXNO-->
+    <!--        left join jang_so on jang_exhibition.PLNO = jang_so.PLNO-->
+    <!--        where jang_exhibition.EXNO=#{value};-->
+    <!--    </select>-->
+
+    <!--    <insert id="exhibitionInsert"  parameterType="exhibition"-->
+    <!--            useGeneratedKeys="true" keyColumn="exno" keyProperty="exno">-->
+
+    <!--        INSERT INTO jangdb.jang_exhibition (exname, cont, plno, stdate, eddate, price)-->
+    <!--        values (#{exname}, #{cont}, -1, #{stdate}, #{eddate}, #{price})-->
+
+    <!--    </insert>-->
+
+    <!--    <delete id="delete">-->
+    <!--        delete from jang_exhibition_file-->
+    <!--        where jang_exhibition_file.EXNO=#{value};-->
+    <!--        delete from jang_exhibition_review-->
+    <!--        where jang_exhibition_review.EXNO=#{value};-->
+    <!--        delete from jang_ticket-->
+    <!--        where jang_ticket.EXNO=#{value};-->
+    <!--        delete from jang_baguni-->
+    <!--        where jang_baguni.EXNO=#{value};-->
+    <!--        delete from jang_exhibition-->
+    <!--        where jang_exhibition.EXNO=#{value};-->
+
+    <!--  리뷰 달려있으면 삭제 못함 -->
+
+    <!--    </delete>-->
+
+
+    <!--    <update id="update" parameterType="exhibition">-->
+    <!--        update jang_exhibition set-->
+    <!--        EXNAME= #{exname}, CONT= #{cont},-->
+    <!--       STDATE= #{stdate}, EDDATE= #{eddate},-->
+    <!--        PRICE= #{price}-->
+    <!--        where jang_exhibition.EXNO= #{exno}-->
+    <!--    </update>-->
+
+
+
+</mapper>
