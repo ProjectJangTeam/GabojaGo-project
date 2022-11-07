@@ -6,7 +6,7 @@
           href="../css/bootstrap.min.css" rel="stylesheet">
     <style>
         .container {
-            max-width: 560px;
+            max-width: 700px;
         }
     </style>
 </head>
@@ -26,7 +26,7 @@
         </div>
         <div>
             <label for="questionContent">내용</label>
-            <textarea input type="text" id="questionContent" name="questionContent" class="form-control" data-th-text='${qnaBoard.questionContent}'></textarea>
+            <textarea input type="text" id="questionContent" name="questionContent" class="form-control" rows='10' cols='60' data-th-text='${qnaBoard.questionContent}'></textarea>
         </div>
         <div>
             <label for="disclosure">비공개</label>
