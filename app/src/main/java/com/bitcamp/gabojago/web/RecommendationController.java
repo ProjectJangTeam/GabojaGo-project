@@ -41,32 +41,58 @@ public class RecommendationController {
 
   @Transactional
   @PostMapping("recommendationAdd")
-  public String add(@RequestParam("files") MultipartFile[] files, HttpSession session,
-           Recommendation recommendation, JangSoReview[] jangSoReviews) throws Exception {
+  public String recommendationAdd(
+      MultipartFile[] files1, String cont1,
+      MultipartFile[] files2, String cont2,
+      MultipartFile[] files3, String cont3,
+      MultipartFile[] files4, String cont4,
+      MultipartFile[] files5, String cont5,
+      HttpSession session, Recommendation recommendation) throws Exception {
 
+    // 작성자정보 set하기
     recommendation.setWriter((Member) session.getAttribute("loginMember"));
 
-    int n = 3; //tr 갯수
-    //TODO
-    List<JangSoReview> Reviews = new ArrayList<>();
+    // 변수분류 저장
+    MultipartFile[][] files = {files1, files2, files3, files4, files5};
+    String[] cont = {cont1, cont2, cont3, cont4, cont5};
 
-    for (JangSoReview jangSoReview : jangSoReviews) {
-      
-    }
+    // recommendation에 JangSoReview List를 set하기
+    recommendation.setJangSoReviews(saveJangSoReviews(files, cont));
 
-
-
-
+    // recommendation add하기
     recommendationService.recommendationAdd(recommendation);
-
-    for(int i = 0; i < n; i ++)
-      recommendationService.jangSoReviewAdd(jangSoReviews[i]);
+//    for(int i = 0; i < n; i ++)
+//      recommendationService.jangSoReviewAdd(jangSoReviews[i]);
 
     return "redirect:recommendationList";
   }
 
+  private List<JangSoReview> saveJangSoReviews(MultipartFile[][] files, String[] cont)
+      throws Exception {
+
+    // JangSoReview List 생성
+    List<JangSoReview> jangSoReviews = new ArrayList<>();
+
+    // 각각의 JangSoReview 저장
+    for (int i = 0; i < cont.length; i++) {
+      // 내용이 없다면 저장하지 않는다. (=첨부파일 유무와 관계없다)
+      if (cont[i] == null) {
+        continue;
+      }
+
+      // JangSoReview 객체 생성
+      JangSoReview jangSoReview = new JangSoReview();
+      jangSoReview.setCont(cont[i]);
+      jangSoReview.setAttachedFiles(saveJangSoReviewAttachedFiles(files[i]));
+      jangSoReviews.add(jangSoReview);
+    }
+
+    return jangSoReviews;
+  }
+
   // 민구작성메서드
-  private List<JangSoReviewAttachedFile> saveJangSoReviewAttachedFiles(MultipartFile[] files)
+  private List<JangSoReviewAttachedFile> saveJangSoReviewAttachedFiles(
+      MultipartFile[] files)
       throws Exception {
 
   List<JangSoReviewAttachedFile> jangSoReviewAttachedFiles = new ArrayList<>();
@@ -77,9 +103,10 @@ public class RecommendationController {
       continue;
     }
 
-    String filename = UUID.randomUUID().toString();
-    file.transferTo(new File(dirPath + "/" + filename));
-      jangSoReviewAttachedFiles.add(new JangSoReviewAttachedFile(filename));
+    String filepath = UUID.randomUUID().toString();
+    String filename = file.getOriginalFilename();
+    file.transferTo(new File(dirPath + "/" + filepath));
+      jangSoReviewAttachedFiles.add(new JangSoReviewAttachedFile(filepath, filename));
   }
     return jangSoReviewAttachedFiles;
   }
