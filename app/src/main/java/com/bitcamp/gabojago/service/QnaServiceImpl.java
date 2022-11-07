@@ -33,4 +33,9 @@ public class QnaServiceImpl implements QnaService {
     public QnaBoard get(int no) throws Exception {
         return qnaDao.findByNo(no);
     }
+
+    @Override
+    public Boolean delete(int no) throws Exception {
+        return qnaDao.deleteByNo(no) > 0;
+    }
 }

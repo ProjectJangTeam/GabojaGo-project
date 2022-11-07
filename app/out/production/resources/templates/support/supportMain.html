@@ -20,20 +20,19 @@
 
     </div>
 
-    <div class="row">
-        <div class="col">
-            <button class="w-100 btn btn-primary float-end"
+    <div class="col">
+            <button class="w-100 btn btn-primary btn-lg"
                     onclick="location.href='list.html'"
                     th:onclick="|location.href='@{/support/event/list}'|"
                     type="button">이벤트</button>
-        </div>
-        <div class="col">
-            <button class="w-100 btn btn-primary float-end"
-                    onclick="location.href='list.html'"
-                    th:onclick="|location.href='@{/support/qna/list}'|"
-                    type="button">QnA</button>
-        </div>
     </div>
+    <div class="col">
+        <button class="w-100 btn btn-primary btn-lg"
+                onclick="location.href='list.html'"
+                th:onclick="|location.href='@{/support/qna/list}'|"
+                type="button">QnA</button>
+    </div>
+
 
 </div> <!-- /container -->
 

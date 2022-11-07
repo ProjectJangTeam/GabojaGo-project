@@ -28,7 +28,7 @@ public class QnaController {
     }
 
     @GetMapping("addForm")
-    public void form() throws Exception {
+    public void addForm() throws Exception {
 
     }
 
@@ -45,6 +45,22 @@ public class QnaController {
     @GetMapping("detail")
     public void detail(int no, Model model) throws Exception {
         model.addAttribute("qnaBoard", qnaService.get(no));
+
+    }
+
+    @GetMapping("delete")
+    public String delete(int no) throws Exception {
+        qnaService.delete(no);
+        return "redirect:list";
+    }
+
+    @GetMapping("editForm")
+    public void editForm(int no, Model model) throws Exception {
+        model.addAttribute("qnaBoard", qnaService.get(no));
+    }
+
+    @PostMapping("update")
+    public void update(QnaBoard qnaBoard) throws Exception {
 
     }
 }
