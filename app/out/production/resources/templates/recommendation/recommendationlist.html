@@ -26,7 +26,7 @@
 <div class="modal">
   <div class="modal_body">
     <h2>Sign In</h2>
-    <form action="auth/login" method="post">
+    <form action="../auth/login" method="post">
       <p>ID</p>
       <input name="id" type="text" size="30" placeholder="ID를 입력해주세요." th:value="${id}">
 
@@ -96,7 +96,7 @@
     </div>
      -->
 
-    <form action="auth/register">
+    <form action="../auth/register">
       <button class="btn_signin" type="submit">회원가입</button>
     </form>
 
@@ -117,16 +117,16 @@
         </li>
         <li class="nav-item"><a class="nav-link" href="#">Search</a></li>
         <li class="nav-item">
-          <a class="nav-link" href="recommendation/recommendationList">코스추천</a>
+          <a class="nav-link" href="/app/recommendation/recommendationList">코스추천</a>
         </li>
-        <li class="nav-item"><a class="nav-link" href="exhibition/exhibitionlist">전시회</a></li>
+        <li class="nav-item"><a class="nav-link" href="/app/exhibition/exhibitionlist">전시회</a></li>
         <li class="nav-item">
           <a class="nav-link" href="#">고객지원</a>
         </li>
         <li class="nav-item" data-th-if="${session.loginMember != null}">
           <a
               class="nav-link"
-              href="auth/logout"
+              href="../auth/logout"
               data-th-text="${session.loginMember.name}+'(로그아웃)'"
           >홍길동(로그아웃)</a
           >
