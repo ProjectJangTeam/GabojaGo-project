@@ -1,0 +1,33 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="utf-8">
+    <link th:href="@{/css/bootstrap.min.css}"
+            href="../css/bootstrap.min.css" rel="stylesheet">
+</head>
+<body>
+
+<div class="container" style="max-width: 600px">
+    <div class="py-5 text-center">
+        <h2>고객지원</h2>
+    </div>
+
+    <div class="row">
+        <div class="col">
+            <button class="w-100 btn btn-primary float-end"
+                    onclick="location.href='list.html'"
+                    th:onclick="|location.href='@{/support/event/list}'|"
+                    type="button">이벤트</button>
+        </div>
+        <div class="col">
+            <button class="w-100 btn btn-primary float-end"
+                    onclick="location.href='list.html'"
+                    th:onclick="|location.href='@{/support/qna/list}'|"
+                    type="button">QnA</button>
+        </div>
+    </div>
+
+</div> <!-- /container -->
+
+</body>
+</html>

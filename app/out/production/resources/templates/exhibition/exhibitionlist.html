@@ -1,0 +1,241 @@
+<!DOCTYPE html>
+<html>
+
+
+
+
+<head  >
+<meta charset="UTF-8">
+<title>가보자GO</title>
+<style>
+tr:hover {
+  background-color: navy;
+  color: white;
+}
+</style>
+
+  <link
+      rel="stylesheet"
+      href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
+  />
+  <script src="https://cdn.jsdelivr.net/npm/@coreui/coreui@4.2.0/dist/js/coreui.bundle.min.js"
+          integrity="sha384-n0qOYeB4ohUPebL1M9qb/hfYkTp4lvnZM6U6phkRofqsMzK29IdkBJPegsyfj/r4" crossorigin="anonymous"></script>
+
+<!--
+  <link href="https://cdn.jsdelivr.net/npm/@coreui/coreui@4.2.0/dist/css/coreui.min.css" rel="stylesheet" integrity="sha384-UkVD+zxJKGsZP3s/JuRzapi4dQrDDuEf/kHphzg8P3v8wuQ6m9RLjTkPGeFcglQU" crossorigin="anonymous">
+-->
+  <script src="https://cdn.jsdelivr.net/npm/@coreui/coreui@4.2.0/dist/js/coreui.bundle.min.js" integrity="sha384-n0qOYeB4ohUPebL1M9qb/hfYkTp4lvnZM6U6phkRofqsMzK29IdkBJPegsyfj/r4" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.5/dist/umd/popper.min.js" integrity=" sha384-Xe+8cL9oJa6tN/veChSP7q+mnSPaj5Bcu9mPX5F5xIGE0DVittaqT5lorf0EI7Vk" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@coreui/coreui@4.2.0/dist/js/coreui.min.js" integrity="sha384-2hww80ziDjQXYpFulPf5tfdCCXLTxn70HdSwL9MfeEvpS0kjfHd1iaBRsLpnuaSC" crossorigin="anonymous"></script>
+
+</head>
+
+<!-- Header-->
+<header class="bg-dark py-4">
+
+  <div class="container px-4 px-lg-5 my-5">
+    <div class="text-center text-white">
+      <h1 class="display-4 fw-bolder">가보자GO 전시회</h1>
+    <!--  <p class="lead fw-normal text-white-50 mb-0">?</p>-->
+    </div>
+  </div>
+
+</header>
+
+
+<body  class="pt-5" >
+<!-- Navigation 사실상의 header -->
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
+  <div class="container">
+    <a class="navbar-brand" href="/app">가보자GO</a>
+
+
+    <div class="collapse navbar-collapse" id="navbarResponsive">
+
+      <ul class="navbar-nav ml-auto">
+
+        <li class="nav-item"><a class="nav-link" href="#">Search</a></li>
+        <li class="nav-item">
+          <a class="nav-link" href="#">코스추천</a>
+        </li>
+
+
+          <li class="nav-item active">
+            <a class="nav-link" href="#">전시회
+              <span class="sr-only">(current)</span>
+            </a>
+          </li>
+
+        <li class="nav-item">
+          <a class="nav-link" href="#">고객지원</a>
+        </li>
+        <li class="nav-item" th:if="${session.loginMember != null}">
+          <a
+              class="nav-link"
+              href="auth/logout"
+              th:text="${session.loginMember.name}+'(로그아웃)'"
+          >홍길동(로그아웃)</a
+          >
+        </li>
+        <li class="nav-item" th:if="${session.loginMember == null}">
+          <span class="nav-link btn-open-popup">로그인</span>
+        </li>
+
+        <li class="nav-item">
+          <a class="nav-link" href="auth/register">회원가입</a>
+        </li>
+
+
+        <li class="nav-item">
+          <a class="nav-link" href="#">
+            <img src="./images/mypage.png" width="90%" height="25"
+            /></a>
+        </li>
+      </ul>
+    </div>
+  </div>
+</nav>
+
+<ul class="nav justify-content-end">
+  <li class="nav-item">
+    <a class="nav-link active" aria-current="page" href="form">전시회 글쓰기</a>
+  </li>
+<!--  <li class="nav-item">
+    <a class="nav-link" href="#">Link</a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="#">Link</a>
+  </li>-->
+  <li class="nav-item">
+    <a class="nav-link"  href="../">메인</a>
+  </li>
+</ul>
+
+<!-- <p><a href='../'>메인</a></p>-->
+<!--<a href='form'>새 글</a>-->
+
+<!-- Section-->
+<style>
+  .section {
+    overflow: auto;
+    white-space: nowrap;
+  }
+
+  .section {
+    overflow: auto;
+    white-space: nowrap;
+    margin: 10px;
+    padding: 20px;
+    align-content: stretch;
+    display: flex;
+    flex-wrap: wrap;
+  }
+</style>
+
+
+<div style="  overflow: auto;
+    white-space: nowrap;">
+  <!-- class=" -->
+<section class="py-5 " data-th-each="exhibition : ${exhibitions}" style=" width: 100%;">
+  <!--justify-content-center-->
+  <div class="container px-4 px-lg-5 mt-5">
+    <div class="row gx-4 gx-lg-5 row-cols-2 row-cols-md-3 row-cols-xl-4 ">
+      <div class="col mb-5">
+        <div class="card h-100"   >
+
+          <td data-th-text="${exhibition.exno}">100</td>
+
+          <!-- Product image 첨부파일 갤러리화 -->
+         <!-- class="card-img-top"-->
+          <img  src="https://cdn.pixabay.com/photo/2016/03/27/16/23/woman-1283009__480.jpg"
+               alt="..." />
+
+          <!-- 전시 제목,날짜 정렬-->
+          <div class="card-body p-4">
+            <div class="text-center">
+
+
+              <!-- 전시 name-->
+
+              <h5>
+                <a href='detail?exno=1'
+                   data-th-href="@{detail(exno=${exhibition.exno})}"
+                   data-th-text="${exhibition.exname == ''} ? '(제목없음)' : ${exhibition.exname}"
+                   style="word-wrap: break-word"
+                >제목rlfldsdfasdfasdf</a>
+              </h5>
+
+
+                <td data-th-text="${exhibition.stdate}"  >2022-1-1</td>
+              <td data-th-text="${exhibition.eddate}">2022-1-1</td>
+
+            </div>
+          </div>
+
+          <!-- Product actions-->
+
+          <div class="card-footer p-4 pt-0 border-top-0 bg-transparent">
+            <div class="text-center"><a class="btn btn-outline-dark mt-auto" href="#">보러가기</a></div>
+          </div>
+        </div>
+
+
+</section>
+</div>
+<!--
+<h1>전시회</h1>-->
+
+<!--  <table border='1'>
+    <tr>
+      <th>번호</th>
+      <th>제목</th>
+      <th>시작일</th>
+      <th>종료일</th>
+    </tr>
+
+    <tr data-th-each="exhibition : ${exhibitions}">
+      <td data-th-text="${exhibition.exno}">100</td>
+
+      <td>
+        <a href='detail?exno=1'
+           data-th-href="@{detail(exno=${exhibition.exno})}"
+           data-th-text="${exhibition.exname == ''} ? '(제목없음)' : ${exhibition.exname}">제목</a>
+      </td>
+
+      <td data-th-text="${exhibition.stdate}"  >2022-1-1</td>
+      <td data-th-text="${exhibition.eddate}">2022-1-1</td>
+    </tr>
+  </table>-->
+ <!-- <p><a href='../'>메인</a></p>-->
+
+
+
+
+  <!-- Footer-->
+  <footer>
+      <p>Copyright &copy;가보자GO</p>
+  </footer>
+
+  <style>
+    footer {
+      /* footer를 aside위에 올리기 위해 사용(부유객체) */
+      position: relative;
+      height: 70px;
+      width: 100%;
+      padding: 0 25px;
+      line-height: 60px;
+      color: white;
+      border-top: 1px solid #dee5e7;
+      background-color: #343A40;
+   margin-top:auto;
+      text-align:center;
+    }
+
+  </style>
+
+</body>
+</html>
+
+
+
+    
