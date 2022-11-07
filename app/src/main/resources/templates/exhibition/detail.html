@@ -47,13 +47,13 @@
 
 
         <li class="nav-item active">
-          <a class="nav-link" href="#">전시회
+          <a class="nav-link" href="exhibitionlist">전시회
             <span class="sr-only">(current)</span>
           </a>
         </li>
 
         <li class="nav-item">
-          <a class="nav-link" href="#">고객지원</a>
+          <a class="nav-link" href="/app/support/">고객지원</a>
         </li>
         <li class="nav-item" th:if="${session.loginMember != null}">
           <a
@@ -83,72 +83,74 @@
 </nav>
 
 <style>
-  /*
   form {
     width: 1000px;
     margin: 0 auto;
   }
-  */
-
-  /*
   table{
     width: 1000px;
     margin: 0 auto;
   }
-  */
-
 </style>
 
 
+<div class="container">
 
-<h1 style=" width: 1000px;
-    margin: 0 auto;">전시회 상세 정보</h1>
+  <div class="py-5 text-center">
+
+<h2>전시회 상세 정보</h2>
+  </div>
 
 <form action='update' method="post" enctype="multipart/form-data" style=" width: 1000px;
     margin: 0 auto;">
   <table border='1'>
-    <tr>
-      <th>번호</th><td><input name='exno' type='number'
-                            value='1'
-                            data-th-value="${exhibition.exno}"
-                            readonly></td>
-    </tr>
-    <tr>
-      <th>제목</th><td><input readonly name='exname' type='text'
-                            value='제목'
-                            data-th-value='${exhibition.exname}'
-                            size='60'></td>
-    </tr>
+
+    <div style="float: right;">
+      <label>등록일 : </label>
+      <label data-th-text="${exhibition.wdate}">2022-1-1</label>
+    </div>
+
+    <div>
+      <label>No. </label>
+      <input name='exno' type='number'  value='1'
+              data-th-value="${exhibition.exno}" readonly
+      style="border: none;">
+
+    </div>
 
 
-    <tr>
-      <th>등록일</th><td data-th-text="${exhibition.wdate}">2022-1-1</td>
-    </tr>
+    <div>
+      <input readonly name='exname' type='text'
+        id="exname"  class="form-control"  value=' 제목 '
+        ata-th-value='${exhibition.exname}'>
+    </div>
 
-    <tr>
-      <th>시작날짜</th><td data-th-text="${exhibition.stdate}">2022-1-1</td>
-    </tr>
 
-    <tr>
-      <th>종료날짜</th><td data-th-text="${exhibition.eddate}">2022-1-1</td>
-    </tr>
+    <div>
+      <label> 전시기간 : </label>
+      <!--시작 날짜-->
+      <label data-th-text="${exhibition.stdate}">2022-1-1</label>
+    ~
+    <!--  <label> 종료날짜 : </label>-->
+      <label data-th-text="${exhibition.eddate}">2022-1-1</label>
+    </div>
 
-    <tr>
-      <th>금액</th><td><input name='price' type='number'
-                            value='10000'
-                            data-th-value="${exhibition.price}"
-                            readonly></td>
-    </tr>
+    <div>
+      <label for="price">금액</label>
+      <input id="price" name='price' type='number' value='10000'
+             data-th-value="${exhibition.price}"
+             style="border: none;"  readonly>
+    </div>
 
-    <tr>
-      <th>내용</th><td><textarea name='cont' ></textarea></td>
-    </tr>
+    <div>  <!--<label for="cont"></label>-->
+      <textarea id="cont"  name='cont' ></textarea>
+    </div>
 
   </table>
 
 
-
-        <tr>
+<br> <!--///공백////-->
+        <div style="border: 1px dashed #bdbdbd; width: 1000px; height: 100px;">
           <th>첨부파일</th>
           <td>
             <ul>
@@ -165,27 +167,32 @@
             파일 추가: <input name='files' type="file" multiple>
 -->
           </td>
-        </tr>
+        </div>
 
 
 
 
-  <p>
+  <p style="float: right;">
     <a href='updateform?exno=1'
-       data-th-href="@{updateform(exno=${exhibition.exno})}">변경</a>
+       data-th-href="@{updateform(exno=${exhibition.exno})}">게시글 변경 | </a>
 
     <a href='delete?exno=1'
-       data-th-href="@{delete(exno=${exhibition.exno})}">삭제</a>
+       data-th-href="@{delete(exno=${exhibition.exno})}">게시글 삭제 |</a>
     <a href='exhibitionlist'>목록</a>
   </p>
 </form>
 
 
+  <div class="container"> </div>
 
-<table style=" width: 1000px;
-    margin: 0 auto;">
 
-  <form  method="post " action="add">
+
+<!--  style=" width: 1000px;
+  margin: 0 auto;"-->
+<table style="border: 1px dashed #bdbdbd; width: 1000px; height: 100px;">
+  <br> <!--공백-->
+
+  <form  method="post " action="add" >
   <tr>
     <th>리뷰번호</th>
     <th>아이디</th>
@@ -198,27 +205,27 @@
     <td><input name='rvno' type='number'
                value='1'
                data-th-value="${exhibitionReview.rvno}"
-               readonly></td>
+               style="border: none; width: 50px; text-align: center"   readonly></td>
 
-    <td data-th-text="${exhibitionReview.id}">홍길동</td>
+    <td data-th-text="${exhibitionReview.id}" style="width: 100px">홍길동</td>
 
 
 
     <td data-th-text="${exhibitionReview.cont == ''} ? '(제목없음)' : ${exhibitionReview.cont}">
       <input name='cont' type='text'
-             value='ㅎ'
+             value='리뷰내용'
              data-th-value="${exhibitionReview.cont}"
-             size='30'
-             ></td>
+             size='20'
+             style="border: none; width: 350px"></td>
 
     <!--readonly-->
-    <td data-th-text="${exhibitionReview.wdate}">2022-1-1</td>
+    <td data-th-text="${exhibitionReview.wdate}" style="width: 150px">2022-1-1</td>
 <td>
   <a href='exhibitionReviewDelete?rvno=1'
-     data-th-href="@{/exhibition-review/delete(rvno=${exhibitionReview.rvno})}">리뷰 삭제</a>
+     data-th-href="@{/exhibition-review/delete(rvno=${exhibitionReview.rvno})}">| 리뷰 삭제 |</a>
 
   <a href='exhibitionReviewUpdate?rvno=1'
-     data-th-href="@{/exhibition-review/update(rvno=${exhibitionReview.rvno})}">리뷰 변경</a>
+     data-th-href="@{/exhibition-review/update(rvno=${exhibitionReview.rvno})}"> 리뷰 변경 |</a>
 
 </td>
 
@@ -239,20 +246,30 @@
   </tr>
   </form>
 
+  <br> <!--////공백////-->
+
   <form action='../exhibition-review/add' method="post" enctype="multipart/form-data"
-  style=" width: 1000px;
-    margin: 0 auto;">
+  >
 
+    <!--style=" width: 1000px;
+    margin: 0 auto;"
+    -->
+    <div style="border: 1px dashed #bdbdbd; width: 1000px; height: 100px; margin: 0 auto;">
     <b> [ 리뷰 작성 ] </b>
-    <p><label>작성자</label> <input type="text" name="id"></p>
-    <p><label>내용</label> <input type='text' name='cont' size='60'> </p>
+    <div >
+      <label>작성자</label> <input type="text" name="id"> <!--후에 아이디 연동 -->
+    <label>내용</label> <input type='text' name='cont' size='60'>
     <input type='hidden' name='exno' data-th-value="${exhibition.exno}">
-    <p><button type='submit'>리뷰 저장</button></p>
-
-
+    <button type='submit'>리뷰 저장</button>
+      <br> <!--공백-->
+      <br> <!--공백-->
+    </div>
+    </div>
   </form>
-
+  <br> <!--////공백////-->
 </table>
+</div><!-- /container -->
+
 
 <!-- Footer-->
 <footer>
@@ -273,29 +290,23 @@
     margin-top:auto;
     text-align:center;
   }
-
 </style>
-
-
 
 <script>
   $(document).ready(function() {
     $('textarea[name=cont]').html('[[${exhibition.cont}]]')
-    $('textarea[name=cont]').summernote({height: 400,
-                                         minHeight : null,
-                                         maxHeight : null,
-                                         disableDragAndDrop: true});
 
-    $('textarea[name=cont]').summernote({toolbar:false});
-    $('textarea[name=cont]').summernote('disable');
-
-
+    $('textarea[name=cont]').summernote({
+      toolbar:false,
+      height: 900,
+      minHeight : null,
+      maxHeight : null,
+      disableDragAndDrop: true
     });
 
-
+    $('textarea[name=cont]').summernote('disable');
+    });
 </script>
-
-
 
 </body>
 </html>

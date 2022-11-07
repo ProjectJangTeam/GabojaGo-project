@@ -11,50 +11,71 @@
 
 </head>
 <body>
-<h1>전시회 상세 정보</h1>
+
+
+
+
+
+<div class="container">
+
+  <div class="py-5 text-center">
+
+    <h2>전시회 게시글 수정</h2>
+  </div>
 <form action='update' method="post" enctype="multipart/form-data">
   <table border='1'>
-    <tr>
-      <th>번호</th><td><input name='exno' type='number'
-                            value='1'
-                            data-th-value="${exhibition.exno}"
-                            readonly></td>
-    </tr>
-    <tr>
-      <th>제목</th><td><input name='exname' type='text'
-                            value='제목'
-                            data-th-value='${exhibition.exname}'
-                            size='60'></td>
-    </tr>
 
 
-    <tr>
-      <th>등록일</th><td data-th-text="${exhibition.wdate}"></td>
-    </tr>
+    <div  style="float: right;">
+      <label>등록일 : </label>
+      <label data-th-text="${exhibition.wdate}"></label>
+    </div>
 
-    <tr>
-      <th>시작날짜</th><td> <input name='stdate' type='text'
-                               value='2022-11-22'
-                               data-th-text="${exhibition.stdate}"
-                               size='60'></td>
-    </tr>
+    <div>
+      <label>번호</label>
+      <input name='exno' type='number'
+             value='1' data-th-value="${exhibition.exno}"
+             style="border: none;" readonly>
+    </div>
+    <br> <!--공백-->
+    <div>
+     <!-- <label for="exname">제목</label>-->
+      <input name='exname'  class="form-control"
+             type='text'  value='제목'
+              data-th-value='${exhibition.exname}'
+               size='60'>
+    </div>
+    <br> <!--공백-->
 
-    <tr>
-      <th>종료날짜</th><td> <input name='eddate' type='text'
-                               value='2022-11-22'
-                               data-th-text="${exhibition.eddate}"></td>
-    </tr>
 
-    <tr>
-      <th>금액</th><td><input name='price' type='number'
-                            value='10000'
-                            data-th-value="${exhibition.price}"
-                            ></td>
-    </tr>
 
-    <tr>
-      <th>내용</th><td><textarea name='cont' ></textarea></td>
-    </tr>
+    <div>
+      <label >시작날짜 : </label>
+      <input name='stdate' type='text'
+             value='2022-11-22'
+             data-th-text="${exhibition.stdate}"
+             size='20'
+      >
+
+      <label >종료날짜 :</label>
+      <input name='eddate' type='text'
+             value='2022-11-22'
+             data-th-text="${exhibition.eddate}"
+             size='20'>
+    </div>
+
+    <div>
+      <label style="width: 67px">금 액 : </label><input name='price' type='number'
+                            value='10000' data-th-value="${exhibition.price}"
+                            size='20'>
+    </div>
+
+    <br> <!--공백-->
+
+    <div>
+      <!--<th>내용</th>-->
+      <textarea name='cont' ></textarea>
+    </div>
 
   </table>
 
@@ -122,6 +143,8 @@
   </p>
 
 
+</form>
+</div>
   <!-- Footer-->
   <footer>
     <p>Copyright &copy;가보자GO</p>
@@ -144,8 +167,6 @@
 
   </style>
 
-
-</form>
 
 <script>
   $(document).ready(function() {

@@ -12,63 +12,80 @@
 
 </head>
 <body>
-<h1>전시회 입력</h1>
 
+<div class="container">
+
+  <div class="py-5 text-center">
+
+<h2>전시회 입력</h2>
+  </div>
 
 <form action='add' method="post" enctype="multipart/form-data">
 
 <table border='1'>
 
-  <tr>
-    <th>전시회 이름</th><td><input name='exname' type='text' size='60'></td>
-  </tr>
+  <div>
+    <label for="exname">전시회 이름</label>
+    <input id="exname" name='exname' type='text'
+           class="form-control" placeholder="전시회 이름을 입력하세요">
+  </div>
 
-  <tr>
-    <th>내용</th><td><textarea name='cont' rows='10' cols='60'></textarea></td>
-  </tr>
-
-
-  <tr>
-    <th>시작일</th><td>
-    <input name='stdate' type='date' size='60'></td>
-  </tr>
-
-  <tr>
-    <th>종료일</th><td>
-    <input name='eddate' type='date' size='60'></td>
-  </tr>
+  <div>
+    <label for="cont">내용</label>
+    <textarea id="cont"  class="form-control"
+        name='cont' rows='10' cols='60'></textarea>
+  </div>
 
 
-  <tr>
-    <th>가격</th><td>
-    <input name='price' type='number' size='60'></td>
-  </tr>
+  <div>
+    <label for="stdate">시작일</label>
+    <input name='stdate' id="stdate" type='date' size='60'>
+     ~
+    <label for="eddate">종료일</label>
+    <input name='eddate'  id="eddate" type='date' size='60'>
+  </div>
 
 
-  <tr>
-    <th>첨부파일</th><td><input name='files' type="file" multiple></td>
-  </tr>
+  <div>
+    <label for="price">금액</label>
+    <input name='price' id="price" type='number' size='60'
+           placeholder="ex : 12000"
+    >
+  </div>
+
+
+ <p>
+    <label for="files">첨부파일</label>
+      <input name='files' id="files" type="file" multiple></p>
+
 
 
 </table>
 
 
-<p>
+
   <button type='submit'>등록</button>
   <a href='exhibitionlist'>목록</a>
-</p>
 
 </form>
-  <script>
-    $(document).ready(function() {
-       $('textarea').summernote({height: 200});
-    });
-  </script>
+</div> <!-- /container -->
+
 
 <!-- Footer-->
 <footer>
   <p>Copyright &copy;가보자GO</p>
 </footer>
+
+
+
+
+
+
+<script>
+  $(document).ready(function() {
+    $('textarea').summernote({height: 200});
+  });
+</script>
 
 <style>
   footer {
@@ -84,9 +101,7 @@
     margin-top:auto;
     text-align:center;
   }
-
 </style>
-
 
 
 </body>

@@ -108,10 +108,10 @@
     </select>
 
     <insert id="insertFiles" parameterType="exhibition">
-        insert into jang_exhibition_file(PATH,EXNO,FNAME)
+        insert into jang_exhibition_file(path,exno,fname)
         values
         <foreach collection="exhibitionFiles" item="file" separator=",">
-            (#{file.path},#{exno}, #{fname})
+            (#{file.path},#{exno},#{fname})
         </foreach>
     </insert>
 

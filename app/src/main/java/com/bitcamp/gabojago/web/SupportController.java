@@ -1,4 +1,3 @@
-/*
 package com.bitcamp.gabojago.web;
 
 import org.springframework.stereotype.Controller;
@@ -14,4 +13,3 @@ public class SupportController {
         return "support/supportMain";
     }
 }
-*/
