@@ -1,21 +1,20 @@
 package com.bitcamp.gabojago.web;
 
 
-import com.bitcamp.gabojago.service.NoticeService;
-import com.bitcamp.gabojago.vo.Notice;
+import java.util.HashMap;
+import java.util.Map;
+import javax.servlet.ServletContext;
+import javax.servlet.http.HttpSession;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
-
-import javax.servlet.ServletContext;
-import javax.servlet.http.HttpSession;
-import java.util.HashMap;
-import java.util.Map;
+import com.bitcamp.gabojago.service.NoticeService;
+import com.bitcamp.gabojago.vo.Notice;
 
 @Controller
-@RequestMapping("/support")
+@RequestMapping("/support/notice")
 public class NoticeController {
 
     ServletContext sc;

@@ -49,11 +49,7 @@
           <foreach item="keyword" collection="array">
               <trim prefix="OR">
                   ex.EXNAME LIKE CONCAT('%',#{keyword},'%')
-              </trim>
-          </foreach>
-          
-          <foreach item="keyword" collection="array">
-              <trim prefix="OR">
+                  OR
                   ex.CONT LIKE CONCAT('%',#{keyword},'%')
               </trim>
           </foreach>

@@ -1,15 +1,13 @@
 package com.bitcamp.gabojago.service;
 
-import com.bitcamp.gabojago.vo.MailDto;
-import java.util.HashMap;
 import javax.mail.MessagingException;
 import javax.mail.internet.MimeMessage;
-import org.springframework.core.io.ClassPathResource;
 import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.mail.javamail.MimeMessageHelper;
 import org.springframework.stereotype.Service;
 import org.thymeleaf.context.Context;
 import org.thymeleaf.spring5.SpringTemplateEngine;
+import com.bitcamp.gabojago.vo.MailDto;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 
@@ -18,9 +16,14 @@ import lombok.extern.slf4j.Slf4j;
 @RequiredArgsConstructor
 public class MailService {
 
-  private final JavaMailSender emailSender;
-  private final SpringTemplateEngine templateEngine;
+  private JavaMailSender emailSender;
+  private SpringTemplateEngine templateEngine;
 
+  public MailService(JavaMailSender emailSender, SpringTemplateEngine templateEngine) {
+    this.emailSender = emailSender;
+    this.templateEngine = templateEngine;
+  }
+  
   public void sendTemplateMessage(MailDto mailDto) throws MessagingException {
     MimeMessage message = emailSender.createMimeMessage();
     MimeMessageHelper helper = new MimeMessageHelper(message, true, "UTF-8");

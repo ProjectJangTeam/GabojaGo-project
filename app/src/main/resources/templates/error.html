@@ -152,24 +152,19 @@
         </div>
       </nav>
       
+    
+    <h1 class="alert alert-danger" style="padding: 30px">예외가 발생했습니다.</h1>
+    <p>아래 폼의 상세 내용을 찍어 000-0000 으로 보내주시면, 빠른 해결이 가능합니다.</p>
+    
+    <details>
+	    <summary class="btn btn-outline-danger">에러 내용 전문</summary>
+	    <p class="p-3 mb-2 bg-danger text-white" th:text="${stackTrace}">
+        예기치 못한 예외가 발생했습니다.
+      </p>
+    </details>
+    
+    
 
-    <script>
-    function Checkform(){     
-      if(search.keyword.value.length <= 1){
-        alert("검색어는 한 글자 이상이어야 합니다.");
-        search.keyword.focus();
-        return false;
-      }
-      
-      return true;
-    }
-    </script>
-    
-	<form style="padding: 20px" name = "search" action="searchResult" method="get" onSubmit="return Checkform()">
-		  <input name="keyword" type="text" class="border border-primary">
-		  <input class="btn btn-primary" type="submit">
-	</form>
-    
     <!-- Footer-->
     <footer class="py-4 bg-dark">
       <div class="container">

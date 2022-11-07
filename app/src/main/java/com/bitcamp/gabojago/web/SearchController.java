@@ -27,9 +27,8 @@ public class SearchController {
   
   @GetMapping("searchResult")
   public String searchResult(Model model, String keyword) throws Exception {
-    System.out.println(memberSearchService.getResult(MemberSearchType.PUBLIC, keyword));
     model.addAttribute("exhibitionResult", exhibitionSearchService.getResult(ExhibitionSearchType.TITLE, keyword));
-    model.addAttribute("memberResult", memberSearchService.getResult(MemberSearchType.PUBLIC, keyword));
+    model.addAttribute("memberResult", memberSearchService.getResult(MemberSearchType.PUBLIC, keyword));      
     
     return "searchResult";
   }

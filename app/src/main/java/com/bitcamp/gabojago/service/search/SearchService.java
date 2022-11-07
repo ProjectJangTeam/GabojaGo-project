@@ -7,8 +7,4 @@ public interface SearchService<T extends Enum<T> & SearchType> {
   
   List<Map<String, String>> getResult(T type, String keyword); 
   
-  default String[] parseKeyword(String keyword) {
-    return keyword.split(" ");
-  }
-  
 }
