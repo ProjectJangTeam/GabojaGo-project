@@ -12,6 +12,8 @@ public interface QnaService {
 
     QnaBoard get(int no) throws Exception;
 
+    Boolean delete(int no) throws Exception;
+
 
 
 }

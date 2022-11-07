@@ -46,5 +46,10 @@
         where qna.QNANO=#{no}
     </select>
 
+    <delete id="deleteByNo">
+        delete from jang_qna
+        where QNANO=#{no}
+    </delete>
+
 
 </mapper>
