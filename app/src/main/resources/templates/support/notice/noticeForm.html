@@ -23,7 +23,7 @@
         <h2>공지사항 입력</h2>
     </div>
 
-    <form th:action="@{/support/noticeAdd}" method="post">
+    <form th:action="@{/support/notice/noticeAdd}" method="post">
         <div>
             <label for="title">제목</label>
             <input type="text" id="title" name="title" class="form-control" placeholder="제목을 입력하세요">
@@ -46,7 +46,7 @@
             <div class="col">
                 <button class="w-100 btn btn-secondary btn-lg"
                         onclick="location.href='noticeList.html'"
-                        th:onclick="|location.href='@{/support/noticeList}'|"
+                        th:onclick="|location.href='@{/support/notice/noticeList}'|"
                         type="button">취소</button>
             </div>
         </div>
