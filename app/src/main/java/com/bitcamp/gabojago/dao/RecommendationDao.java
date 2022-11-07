@@ -14,9 +14,14 @@ public interface RecommendationDao {
 
   int recommendationAdd(Recommendation recommendation);
 
+  int jangSoReviewAdd(Recommendation recommendation);
+
+  int jangSoReviewAttachedFileAdd(JangSoReview jangSoReview);
+
   Recommendation getRecommendation(int recono);
 
   int disableRecommend(int recono);
+
 
 //  int delete(int recono);
 

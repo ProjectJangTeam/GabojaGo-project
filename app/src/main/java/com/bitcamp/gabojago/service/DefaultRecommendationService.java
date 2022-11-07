@@ -9,6 +9,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import org.springframework.transaction.annotation.Transactional;
 
 @Service
 public class DefaultRecommendationService implements RecommendationService  {
@@ -18,15 +19,21 @@ public class DefaultRecommendationService implements RecommendationService  {
   @Autowired
   JangSoReviewDao jangSoReviewDao;
 
-
+  @Transactional
   @Override
   public void recommendationAdd(Recommendation recommendation) throws Exception {
-    // 1) 게시글 등록
+    // 1) 코스추천글 등록
     if (recommendationDao.recommendationAdd(recommendation) == 0) {
       throw new Exception("게시글 등록 실패!");
     }
 
-    // 2) 첨부파일 등록 나중에 생성
+    // 2) 장소리뷰 등록
+    recommendationDao.jangSoReviewAdd(recommendation);
+
+    for (int i = 0; i < recommendation.getJangSoReviews().size(); i++) {
+      // 3) 첨부파일 등록
+      recommendationDao.jangSoReviewAttachedFileAdd(recommendation.getJangSoReviews().get(i));
+    }
   }
 
   @Override
