@@ -12,6 +12,14 @@
         <h2>고객지원</h2>
     </div>
 
+    <div class="col">
+        <button class="w-100 btn btn-secondary btn-lg"
+                onclick="location.href='noticeList.html'"
+                th:onclick="|location.href='@{/support/notice/noticeList}'|"
+                type="button">Notice</button>
+
+    </div>
+
     <div class="row">
         <div class="col">
             <button class="w-100 btn btn-primary float-end"

@@ -15,7 +15,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 @Controller
-@RequestMapping("/support")
+@RequestMapping("/support/notice")
 public class NoticeController {
 
     ServletContext sc;
@@ -28,21 +28,17 @@ public class NoticeController {
         this.sc = sc;
     }
 
-    @GetMapping("/")
-    public String support() {
-        return "support/support";
-    }
 
     @GetMapping("/noticeForm")
     public String noticeForm(Notice notice) {
-        return "/support/noticeForm";
+        return "/support/notice/noticeForm";
     }
 
 
     @PostMapping("/noticeAdd")
     public String noticeAdd(Notice notice, HttpSession session) throws Exception {
         noticeService.noticeAdd(notice);
-        return "redirect:/support/noticeList";
+        return "redirect:/support/notice/noticeList";
     }
 
     @GetMapping("/noticeList")
