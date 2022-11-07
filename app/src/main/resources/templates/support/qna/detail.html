@@ -41,7 +41,9 @@
     <tr>
         <th>작성자</th><td data-th-text="${qnaBoard.id}" readonly>홍길동</td>
     </tr>
-
+    <tr>
+        <th>비공개</th><td data-th-text="${qnaBoard.disclosure == true} ? '비공개' : '공개'" readonly>공개여부</td>
+    </tr>
 
     <hr class="my-4">
 
@@ -49,21 +51,24 @@
         <div class="col">
             <button class="w-100 btn btn-primary btn-lg"
                     onclick="location.href='editForm.html'"
-                    th:onclick="|location.href='@{/support/qna/editForm}'|"
+                    th:onclick="|location.href='@{/support/qna/editForm(no=${qnaBoard.no})}'|"
                     type="button">내용수정</button>
         </div>
+
         <div class="col">
             <button class="w-100 btn btn-primary btn-lg"
                     onclick="location.href='list.html'"
                     th:onclick="|location.href='@{delete(no=${qnaBoard.no})}'|"
-                    type="button">삭제</button>
+                    type="submit">삭제</button>
         </div>
+
         <div class="col">
             <button class="w-100 btn btn-secondary btn-lg"
                     onclick="location.href='list.html'"
                     th:onclick="|location.href='@{/support/qna/list}'|"
                     type="button">목록으로</button>
         </div>
+
     </div>
 
 </div> <!-- /container -->

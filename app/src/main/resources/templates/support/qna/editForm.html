@@ -18,18 +18,19 @@
         <h2>QnA 수정</h2>
     </div>
 
-    <form action="update" method="post" enctype="multipart/form-data">
+    <form action="update" method="post">
+
         <div>
             <label for="title">제목</label>
-            <input type="text" id="title" name="title" class="form-control" placeholder="제목을 입력하세요.">
+            <input type="text" id="title" name="title" class="form-control" data-th-value='${qnaBoard.title}'>
         </div>
         <div>
             <label for="questionContent">내용</label>
-            <textarea input type="text" id="questionContent" name="questionContent" class="form-control" placeholder="내용을 입력하세요."></textarea>
+            <textarea input type="text" id="questionContent" name="questionContent" class="form-control" data-th-text='${qnaBoard.questionContent}'></textarea>
         </div>
         <div>
             <label for="disclosure">비공개</label>
-            <input type="checkbox" id="disclosure" name="disclosure">
+            <input type="checkbox" id="disclosure" name="disclosure" data-th-checked='${qnaBoard.disclosure == true}'>
         </div>
 
         <hr class="my-4">
