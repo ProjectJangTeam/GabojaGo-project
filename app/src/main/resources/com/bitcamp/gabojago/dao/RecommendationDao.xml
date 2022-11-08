@@ -67,22 +67,33 @@
         values(#{writer.id}, #{title}, true, true, true, true, true, 1)
     </insert>
 
-    <insert id="jangSoReviewAdd" parameterType="recommendation"
+    <insert id="jangSoReviewAdd" parameterType="jangSoReview"
       useGeneratedKeys="true" keyColumn="prvno" keyProperty="prvno">
-        insert into jang_so_review(cont,recono)
-        values
-        <foreach collection="jangSoReviews" item="jangSoReview" separator=",">
-            (#{jangSoReview.cont}, #{recono})
-        </foreach>
+        insert into jang_so_review(cont,recono,plno)
+        values(#{cont}, #{recono}, 1)
     </insert>
 
-    <insert id="jangSoReviewAttachedFileAdd" parameterType="jangSoReview">
+    <insert id="jangSoReviewAttachedFileAdd" parameterType="jangSoReviewAttachedFile">
         insert into jang_so_review_file(path,fname,prvno)
-        values
-        <foreach collection="attachedFiles" item="file" separator=",">
-            (#{file.filepath}, #{file.filename}, #{prvno})
-        </foreach>
+        values(#{filepath}, #{fname}, #{prvno})
     </insert>
+
+<!--    <insert id="jangSoReviewAdd" parameterType="recommendation"-->
+<!--      useGeneratedKeys="true" keyColumn="prvno" keyProperty="prvno">-->
+<!--        insert into jang_so_review(cont,recono)-->
+<!--        values-->
+<!--        <foreach collection="jangSoReviews" item="jangSoReview" separator=",">-->
+<!--            (#{jangSoReview.cont}, #{recono})-->
+<!--        </foreach>-->
+<!--    </insert>-->
+
+<!--    <insert id="jangSoReviewAttachedFileAdd" parameterType="jangSoReview">-->
+<!--        insert into jang_so_review_file(path,fname,prvno)-->
+<!--        values-->
+<!--        <foreach collection="attachedFiles" item="file" separator=",">-->
+<!--            (#{file.filepath}, #{file.filename}, #{prvno})-->
+<!--        </foreach>-->
+<!--    </insert>-->
 
     <select id="getRecommendation" resultMap="recommendationMap">
         select

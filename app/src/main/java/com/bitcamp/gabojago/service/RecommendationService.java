@@ -36,4 +36,5 @@ public interface RecommendationService {
 
   boolean deleteAttachedFile(int fileNo) throws Exception;
 
+  List<JangSoReviewAttachedFile> attachedFileList(int recono);
 }

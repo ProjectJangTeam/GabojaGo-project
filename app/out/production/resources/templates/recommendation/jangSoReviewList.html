@@ -21,6 +21,7 @@
         <th>장소후기번호</th>
         <th>장소이름</th>
         <th>내용</th>
+        <th>사진</th>
     </tr>
     <tr data-th-each="jangSoReview : ${jangSoReviews}">
         <td data-th-text="${jangSoReview.prvno}">100</td>
@@ -33,6 +34,13 @@
                     cols="25"
                     data-th-text="${jangSoReview.cont == ''} ? '(내용없음)' : ${jangSoReview.cont}"
                     readonly></textarea>
+        </td>
+        <td data-th-each="file : ${jangSoReview.attachedFiles}">
+            <a href="files/${file.filepath}"
+               data-th-href="@{files/{path}(path=${file.filepath})}"
+               data-th-text="${file.filepath}">test.gif</a>
+            [<a href="fileDelete?no=${file.no}"
+                data-th-href="@{fileDelete(no=${file.no})}">삭제</a>]
         </td>
     </tr>
 

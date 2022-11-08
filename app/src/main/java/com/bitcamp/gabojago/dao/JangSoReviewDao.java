@@ -2,6 +2,7 @@ package com.bitcamp.gabojago.dao;
 
 import com.bitcamp.gabojago.vo.JangSo;
 import com.bitcamp.gabojago.vo.JangSoReview;
+import com.bitcamp.gabojago.vo.JangSoReviewAttachedFile;
 import com.bitcamp.gabojago.vo.Recommendation;
 import org.apache.ibatis.annotations.Mapper;
 
@@ -14,6 +15,8 @@ public interface JangSoReviewDao {
   List<JangSoReview> jangSoReviewList(int recono);
 
   int jangSoReviewAdd(JangSoReview jangSoReview);
+
+  List<JangSoReviewAttachedFile> attachedFileList(int recono);
 
   //Recommendation recommendationSelect(int recono);
 

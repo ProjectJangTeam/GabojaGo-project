@@ -35,7 +35,7 @@ public class RecommendationController {
   }
 
   // InternalResourceViewResolver 사용 후:
-  @GetMapping("jangSoReviewForm")
+  @GetMapping("jangSoReviewForm2")
   public void form() throws Exception {
   }
 
@@ -132,8 +132,9 @@ public class RecommendationController {
 
   @GetMapping("jangSoReviewList")
   public void jangSoReviewList(int recono, Model model) throws Exception {
-    model.addAttribute("jangSoReviews", recommendationService.jangSoReviewList(recono));
     model.addAttribute("recommendation", recommendationService.getRecommendation(recono));
+    model.addAttribute("jangSoReviews", recommendationService.jangSoReviewList(recono));
+    model.addAttribute("attachedFiles", recommendationService.attachedFileList(recono));
 //    model.addAttribute("jangSos", jangSoReviewService.jangSo(recono));
   }
 

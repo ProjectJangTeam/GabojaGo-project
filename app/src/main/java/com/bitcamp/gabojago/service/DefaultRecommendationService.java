@@ -27,13 +27,43 @@ public class DefaultRecommendationService implements RecommendationService  {
       throw new Exception("게시글 등록 실패!");
     }
 
-    // 2) 장소리뷰 등록
-    recommendationDao.jangSoReviewAdd(recommendation);
+    // 여기부터
+    // 자동증가한 코스추천글 recono 받아오기
+    int recono = recommendation.getRecono();
+
+    // 자동증가한 장소리뷰 번호를 받을 변수 준비
+    int prvno;
 
     for (int i = 0; i < recommendation.getJangSoReviews().size(); i++) {
-      // 3) 첨부파일 등록
-      recommendationDao.jangSoReviewAttachedFileAdd(recommendation.getJangSoReviews().get(i));
+      // 각각의 장소리뷰에 코스추천글 번호 set하기
+      recommendation.getJangSoReviews().get(i).setRecono(recono);
+
+      // 각각의 장소리뷰 insert하기
+      recommendationDao.jangSoReviewAdd(recommendation.getJangSoReviews().get(i));
+
+      // 각각의 장소리뷰를 insert하면서 자동증가한 prvno 받아오기
+      prvno = recommendation.getJangSoReviews().get(i).getPrvno();
+
+      for (int j = 0; j < recommendation.getJangSoReviews().get(i).getAttachedFiles().size(); j++) {
+        // 장소리뷰를 insert하면서 자동증가한 prvno를 장소리뷰 첨부파일에 set하기
+        recommendation.getJangSoReviews().get(i).getAttachedFiles().get(j).setPrvno(prvno);
+
+        // 장소리뷰 첨부파일 insert하기
+        recommendationDao.jangSoReviewAttachedFileAdd(
+            recommendation.getJangSoReviews().get(i).getAttachedFiles().get(j)
+        );
+      }
     }
+//    recommendationDao.jangSoReviewAdd(recommendation.getJangSoReviews().get(i));
+
+//
+//    // 2) 장소리뷰 등록
+//    recommendationDao.jangSoReviewAdd(recommendation);
+//
+//    for (int i = 0; i < recommendation.getJangSoReviews().size(); i++) {
+//      // 3) 첨부파일 등록
+//      recommendationDao.jangSoReviewAttachedFileAdd(recommendation.getJangSoReviews().get(i));
+//    }
   }
 
   @Override
@@ -67,6 +97,11 @@ public class DefaultRecommendationService implements RecommendationService  {
   @Override
   public List<JangSoReview> jangSoReviewList(int recono) throws Exception {
     return jangSoReviewDao.jangSoReviewList(recono);
+  }
+
+  @Override
+  public List<JangSoReviewAttachedFile> attachedFileList(int recono) {
+    return jangSoReviewDao.attachedFileList(recono);
   }
 
 //  @Override
