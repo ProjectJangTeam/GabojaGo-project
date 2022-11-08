@@ -19,5 +19,8 @@ int exhibitionReviewInsert(ExhibitionReview exhibitionReview);
 
 int exhibitionReviewUpdate(ExhibitionReview exhibitionReview);
 
+int deleteByMember(int ID);
+
+  int deleteReviewsByMemberexhibitions(int ID);
 
 }

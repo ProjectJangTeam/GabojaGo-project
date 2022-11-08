@@ -54,9 +54,13 @@
 
 <!-- 상세보기-->
     <select id="exhibitionSelect"  resultMap="exhibitionMap">
-        select  * from jang_exhibition
+       <!-- select  * from jang_exhibition
+        where jang_exhibition.EXNO=#{value};-->
 
+        select  * from jang_exhibition
+        left join jang_exhibition_file jef on jang_exhibition.EXNO = jef.EXNO
         where jang_exhibition.EXNO=#{value};
+
     </select>
 
     <insert id="exhibitionInsert"  parameterType="exhibition"
@@ -68,8 +72,8 @@
     </insert>
 
     <delete id="delete">
-       <!-- delete from jang_exhibition_file
-        where jang_exhibition_file.EXNO=#{value};-->
+        delete from jang_exhibition_file
+        where jang_exhibition_file.EXNO=#{value};
 
         delete from jang_exhibition_review
         where jang_exhibition_review.EXNO=#{value};
@@ -107,11 +111,11 @@
         exno = #{exno}
     </select>
 
-    <insert id="insertFiles" parameterType="exhibition">
+    <insert id="insertFiles" parameterType="exhibition" >
         insert into jang_exhibition_file(path,exno,fname)
         values
         <foreach collection="exhibitionFiles" item="file" separator=",">
-            (#{file.path},#{exno},#{fname})
+            (#{file.path},#{exno},#{file.fname})
         </foreach>
     </insert>
 
@@ -140,10 +144,7 @@
         from
         jang_exhibition_file
         where
-        exno = #{value};
+        exfno = #{value};
     </select>
-
-
-
 
 </mapper>

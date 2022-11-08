@@ -30,7 +30,7 @@ public class ExhibitionController {
   @Autowired
   ExhibitionReviewService exhibitionReviewService;
 
-@Autowired
+  @Autowired
   ServletContext servletContext; // 테스트 필요
 
 
@@ -59,16 +59,17 @@ public class ExhibitionController {
       throws IOException, ServletException {
     List<ExhibitionFile> exhibitionFiles = new ArrayList<>();
 
-     String path = servletContext.getRealPath("/board/files");
-    System.out.println("호출:" + path);
-    for (MultipartFile part : files) {
-      if (part.isEmpty()) {
+     String dirpath = servletContext.getRealPath("/board/files");
+    System.out.println("호출:" + dirpath);
+    for (MultipartFile file : files) {
+      if (file.isEmpty()) {
         continue;
       }
 
-      String fname = UUID.randomUUID().toString();
-      part.transferTo(new File(path + "/" + fname));
-      exhibitionFiles.add(new ExhibitionFile(fname));
+      String path = UUID.randomUUID().toString();
+      String fname = file.getOriginalFilename();
+      file.transferTo(new File(dirpath + "/" + path));
+      exhibitionFiles.add(new ExhibitionFile(path,fname));
     }
     return exhibitionFiles;
   }
@@ -116,7 +117,7 @@ public class ExhibitionController {
 }  추후에 어드민 추가 */
 
 @GetMapping("delete")
-public String delete(int exno, HttpSession session) throws Exception {
+public String delete(int exno/* HttpSession session*/) throws Exception {
     //  checkOwner(no, session);
     if(!exhibitionService.delete(exno)) {
       throw new Exception("게시글을 삭제 할 수 없습니다.");
@@ -128,6 +129,7 @@ public String delete(int exno, HttpSession session) throws Exception {
   @GetMapping("updateform") // 수정창, 내용수정하고 서브밋 누르면
   public void update(int exno, Model model) throws Exception{
     model.addAttribute("exhibition", exhibitionService.exhibitionSelect(exno));
+
   }
 
 @PostMapping("update") // 내용 저장됨

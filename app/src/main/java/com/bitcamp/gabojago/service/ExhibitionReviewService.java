@@ -1,5 +1,6 @@
 package com.bitcamp.gabojago.service;
 
+import com.bitcamp.gabojago.vo.Exhibition;
 import com.bitcamp.gabojago.vo.ExhibitionReview;
 
 import java.util.List;
@@ -14,4 +15,5 @@ void exhibitionReviewInsert(ExhibitionReview exhibitionReview) throws Exception;
 
 boolean exhibitionReviewUpdate(ExhibitionReview exhibitionReview) throws Exception;
 
+ExhibitionReview get(int rvno) throws Exception;
 }
