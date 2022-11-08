@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.bitcamp.gabojago.dao.EventDao">
+
+    <resultMap type="event" id="eventMap">
+        <id column="EVTNO" property="no"/>
+        <result column="TITLE" property="title"/>
+        <result column="CONT" property="content"/>
+        <result column="STDATE" property="startDate"/>
+        <result column="EDDATE" property="endDate"/>
+        <result column="PBL" property="disclosure"/>
+        <result column="EVCODE" property="eventCode"/>
+        <result column="ECOUNT" property="capacity"/>
+    </resultMap>
+
+    <select id="findAll" resultMap="eventMap">
+        select
+            EVTNO,
+            TITLE,
+            STDATE,
+            EDDATE,
+            EVCODE
+        from jang_event
+        order by EVTNO desc;
+    </select>
+    
+</mapper>
