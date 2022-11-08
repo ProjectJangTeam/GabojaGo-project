@@ -11,7 +11,20 @@
         <result column="RECONO" property="recono"/>
         <result column="PLNO" property="plno"/>
         <result column="PLNAME" property="plname"/>
-<!--        <result column="JANGSO" property="jangSo"/>-->
+
+        <collection property="attachedFiles" ofType="jangSoReviewAttachedFile">
+            <id column="recofno" property="recofno"/>
+            <result column="filepath" property="filepath"/>
+            <result column="fname" property="fname"/>
+        </collection>
+
+    </resultMap>
+
+    <resultMap type="jangSoReviewAttachedFile" id="attachedFileMap">
+        <id column="recofno" property="recofno"/>
+        <result column="prvno" property="prvno"/>
+        <result column="path" property="filepath"/>
+        <result column="fname" property="fname"/>
     </resultMap>
 
     <select id="jangSoReviewList" resultMap="jangSoReviewMap">
@@ -23,6 +36,16 @@
             jsr.recono = #{value}
             and jsr.plno = js.plno
     </select> <!-- 나중에 장소 테이블 추가해야함 -->
+
+    <select id="attachedFileList" resultMap="attachedFileMap">
+        select
+        jsr.cont, jsr.plno, js.plname
+        from
+        jang_so_review jsr, jang_so js
+        where
+        jsr.recono = #{value}
+        and jsr.plno = js.plno
+    </select>
 
     <insert id="jangSoReviewAdd" parameterType="jangSoReview">
                 insert into jang_so_review(cont, recono, plno)
