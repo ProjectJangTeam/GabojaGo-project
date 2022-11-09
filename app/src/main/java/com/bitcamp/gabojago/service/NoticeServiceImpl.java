@@ -20,8 +20,26 @@ public class NoticeServiceImpl implements NoticeService {
     }
 
     @Override
+    public boolean noticeEditUpdate(Notice notice) throws Exception {
+        if (noticeDao.update(notice) == 0) {
+            return  false;
+        }
+        return true;
+    }
+
+    @Override
     public Notice get(int no) throws Exception {
         return noticeDao.findByNo(no);
+    }
+
+    @Override
+    public Notice getEdit(int no) throws Exception {
+        return noticeDao.findByEditNo(no);
+    }
+
+    @Override
+    public boolean noticeDelete(int no) throws Exception {
+        return noticeDao.delete(no) > 0;
     }
 
     @Override

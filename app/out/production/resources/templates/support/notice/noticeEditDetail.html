@@ -21,6 +21,7 @@
         <h2>Notice</h2>
     </div>
 
+    <form action='noticeEditUpdate' method="post">
         <div>
             <label>No</label>
             <input name='no' type='number' class="form-control"
@@ -34,18 +35,18 @@
             <input name='title' type='text' class="form-control"
                    value='제목'
                    data-th-value='${notice.title}'
-                   size='60' readonly>
+                   size='60'>
         </div>
 
         <div>
             <label>내용</label>
             <textarea name='content' rows='10' cols='60' class="form-control"
-                      data-th-text="${notice.content}" readonly></textarea>
+                      data-th-text="${notice.content}"></textarea>
         </div>
 
          <div>
              <label>작성일</label>
-             <input name="createdDate" type="date" class="form-control"
+             <input type="date" class="form-control"
                     value="2022-11-11"
                     data-th-value="${notice.createdDate}" readonly>
          </div>
@@ -61,8 +62,7 @@
 
         <div class="col">
             <button class="w-100 btn btn-primary btn-lg" style="background-color: black; border-color: black"
-                    th:onclick="|location.href='@{/support/notice/noticeEditDetail(no=${notice.no})}'|"
-                    type="button">수정</button>
+                    type="submit">수정</button>
         </div>
 
         <div class="col">
@@ -71,7 +71,7 @@
                 type="button">삭제</button>
         </div>
     </div>
-
+    </form>
 </div>
 </body>
 </html>

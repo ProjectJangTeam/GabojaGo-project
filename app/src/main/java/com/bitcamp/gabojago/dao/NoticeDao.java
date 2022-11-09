@@ -12,5 +12,12 @@ public interface NoticeDao {
 
     Notice findByNo(int no);
 
+    Notice findByEditNo(int no);
+
+    int update(Notice notice);
+
+    int delete(int no);
+
+
     List<Notice> findAll();
 }

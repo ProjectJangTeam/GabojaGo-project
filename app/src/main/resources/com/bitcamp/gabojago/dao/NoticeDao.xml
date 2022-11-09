@@ -14,8 +14,15 @@
     <insert id="insert" parameterType="notice"
             useGeneratedKeys="true" keyColumn="NTNO" keyProperty="no">
         insert into jang_notice(TITLE,CONT,WDATE)
-        values(#{title},#{content},#{createdDate})
+        values(#{title},#{content},now())
     </insert>
+
+    <update id="update" parameterType="notice">
+        update jang_notice set
+        TITLE=#{title},
+        CONT=#{content}
+        where NTNO=#{no}
+    </update>
 
     <select id="findAll" resultMap="noticeMap">
         select
@@ -37,4 +44,21 @@
         where
         NTNO=#{value}
     </select>
+
+    <select id="findByEditNo" resultMap="noticeMap">
+        select
+        NTNO,
+        TITLE,
+        CONT,
+        WDATE
+        from
+        jang_notice
+        where
+        NTNO=#{value}
+    </select>
+
+    <delete id="delete">
+        delete from jang_notice
+        where NTNO=#{value}
+    </delete>
 </mapper>

@@ -9,6 +9,7 @@
         .container {
             max-width: 700px;
         }
+
     </style>
 
 </head>
@@ -44,17 +45,31 @@
 
          <div>
              <label>작성일</label>
-             <input type="text" class="form-control"
+             <input name="createdDate" type="date" class="form-control"
+                    value="2022-11-11"
                     data-th-value="${notice.createdDate}" readonly>
          </div>
 
     <hr class="my-4">
 
-    <div class="col">
-        <button class="w-100 btn btn-secondary btn-lg"
-                onclick="location.href='noticeList.html'"
+    <div class="row">
+        <div class="col">
+        <button class="w-100 btn btn-primary btn-lg" style="background-color: black; border-color: black"
                 th:onclick="|location.href='@{/support/notice/noticeList}'|"
                 type="button">목록</button>
+        </div>
+
+        <div class="col">
+            <button class="w-100 btn btn-primary btn-lg" style="background-color: black; border-color: black"
+                    th:onclick="|location.href='@{/support/notice/noticeEditDetail(no=${notice.no})}'|"
+                    type="button">수정</button>
+        </div>
+
+        <div class="col">
+        <button class="w-100 btn btn-primary btn-lg" style="background-color: black; border-color: black"
+                th:onclick="|location.href='@{noticeDelete(no=${notice.no})}'|"
+                type="button">삭제</button>
+        </div>
     </div>
 
 </div>
