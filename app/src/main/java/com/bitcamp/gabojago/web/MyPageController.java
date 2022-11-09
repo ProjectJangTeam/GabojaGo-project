@@ -1,29 +1,37 @@
 package com.bitcamp.gabojago.web;
 
-
+import com.bitcamp.gabojago.vo.Member;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
-import javax.servlet.ServletContext;
+import javax.servlet.http.HttpSession;
+import java.util.HashMap;
+import java.util.Map;
 
 @Controller
 @RequestMapping("/myPage")
 public class MyPageController {
 
-    ServletContext sc;
-    //MyPageService myPageService;
-
-
-//    public MyPageController(ServletContext sc, MyPageService myPageService) {
-//        this.sc = sc;
-//        this.myPageService = myPageService;
-//    }
-
     @GetMapping("/")
-    public String myPage() {
-        return "myPage/myPage";
-    }
+    public String myPage(HttpSession session, Model model) throws Exception {
 
+        Member loginMember = (Member) session.getAttribute("loginMember");
+        if (loginMember == null) {
+
+            model.addAttribute("message", "로그인이 필요한 항목입니다. 회원가입 또는 로그인해 주세요.");
+
+            return "myPage/myPageFail";
+
+        } else {
+
+            model.addAttribute("nickname", loginMember.getNickName());
+            model.addAttribute("email", loginMember.getEmail());
+
+            return "myPage/myPage";
+
+        }
+    }
 }
 
