@@ -16,4 +16,12 @@ public class EventServiceImpl implements EventService{
         return eventDao.findAll();
     }
 
+    public void add(Event event) throws Exception {
+        System.out.println("EventServiceImple : " + event.toString());
+
+        if (eventDao.insert(event) == 0) {
+            throw new Exception("게시글 등록 실패!!");
+        }
+    }
+
 }

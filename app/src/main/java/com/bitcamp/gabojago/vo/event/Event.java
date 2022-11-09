@@ -1,6 +1,7 @@
 package com.bitcamp.gabojago.vo.event;
 
 import java.sql.Date;
+import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 
 public class Event {
@@ -8,8 +9,8 @@ public class Event {
     private Integer no;
     private String title;
     private String content;
-    private DateTimeFormatter startDate;
-    private DateTimeFormatter endDate;
+    private String startDate;
+    private String endDate;
     private Boolean disclosure;
     private String eventCode;
     private Integer capacity;
@@ -56,19 +57,19 @@ public class Event {
         this.content = content;
     }
 
-    public DateTimeFormatter getStartDate() {
+    public String getStartDate() {
         return startDate;
     }
 
-    public void setStartDate(DateTimeFormatter startDate) {
+    public void setStartDate(String startDate) {
         this.startDate = startDate;
     }
 
-    public DateTimeFormatter getEndDate() {
+    public String getEndDate() {
         return endDate;
     }
 
-    public void setEndDate(DateTimeFormatter endDate) {
+    public void setEndDate(String endDate) {
         this.endDate = endDate;
     }
 
