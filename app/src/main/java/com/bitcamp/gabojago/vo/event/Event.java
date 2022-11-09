@@ -1,21 +1,24 @@
 package com.bitcamp.gabojago.vo.event;
 
 import java.sql.Date;
+import java.time.format.DateTimeFormatter;
 
 public class Event {
 
     private Integer no;
     private String title;
     private String content;
-    private Date startDate;
-    private Date endDate;
+    private DateTimeFormatter startDate;
+    private DateTimeFormatter endDate;
     private Boolean disclosure;
     private String eventCode;
     private Integer capacity;
+    private Date createdDate;
+    private Integer viewCount;
 
     @Override
     public String toString() {
-        return "EventBoard{" +
+        return "Event{" +
                 "no=" + no +
                 ", title='" + title + '\'' +
                 ", content='" + content + '\'' +
@@ -24,6 +27,8 @@ public class Event {
                 ", disclosure=" + disclosure +
                 ", eventCode='" + eventCode + '\'' +
                 ", capacity=" + capacity +
+                ", createdDate=" + createdDate +
+                ", viewCount=" + viewCount +
                 '}';
     }
 
@@ -51,19 +56,19 @@ public class Event {
         this.content = content;
     }
 
-    public Date getStartDate() {
+    public DateTimeFormatter getStartDate() {
         return startDate;
     }
 
-    public void setStartDate(Date startDate) {
+    public void setStartDate(DateTimeFormatter startDate) {
         this.startDate = startDate;
     }
 
-    public Date getEndDate() {
+    public DateTimeFormatter getEndDate() {
         return endDate;
     }
 
-    public void setEndDate(Date endDate) {
+    public void setEndDate(DateTimeFormatter endDate) {
         this.endDate = endDate;
     }
 
@@ -89,5 +94,21 @@ public class Event {
 
     public void setCapacity(Integer capacity) {
         this.capacity = capacity;
+    }
+
+    public Date getCreatedDate() {
+        return createdDate;
+    }
+
+    public void setCreatedDate(Date createdDate) {
+        this.createdDate = createdDate;
+    }
+
+    public Integer getViewCount() {
+        return viewCount;
+    }
+
+    public void setViewCount(Integer viewCount) {
+        this.viewCount = viewCount;
     }
 }

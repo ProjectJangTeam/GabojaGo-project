@@ -13,6 +13,8 @@
         <result column="PBL" property="disclosure"/>
         <result column="EVCODE" property="eventCode"/>
         <result column="ECOUNT" property="capacity"/>
+        <result column="WDATE" property="createdDate"/>
+        <result column="VCNT" property="viewCount"/>
     </resultMap>
 
     <select id="findAll" resultMap="eventMap">
@@ -25,5 +27,5 @@
         from jang_event
         order by EVTNO desc;
     </select>
-    
+
 </mapper>
