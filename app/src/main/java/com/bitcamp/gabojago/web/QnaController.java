@@ -36,7 +36,7 @@ public class QnaController {
     public String add(
             QnaBoard qnaBoard,
             HttpSession session) throws Exception {
-        System.out.println("qnaController : " + qnaBoard.toString());
+        System.out.println("qnaControllerAdd : " + qnaBoard.toString());
         qnaBoard.setId("user1"); // 로그인전 테스트 위해 임의로 넣은 값
         qnaService.add(qnaBoard);
         return "redirect:list";
@@ -45,7 +45,6 @@ public class QnaController {
     @GetMapping("detail")
     public void detail(int no, Model model) throws Exception {
         model.addAttribute("qnaBoard", qnaService.get(no));
-
     }
 
     @GetMapping("delete")
@@ -60,7 +59,12 @@ public class QnaController {
     }
 
     @PostMapping("update")
-    public void update(QnaBoard qnaBoard) throws Exception {
-
+    public String update(
+            QnaBoard qnaBoard,
+            HttpSession session) throws Exception {
+        System.out.println("qnaControllerUpdate : " + qnaBoard.toString());
+        qnaBoard.setId("user1"); // 로그인전 테스트 위해 임의로 넣은 값
+        qnaService.update(qnaBoard);
+        return "redirect:list";
     }
 }

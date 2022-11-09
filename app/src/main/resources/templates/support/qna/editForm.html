@@ -21,6 +21,14 @@
     <form action="update" method="post">
 
         <div>
+            <label>No.</label>
+            <input name='no' type='number' class="form-control"
+                   value='1'
+                   data-th-value="${qnaBoard.no}"
+                   readonly>
+        </div>
+
+        <div>
             <label for="title">제목</label>
             <input type="text" id="title" name="title" class="form-control" data-th-value='${qnaBoard.title}'>
         </div>
