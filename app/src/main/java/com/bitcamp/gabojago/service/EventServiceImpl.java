@@ -10,6 +10,7 @@ import java.util.List;
 
 @Service
 public class EventServiceImpl implements EventService {
+
     @Autowired
     EventDao eventDao;
 
@@ -34,8 +35,16 @@ public class EventServiceImpl implements EventService {
     }
 
     @Override
-    public Boolean delete(int no) throws Exception {
+    public boolean delete(int no) throws Exception {
         return eventDao.deleteByNo(no) > 0;
     }
 
+    @Override
+    public boolean update(Event event) throws Exception {
+        System.out.println("EventServiceImplUpdate : " + event.toString());
+        if (eventDao.update(event) == 0) {
+            return false;
+        }
+        return true;
+    }
 }

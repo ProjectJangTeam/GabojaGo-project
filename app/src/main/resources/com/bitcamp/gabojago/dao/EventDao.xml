@@ -37,6 +37,7 @@
             EDDATE,
             PBL,
             EVCODE,
+            ECOUNT,
             WDATE,
             VCNT
         from jang_event
@@ -53,5 +54,17 @@
         delete from jang_event
         where EVTNO=#{no}
     </delete>
+
+    <update id="update" parameterType="event">
+        update jang_event set
+        TITLE=#{title},
+        CONT=#{content},
+        STDATE=#{startDate},
+        EDDATE=#{endDate},
+        PBL=#{disclosure},
+        EVCODE=#{eventCode},
+        ECOUNT=#{capacity}
+        where EVTNO=#{no}
+    </update>
 
 </mapper>
