@@ -46,6 +46,10 @@ public class EventController {
         model.addAttribute("event", eventService.get(no));
     }
 
-
-
+    @GetMapping("delete")
+    public String delete(int no) throws Exception {
+        eventService.delete(no);
+        return "redirect:list";
+    }
+    
 }

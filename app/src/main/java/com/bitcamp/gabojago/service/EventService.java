@@ -12,4 +12,7 @@ public interface EventService {
 
     Event get(int no) throws Exception;
 
+    Boolean delete(int no) throws Exception;
+
+
 }

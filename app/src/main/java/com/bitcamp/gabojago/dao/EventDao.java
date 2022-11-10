@@ -13,6 +13,8 @@ public interface EventDao {
 
     Event findByNo(int no);
 
+    int deleteByNo(int no);
+
 
 
 

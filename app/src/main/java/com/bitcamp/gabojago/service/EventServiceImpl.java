@@ -9,7 +9,7 @@ import org.springframework.transaction.annotation.Transactional;
 import java.util.List;
 
 @Service
-public class EventServiceImpl implements EventService{
+public class EventServiceImpl implements EventService {
     @Autowired
     EventDao eventDao;
 
@@ -31,6 +31,11 @@ public class EventServiceImpl implements EventService{
     @Override
     public Event get(int no) throws Exception {
         return eventDao.findByNo(no);
+    }
+
+    @Override
+    public Boolean delete(int no) throws Exception {
+        return eventDao.deleteByNo(no) > 0;
     }
 
 }

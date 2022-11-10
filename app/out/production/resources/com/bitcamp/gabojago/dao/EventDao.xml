@@ -49,4 +49,9 @@
         values (#{title},#{content},#{startDate},#{endDate},#{disclosure},#{eventCode},#{capacity},now())
     </insert>
 
+    <delete id="deleteByNo">
+        delete from jang_event
+        where EVTNO=#{no}
+    </delete>
+
 </mapper>
