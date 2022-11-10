@@ -2,6 +2,7 @@ package com.bitcamp.gabojago.web;
 
 import com.bitcamp.gabojago.service.EventService;
 import com.bitcamp.gabojago.vo.event.Event;
+import com.bitcamp.gabojago.vo.event.EventItem;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -64,5 +65,19 @@ public class EventController {
         System.out.println("EventControllerUpdate :" + event.toString());
         eventService.update(event);
         return "redirect:list";
+    }
+
+    @GetMapping("item/addForm")
+    public void itemAddForm(int no, Model model) throws Exception {
+        model.addAttribute("eventNo", no);
+    }
+
+    @PostMapping("item/itemadd")
+    public String itemAdd(
+            EventItem eventItem,
+            HttpSession session) throws Exception {
+        System.out.println("eventCotrollerAdd_item:" + eventItem.toString());
+        eventService.itemAdd(eventItem);
+        return "redirect:../detail?no=" + eventItem.getEventNo();
     }
 }

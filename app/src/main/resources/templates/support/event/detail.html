@@ -82,6 +82,14 @@
     <hr class="my-4">
 
     <div class="row">
+
+        <div class="col">
+            <button class="w-100 btn btn-primary btn-lg"
+                    onclick="location.href='./item/addForm.html'"
+                    th:onclick="|location.href='@{/support/event/item/addForm(no=${event.no})}'|"
+                    type="button">상품등록</button>
+        </div>
+
         <div class="col">
             <button class="w-100 btn btn-primary btn-lg"
                     onclick="location.href='editForm.html'"
