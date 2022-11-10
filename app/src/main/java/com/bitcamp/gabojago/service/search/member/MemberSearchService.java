@@ -4,6 +4,7 @@ import java.util.List;
 import java.util.Map;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 import com.bitcamp.gabojago.dao.search.MemberSearchDAO;
 import com.bitcamp.gabojago.service.search.AbstractSearchService;
 
@@ -19,7 +20,7 @@ import com.bitcamp.gabojago.service.search.AbstractSearchService;
  *
  */
 @Service
-public final class MemberSearchService extends AbstractSearchService<MemberSearchType> {
+public class MemberSearchService extends AbstractSearchService<MemberSearchType> {
 
   @Autowired
   private MemberSearchDAO searchDAO;
@@ -38,6 +39,7 @@ public final class MemberSearchService extends AbstractSearchService<MemberSearc
    * @exception {@link #IllegalArgumentException} 검색어의 글자 수가 1개 이하인 경우 발생합니다.
    */
   @Override
+  @Transactional
   public List<Map<String, String>> getResult(MemberSearchType type, String keyword) throws IllegalArgumentException{
     isCorrectKeyword(keyword);
     

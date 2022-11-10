@@ -7,7 +7,7 @@
     
     <!-- 제목으로 검색-->
     <select id="resultByTitle" resultType="hashMap">
-      SELECT ex.EXNAME, ex.CONT, ex.STDATE, ex.EDDATE, ex.PRICE, ex_file.PATH
+      SELECT ex.EXNAME, ex.CONT, ex.STDATE, ex.EDDATE, ex.EXNO, ex_file.PATH
       FROM jang_exhibition AS ex INNER JOIN jang_exhibition_file AS ex_file
       ON ex.EXNO = ex_file.EXNO
       WHERE
@@ -25,7 +25,7 @@
 
     <!-- 내용으로 검색-->    
     <select id="resultByContent" resultType="hashMap">
-      SELECT ex.EXNAME, ex.CONT, ex.STDATE, ex.EDDATE, ex.PRICE, ex_file.PATH
+      SELECT ex.EXNAME, ex.CONT, ex.STDATE, ex.EDDATE, ex.EXNO, ex_file.PATH
       FROM jang_exhibition AS ex INNER JOIN jang_exhibition_file AS ex_file
       ON ex.EXNO = ex_file.EXNO
       WHERE
@@ -41,7 +41,7 @@
     
     <!-- 제목 + 내용으로 검색-->
     <select id="resultByTitleWithContent" resultType="hashMap">
-      SELECT ex.EXNAME, ex.CONT, ex.STDATE, ex.EDDATE, ex.PRICE, ex_file.PATH
+      SELECT ex.EXNAME, ex.CONT, ex.STDATE, ex.EDDATE, ex.EXNO, ex_file.PATH
       FROM jang_exhibition AS ex INNER JOIN jang_exhibition_file AS ex_file
       ON ex.EXNO = ex_file.EXNO
       WHERE
