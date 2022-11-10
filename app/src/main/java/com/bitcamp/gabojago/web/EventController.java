@@ -41,6 +41,11 @@ public class EventController {
         return "redirect:list";
     }
 
+    @GetMapping("detail")
+    public void detail(int no, Model model) throws Exception {
+        model.addAttribute("event", eventService.get(no));
+    }
+
 
 
 }

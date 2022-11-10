@@ -11,6 +11,9 @@ public interface EventDao {
 
     int insert(Event event);
 
+    Event findByNo(int no);
+
+
 
 
 }

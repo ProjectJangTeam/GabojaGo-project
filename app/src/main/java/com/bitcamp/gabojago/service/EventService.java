@@ -10,4 +10,6 @@ public interface EventService {
 
     void add(Event event) throws Exception;
 
+    Event get(int no) throws Exception;
+
 }
