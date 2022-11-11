@@ -48,7 +48,7 @@ if (exhibition.getExhibitionFiles().size()>0){
     exhibitionDao.deleteFiles(exno);
 
     // 2) 리뷰 삭제
-    /*exhibitionReviewDao.exhibitionReviewDelete(exno);*/ // 테스트 필요
+    exhibitionReviewDao.exhibitionReviewDelete(exno); // 테스트 필요
 
     // 3) 게시글 삭제
     return exhibitionDao.delete(exno) > 0;

@@ -12,12 +12,15 @@
 
   <link rel="stylesheet"
         href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"/>
-  <link rel="stylesheet" href="./css/main-base.css" />
-  <link rel="stylesheet" href="./css/main.css" />
-  <link rel="stylesheet" href="./css/main-modal.css" />
+  <link rel="stylesheet" href="../css/main-base.css" />
+  <link rel="stylesheet" href="../css/main.css" />
+  <link rel="stylesheet" href="../css/main-modal.css" />
 
-  <meta name ="google-signin-client_id"
-        content="400828157542-5kee4rg9u2va7k0c5q762jqnl973c4dv.apps.googleusercontent.com">
+  <!--<meta name ="google-signin-client_id"
+        content="400828157542-5kee4rg9u2va7k0c5q762jqnl973c4dv.apps.googleusercontent.com">-->
+<!--
+  <script src="https://apis.google.com/js/platform.js?onload=init" async defer></script>
+-->
 
 </head>
 <!-- Header-->
@@ -37,17 +40,19 @@
     <h2>Sign In</h2>
     <form action="auth/login" method="post">
       <p>ID</p>
-      <input name="id" type="text" size="30" placeholder="ID를 입력해주세요." th:value="${id}">
+      <input name="id" type="text" size="30" placeholder="ID를 입력해주세요."
+             th:value="${id}" style="width: 400px;">
 
       <p>Password</p>
-      <input name="password" type="password" size="20" placeholder="Password를 입력해주세요.">
+      <input name="password" type="password" size="20" placeholder="Password를 입력해주세요."
+             style="width: 400px;"  >
       <br>
       <button class="btn_login" type="submit">Login</button>
 
 
       <div class="g-signin2" data-onsuccess="onSignIn"></div>
 
-      <script>
+    <!--  <script>
         function onSignIn(googleUser) {
           var profile = googleUser.getBasicProfile();
           console.log('ID: ' + profile.getId()); // Do not send to your backend! Use an ID token instead.
@@ -55,9 +60,9 @@
           console.log('Image URL: ' + profile.getImageUrl());
           console.log('Email: ' + profile.getEmail()); // This is null if the 'email' scope is not present.
         }
-      </script>
+      </script>-->
 
-      <a href="#" onClick="signOut();">Sign out</a>
+
       <script>
         function signOut() {
           var auth2 = gapi.auth2.getAuthInstance();
@@ -67,11 +72,13 @@
         }
       </script>
 
-      <script src="https://apis.google.com/js/platform.js?onload=init" async defer></script>
 
       <div class="savecheck">
-        <input id="savecheckbox" type="checkbox" name="saveEmail"><label for="savecheckbox">&nbsp;ID 저장</label>
-        <span><a href="#">ID 찾기</a></span><span> / </span><span><a href="#">Password 찾기</a></span>
+        <input id="savecheckbox" type="checkbox" name="saveEmail">
+        <label for="savecheckbox" >&nbsp;ID 저장</label>
+
+        <span><a href="#">ID 찾기</a></span>
+        <span> / </span><span><a href="#">Password 찾기</a></span>
       </div>
     </form>
 
@@ -111,8 +118,7 @@
               class="nav-link"
               href="/app/auth/logout"
               th:text="${session.loginMember.name}+'(로그아웃)'"
-          >홍길동(로그아웃)</a
-          >
+          >홍길동(로그아웃)</a>
         </li>
         <li class="nav-item" th:if="${session.loginMember == null}">
           <span class="nav-link btn-open-popup">로그인</span>
@@ -221,14 +227,19 @@
   </style>
   <!--두줄 출력 하고싶ㅇ -->
 
+  <a href='티켓?exno=1'
+     data-th-href="">| 티켓 구매 | </a>
+
+  <a href='티켓?exno=1'
+     data-th-href=""> 장바구니 | </a>
 
   <p style="float: right;">
     <a href='updateform?exno=1'
-       data-th-href="@{updateform(exno=${exhibition.exno})}">게시글 변경 | </a>
+       data-th-href="@{updateform(exno=${exhibition.exno})}">| 게시글 변경 | </a>
 
     <a href='delete?exno=1'
        data-th-href="@{delete(exno=${exhibition.exno})}">게시글 삭제 |</a>
-    <a href='exhibitionlist'>목록</a>
+    <a href='exhibitionlist'>목록 |</a>
   </p>
 </form>
 
@@ -255,6 +266,7 @@
     <td><input name='rvno' type='number'
                value='1'
                data-th-value="${exhibitionReview.rvno}"
+               size="50"
                style="border: none; width: 50px; text-align: center"   readonly></td>
 
     <td data-th-text="${exhibitionReview.id}" style="width: 100px">홍길동</td>
@@ -266,7 +278,7 @@
              value='리뷰내용'
              data-th-value="${exhibitionReview.cont}"
              size='20'
-             style="border: none; width: 350px"></td>
+             style="border: none; width: 400px"></td>
 
     <!--readonly-->
     <td data-th-text="${exhibitionReview.wdate}" style="width: 150px">2022-1-1</td>
@@ -274,8 +286,8 @@
   <a href='exhibitionReviewDelete?rvno=1'
      data-th-href="@{/exhibition-review/delete(rvno=${exhibitionReview.rvno})}">| 리뷰 삭제 |</a>
 
-  <a href='exhibitionReviewUpdate?rvno=1'
-     data-th-href="@{/exhibition-review/update(rvno=${exhibitionReview.rvno})}"> 리뷰 변경 |</a>
+ <!-- <a href='exhibitionReviewUpdate?rvno=1'
+     data-th-href="@{/exhibition-review/update(rvno=${exhibitionReview.rvno})}"> 리뷰 변경 |</a>-->
 
 </td>
 
@@ -292,7 +304,7 @@
     -->
     <div style=" width: 1000px; height: 70px; margin: 0 auto;">
 
-    <b> [ 리뷰 작성 ] </b>
+    <b> | 리뷰 작성 | </b>
     <div >
     <!--  <label>작성자</label> <input  style="border: none; width: 100px"
         type="text" name="id"> &lt;!&ndash;후에 아이디 연동 &ndash;&gt;-->
@@ -363,7 +375,9 @@
 
     $('textarea[name=cont]').summernote('disable');
     });
+</script>
 
+<script>
   const body = document.querySelector("body");
   const modal = document.querySelector(".modal");
   const btnOpenPopup = document.querySelector(".btn-open-popup");

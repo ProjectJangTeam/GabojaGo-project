@@ -17,3 +17,4 @@ boolean exhibitionReviewUpdate(ExhibitionReview exhibitionReview) throws Excepti
 
 ExhibitionReview get(int rvno) throws Exception;
 }
+

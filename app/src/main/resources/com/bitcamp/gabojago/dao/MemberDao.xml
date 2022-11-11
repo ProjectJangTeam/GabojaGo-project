@@ -77,4 +77,48 @@
         values(#{id},sha2(#{password},256),#{name},#{email},#{nickName},#{phoneNo})
     </insert>
 
+
+
+    <!--자현경 작업중 -->
+    <select id="findAll" resultMap="memberMap">
+        select
+        *
+        from
+        jang_member
+        order by
+        ID = #{id}
+    </select>
+
+    <select id="findByIdAll" resultMap="memberMap">
+        select
+        *
+        from
+        jang_member
+        where
+        ID = #{id}
+    </select>
+
+
+    <delete id="delete">
+        delete from jang_member
+        where ID=#{id}
+    </delete>
+
+    <update id="update" parameterType="Member">
+        update jang_member set
+        pwd=sha2(#{password},256)
+        nickName=#{nickName},
+        name=#{name},
+        phoneNo=#{phoneNo},
+        birthDay=#{birthDay},
+        birthDay=#{gender},
+        birthDay=#{snsAddress},
+        birthDay=#{mbti},
+        birthDay=#{status},
+        where
+        id=#{id}
+    </update>
+
+
+
 </mapper>

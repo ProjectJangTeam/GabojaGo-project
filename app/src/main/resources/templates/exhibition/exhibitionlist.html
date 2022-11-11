@@ -8,15 +8,17 @@
 
   <link rel="stylesheet"
         href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"/>
-  <link rel="stylesheet" href="./css/main-base.css" />
-  <link rel="stylesheet" href="./css/main.css" />
-  <link rel="stylesheet" href="./css/main-modal.css" />
+  <link rel="stylesheet" href="../css/main-base.css" />
+  <link rel="stylesheet" href="../css/main.css" />
+  <link rel="stylesheet" href="../css/main-modal.css" />
 
-  <meta name ="google-signin-client_id"
+  <!--<meta name ="google-signin-client_id"
         content="400828157542-5kee4rg9u2va7k0c5q762jqnl973c4dv.apps.googleusercontent.com">
-
+-->
  <!-- <script src="https://cdn.jsdelivr.net/npm/@coreui/coreui@4.2.0/dist/js/coreui.bundle.min.js"
           integrity="sha384-n0qOYeB4ohUPebL1M9qb/hfYkTp4lvnZM6U6phkRofqsMzK29IdkBJPegsyfj/r4" crossorigin="anonymous"></script>
+      <script src="https://apis.google.com/js/platform.js?onload=init" async defer></script>
+
 -->
 <!--
   <link href="https://cdn.jsdelivr.net/npm/@coreui/coreui@4.2.0/dist/css/coreui.min.css" rel="stylesheet" integrity="sha384-UkVD+zxJKGsZP3s/JuRzapi4dQrDDuEf/kHphzg8P3v8wuQ6m9RLjTkPGeFcglQU" crossorigin="anonymous">
@@ -55,7 +57,7 @@
 
       <div class="g-signin2" data-onsuccess="onSignIn"></div>
 
-      <script>
+   <!--   <script>
         function onSignIn(googleUser) {
           var profile = googleUser.getBasicProfile();
           console.log('ID: ' + profile.getId()); // Do not send to your backend! Use an ID token instead.
@@ -63,9 +65,8 @@
           console.log('Image URL: ' + profile.getImageUrl());
           console.log('Email: ' + profile.getEmail()); // This is null if the 'email' scope is not present.
         }
-      </script>
+      </script>-->
 
-      <a href="#" onClick="signOut();">Sign out</a>
       <script>
         function signOut() {
           var auth2 = gapi.auth2.getAuthInstance();
@@ -75,7 +76,6 @@
         }
       </script>
 
-      <script src="https://apis.google.com/js/platform.js?onload=init" async defer></script>
 
       <div class="savecheck">
         <input id="savecheckbox" type="checkbox" name="saveEmail"><label for="savecheckbox">&nbsp;ID 저장</label>
@@ -189,8 +189,17 @@
 
           <!-- Product image 첨부파일 갤러리화 -->
          <!-- class="card-img-top"-->
-          <img  src="https://cdn.pixabay.com/photo/2016/03/27/16/23/woman-1283009__480.jpg"
-               alt="..." />
+         <!-- <img src="https://cdn.pixabay.com/photo/2016/03/27/16/23/woman-1283009__480.jpg"
+               alt="..." />-->
+
+       <!--   <a data-th-href="@{detail(no=${exhibition.exno})}">
+            <data-th-if="${exhibition.path != null}">
+          -->
+          <img
+                th:src="@{/board/files/}+${exhibition.exhibitionFiles.get(0).path}"/>
+
+      <!--    <img
+              th:src="@{/board/files/}+${exhibition.getExhibitionFiles().get(0).getPath()}"/>-->
 
           <!-- 전시 제목,날짜 정렬-->
           <div class="card-body p-4">
@@ -216,7 +225,7 @@
 
           <!-- Product actions-->
           <div class="card-footer p-4 pt-0 border-top-0 bg-transparent">
-            <div class="text-center"><a class="btn btn-outline-dark mt-auto" href="#">보러가기</a></div>
+            <div class="text-center"><a class="btn btn-outline-dark mt-auto"  data-th-href="@{detail(exno=${exhibition.exno})}">보러가기</a></div>
           </div>
 
         </div>

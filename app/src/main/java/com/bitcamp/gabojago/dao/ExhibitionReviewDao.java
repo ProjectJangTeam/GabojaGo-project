@@ -11,6 +11,7 @@ public interface ExhibitionReviewDao {
   // 리뷰 조회
   List<ExhibitionReview> exhibitionReviewList(int exno);
 
+  ExhibitionReview exhibitionReviewSelect (int rvno);
 
   // 리뷰 입력
 int exhibitionReviewInsert(ExhibitionReview exhibitionReview);
@@ -21,6 +22,6 @@ int exhibitionReviewUpdate(ExhibitionReview exhibitionReview);
 
 int deleteByMember(int ID);
 
-  int deleteReviewsByMemberexhibitions(int ID);
+/*  int deleteReviewsByMemberexhibitions(int ID);*/
 
 }

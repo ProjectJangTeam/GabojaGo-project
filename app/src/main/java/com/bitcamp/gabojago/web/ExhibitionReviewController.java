@@ -36,12 +36,11 @@ ExhibitionReviewService exhibitionReviewService;
 
   @GetMapping("delete")
   public String exhibitionReviewDelete(int rvno, HttpSession session, ExhibitionReview exhibitionReview) throws Exception {
-      checkOwner(rvno, session);
+    int exno = checkOwner(rvno, session);
     if(!exhibitionReviewService.exhibitionReviewDelete(rvno)) {
       throw new Exception("리뷰를 삭제 할 수 없습니다.");
     }
-
-    return "redirect:../exhibition/exhibitionlist";
+    return "redirect:../exhibition/detail?exno=" + exno;
   }
 
   @PostMapping("update")
@@ -55,11 +54,13 @@ ExhibitionReviewService exhibitionReviewService;
     return "redirect:../exhibition/exhibitionlist";
   }
 
-  private void checkOwner(int rvno, HttpSession session) throws Exception {
+  private int checkOwner(int rvno, HttpSession session) throws Exception {
     Member loginMember = (Member) session.getAttribute("loginMember");
-    if (exhibitionReviewService.get(rvno). getWriter().getId() != loginMember.getId()) {
+  ExhibitionReview review  = exhibitionReviewService.get(rvno) ;
+    if (!exhibitionReviewService.get(rvno).getId().equals(loginMember.getId())) {
       throw new Exception("리뷰 작성자가 아닙니다.");
     }
+    return review.getExno();
   }
 
 
