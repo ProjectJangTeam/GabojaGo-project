@@ -14,7 +14,7 @@ import com.bitcamp.gabojago.service.NoticeService;
 import com.bitcamp.gabojago.vo.Notice;
 
 @Controller
-@RequestMapping("/support/notice")
+@RequestMapping("/support/notice/")
 public class NoticeController {
 
     ServletContext sc;
@@ -28,24 +28,22 @@ public class NoticeController {
     }
 
 
-    @GetMapping("/noticeForm")
-    public String noticeForm(Notice notice) {
-        return "/support/notice/noticeForm";
-    }
+    @GetMapping("noticeForm")
+    public void noticeForm() throws Exception { }
 
 
-    @PostMapping("/noticeAdd")
+    @PostMapping("noticeAdd")
     public String noticeAdd(Notice notice, HttpSession session) throws Exception {
         noticeService.noticeAdd(notice);
-        return "redirect:/support/notice/noticeList";
+        return "redirect:noticeList";
     }
 
-    @GetMapping("/noticeList")
+    @GetMapping("noticeList")
     public void noticeList(Model model) throws Exception {
         model.addAttribute("notices", noticeService.noticeList());
     }
 
-    @GetMapping("/noticeDetail")
+    @GetMapping("noticeDetail")
     public Map noticeDetail(int no) throws Exception {
         Notice notice = noticeService.get(no);
         if (notice == null) {
@@ -56,5 +54,30 @@ public class NoticeController {
         map.put("notice", notice);
         return map;
 
+    }
+
+    @GetMapping("noticeEditDetail")
+    public Map noticeEditDetail(int no) throws Exception {
+        Notice notice = noticeService.getEdit(no);
+        if (notice == null) {
+            throw new Exception("해당 번호의 게시글이 없습니다!");
+        }
+
+        Map map = new HashMap();
+        map.put("notice", notice);
+        return map;
+
+    }
+
+    @PostMapping ("noticeEditUpdate")
+    public String noticeEditUpdate(Notice notice, HttpSession session) throws Exception {
+        noticeService.noticeEditUpdate(notice);
+        return "redirect:noticeList";
+    }
+
+    @GetMapping("noticeDelete")
+    public String noticeDelete(int no, HttpSession session) throws Exception {
+        noticeService.noticeDelete(no);
+        return "redirect:noticeList";
     }
 }

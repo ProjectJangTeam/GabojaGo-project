@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.bitcamp.gabojago.dao.ModifyMyPageDao">
+
+    <resultMap type="member" id="memberMap">
+        <id column="ID" property="id"/>
+        <result column="PWD" property="password"/>
+        <result column="NNAME" property="nickName"/>
+        <result column="PROFILE" property="profileFig"/>
+        <result column="NAME" property="name"/>
+        <result column="EMAIL" property="email"/>
+        <result column="PNUM" property="phoneNo"/>
+        <result column="BIRTH" property="birthDay"/>
+        <result column="GENDER" property="gender"/>
+        <result column="SNS" property="snsAddress"/>
+        <result column="MBTI" property="mbti"/>
+        <result column="STATUS" property="status"/>
+    </resultMap>
+
+    <update id="profileUpdate" parameterType="member">
+        update jang_member set
+        PROFILE=#{profileFig}
+        where ID=#{id}
+    </update>
+
+    <update id="myAccountUpdate" parameterType="member">
+        update jang_member set
+        PWD=#{password},
+        EMAIL=#{email},
+        PNUM=#{phoneNo}
+        where ID=#{id}
+    </update>
+
+    <select id="findById" resultMap="memberMap">
+        select
+        ID,
+        NNAME,
+        PROFILE,
+        NAME,
+        EMAIL,
+        PNUM,
+        BIRTH,
+        SNS,
+        MBTI
+        from jang_member
+        where
+        ID=#{id}
+    </select>
+
+
+
+</mapper>

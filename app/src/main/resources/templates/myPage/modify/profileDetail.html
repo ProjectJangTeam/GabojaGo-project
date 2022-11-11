@@ -1,0 +1,76 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+  <meta charset="utf-8">
+  <title>profileDetail</title>
+</head>
+<body>
+<h1>프로필 수정</h1>
+
+<form action='profileUpdate' method="post" enctype="multipart/form-data">
+
+  <div>
+    <label></label>
+    <input name='id' type='hidden' class="form-control"
+           data-th-value="${member.id}">
+  </div>
+
+  <div>
+    <label>Select your Picture!</label>
+    <a href="files/test.gif"
+       data-th-href="@{files/{path}(path=${member.profileFig})}"
+       data-th-text="${member.profileFig}">test.gif</a>
+    <label>파일추가</label>
+    <input name="file" type="file" multiple >
+  </div>
+
+  <div>
+    <label>nickName</label>
+    <input name='nickName' type='text' class="form-control"
+           data-th-value="${member.nickName}">
+  </div>
+
+  <div>
+    <label></label>
+  </div>
+
+<!--  <div>-->
+<!--    <label>MBTI</label>-->
+<!--    <input name='mbti' type='text' class="form-control"-->
+<!--         data-th-value="${member.mbti}"-->
+<!--         readonly>-->
+<!--  </div>-->
+
+<!--  <div class="mbti"></div>-->
+
+<!--  <p>Select your MBTI!</p>-->
+
+<!--  <select size="6">-->
+<!--    <option value="">SELECT</option>-->
+<!--    <option value="ISTJ">ISTJ</option>-->
+<!--    <option value="ISFJ">ISFJ</option>-->
+<!--    <option value="INFJ">INFJ</option>-->
+<!--    <option value="INTJ">INTJ</option>-->
+<!--    <option value="ISTP">ISTP</option>-->
+<!--    <option value="ISFP">ISFP</option>-->
+<!--    <option value="INFP">INFP</option>-->
+<!--    <option value="INTP">INTP</option>-->
+<!--    <option value="ESTP">ESTP</option>-->
+<!--    <option value="ESFP">ESFP</option>-->
+<!--    <option value="ENFP">ENFP</option>-->
+<!--    <option value="ESTP">ESTP</option>-->
+<!--    <option value="ESTJ">ESTJ</option>-->
+<!--    <option value="ESFJ">ESFJ</option>-->
+<!--    <option value="ENFJ">ENFJ</option>-->
+<!--    <option value="ENTJ">ENTJ</option>-->
+<!--  </select>-->
+
+
+  <div class="button">
+    <button type="submit">등록</button>
+  </div>
+</form>
+</div>
+</form>
+</body>
+</html>

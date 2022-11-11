@@ -11,6 +11,7 @@
             background-color: black;
             color: white;
         }
+
     </style>
 </head>
 
@@ -22,6 +23,13 @@
     </div>
 
     <div class="row">
+        <div class="col">
+            <button class="btn btn-primary float:left" style="background-color: black; border-color: black"
+                    onclick="location.href='supportMain.html'"
+                    th:onclick="|location.href='@{/support/}'|"
+                    type="button">이전</button>
+        </div>
+
         <div class="col">
             <button class="btn btn-primary float-end" style="background-color: black; border-color: black"
                     onclick="location.href='noticeForm.html'"
