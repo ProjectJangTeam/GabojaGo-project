@@ -1,6 +1,7 @@
 package com.bitcamp.gabojago.service;
 
 import com.bitcamp.gabojago.vo.JangSoReview;
+import com.bitcamp.gabojago.vo.JangSoReviewAttachedFile;
 import com.bitcamp.gabojago.vo.Recommendation;
 import org.springframework.web.multipart.MultipartFile;
 
@@ -10,19 +11,22 @@ import java.util.List;
 
 public interface RecommendationService {
 
+  // recommendationAdd
   void recommendationAdd(Recommendation recommendation) throws Exception;
 
-  boolean update(Recommendation recommendation) throws Exception;
-
-  Recommendation getRecommendation(int recono) throws Exception;
-
-  //boolean delete(int no) throws Exception;
-
+  // recommendationList
   List<Recommendation> recommendationList() throws Exception;
 
-  //AttachedFile getAttachedFile(int fileNo) throws Exception;
+  // recommendationDetail - 1
+  Recommendation getRecommendation(int recono) throws Exception;
 
-  //boolean deleteAttachedFile(int fileNo) throws Exception;
+  // recommendationDetail - 2
+  List<JangSoReview> getJangSoReviewList(int recono) throws Exception;
+
+  // recommendationDisable
+  boolean disableRecommend(int recono);
+
+  void setCntRecommendation(int recono) throws Exception;
 
 
 }

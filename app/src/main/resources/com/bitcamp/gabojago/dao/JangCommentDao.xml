@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.bitcamp.gabojago.dao.JangCommentDao">
+
+    <!-- 자바 객체의 프로퍼티와 컬럼 이름을 연결 -->
+    <resultMap type="jangComment" id="jangCommentMap">
+        <result column="CMNO" property="cmno"/>
+        <result column="CONT" property="cont"/>
+        <result column="WDATE" property="wdate"/>
+        <result column="ID" property="id"/>
+        <result column="RECONO" property="recono"/>
+    </resultMap>
+
+
+    <select id="jangCommentList" resultMap="jangCommentMap">
+        select
+         jang_comment.*
+           from jang_comment
+           left join
+           jang_so_recommendation
+           on
+        jang_comment.RECONO = jang_so_recommendation.RECONO
+          where
+        jang_so_recommendation.RECONO= #{RECONO};
+    </select>
+
+    <insert id="jangCommentInsert"  parameterType="jangComment" >
+           <!-- useGeneratedKeys="true" keyColumn="rvno" keyProperty="rvno"-->
+        INSERT INTO jang_comment (cont, id, recono)
+        values (#{cont}, #{id},  #{recono})
+    </insert>
+
+    <delete id="jangCommentDelete" parameterType="jangComment">
+        delete from jang_comment
+        where jang_comment.cmno = #{cmno};
+    </delete>
+
+
+    <update id="jangCommentUpdate" parameterType="jangComment">
+        update jangComment set
+        cont = #{cont}
+        where jangComment.cmno= #{cmno};
+    </update>
+
+
+
+
+</mapper>

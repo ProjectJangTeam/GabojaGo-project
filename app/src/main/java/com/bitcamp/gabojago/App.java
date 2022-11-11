@@ -24,4 +24,8 @@ public class App {
     return "main";
   }
 
+  @GetMapping("/recommendation/kakaoTest")
+  public void kakaoTest() {
+  }
+
 }

@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>recommendation</title>
+    <style>
+        tr:hover {
+            background-color: navy;
+            color: white;
+        }
+        .ga-review {
+            border: 1px solid red;
+        }
+        .ga-jang-comment-write {
+            border: 1px solid palevioletred;
+        }
+        .ga-jang-comment {
+            border: 1px solid palevioletred;
+        }
+    </style>
+</head>
+<body>
+
+<h1>코스추천_상세페이지_스크롤</h1>
+<h2 data-th-text="${recommendation.title}">코스추천_제목</h2>
+<h5>추천하는 주 이동수단</h5>
+<h5 data-th-text="${recommendation.tpname}">주 이동수단 명</h5>
+<h5 data-th-if="${recommendation.pet == true}">애완동물 동행이 가능합니다.</h5>
+<h5 data-th-if="${recommendation.frd == true}">친구와 함께 하기 좋아요.</h5>
+<h5 data-th-if="${recommendation.cple == true}">연인과 함께 하기 좋아요.</h5>
+<h5 data-th-if="${recommendation.fmly == true}">가족과 함께 하기 좋아요.</h5>
+<h5 data-th-if="${recommendation.solo == true}">혼자 가도 좋아요.</h5>
+
+<!--<p data-th-text="조회수: ${recommendation.cnt}">조회수</p>-->
+
+<table border='1'>
+    <tr>
+        <th>조회수</th><td data-th-text="${recommendation.cnt}">조회수</td>
+    </tr>
+    <tr>
+        <th>번호</th>
+        <th>장소후기번호</th>
+        <th>장소이름</th>
+        <th>내용</th>
+        <th>사진</th>
+    </tr>
+</table>
+
+    <div class="ga-review" data-th-each="jangSoReview : ${jangSoReviews}">
+        <p data-th-text="${jangSoReview.prvno}">100</p>
+        <p data-th-text="${jangSoReview.plname}">50</p>
+        <p data-th-text="${jangSoReview.adrs}">50</p>
+
+            <textarea rows="10" cols="25"
+                    data-th-text="${jangSoReview.cont == ''} ? '(내용없음)' : ${jangSoReview.cont}"
+                    readonly></textarea>
+        <ul>
+            <li data-th-each="file : ${jangSoReview.attachedFiles}">
+                <img src="test.gif" data-th-src="@{'../board/files/' + ${file.filepath}}" alt="리뷰 그림 파일">
+            </li>
+        </ul>
+    </div>
+
+    <br>
+<!-- 댓글 입력 폼 -->
+    <div class="ga-jang-comment-write">
+
+        <form action='jangCommentAdd' method="post" enctype="multipart/form-data"
+              style=" width: 1000px;">
+            <b> [ 댓글 작성 ] </b>
+            <p><label>작성자</label> <input type="text" name="id"></p>
+            <p><label>내용</label> <input type='text' name='cont' size='60'> </p>
+            <input type='hidden' name='recono' data-th-value="${recommendation.recono}">
+            <p><button type='submit'>댓글 입력</button></p>
+        </form>
+
+    </div>
+<!-- 댓글 리스트 -->
+    <div class="ga-jang-comment">
+        <table border="1">
+            <tr>
+                <th>댓글번호</th>
+                <th>아이디</th>
+                <th>내용</th>
+                <th>작성일</th>
+            </tr>
+
+            <tr data-th-each="jangComment : ${jangComments}">
+                <td name='cmno' type='number'
+                           value='1'
+                           data-th-text="${jangComment.cmno}"
+                           readonly>댓글번호</td>
+
+                <td data-th-text="${jangComment.id}">홍길동</td>
+
+                <td data-th-text="${jangComment.cont == ''} ? '(제목없음)' : ${jangComment.cont}">
+                    <input name='cont' type='text'
+                           value='ㅎ'
+                           data-th-value="${jangComment.cont}"
+                           size='30'
+                    ></td>
+
+                <!--readonly-->
+                <td data-th-text="${jangComment.wdate}">2022-1-1</td>
+                <td>
+                    <a href='jangCommentDelete?cmno=1'
+                       data-th-href="@{/recommendation/jangCommentDelete(cmno=${jangComment.cmno})}">댓글 삭제</a>
+
+                    <a href='jangCommentUpdate?cmno=1'
+                       data-th-href="@{/recommendation/update(cmno=${jangComment.cmno})}">댓글 변경</a>
+
+                </td>
+
+            </tr>
+        </table>
+
+    </div>
+
+
+
+<p><a href='recommendationList'>코스추천글메인으로</a></p>
+<p><a href='disableRecommend?recono=${recommendation.recono}'
+      data-th-href="@{disableRecommend(recono=${recommendation.recono})}">삭제</a></p>
+</body>
+</html>

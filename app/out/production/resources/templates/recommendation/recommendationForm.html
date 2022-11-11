@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+  <meta charset="UTF-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+  <title>가보자GO 코스추천_입력페이지</title>
+</head>
+<body>
+<h1>코스추천_입력페이지</h1>
+
+<style>
+    ul, ol {
+      list-style: none;
+    }
+
+    ul {
+      border: solid;
+    }
+
+    li {
+      border: solid;
+      color: red;
+    }
+
+  </style>
+
+<form id="recommendation-form" action="recommendationAdd" method="post" enctype="multipart/form-data">
+  <input name="title" type="text" size="60" placeholder="한줄에 사로잡는 제목"/>
+
+  <datalist id="searchOptions"> </datalist>
+
+  <ul id="addTable">
+    <li class="copied-form1">
+      <input name="place1" class="ga-input-box1" type="text" placeholder="(장소명), (장소 주소)" list="searchOptions" size="60"/>
+      <button id="place-add-btn1" type="button">해당장소선택</button>
+      <input name="files1" type="file" multiple />
+      <input name="cont1" type="text" placeholder="해당 장소에 대하여 설명을 적어주세요.1" size="100"/>
+    </li>
+    <li class="copied-form2">
+      <input name="place2" class="ga-input-box2" type="text" placeholder="(장소명), (장소 주소)" list="searchOptions" size="60"/>
+      <button id="place-add-btn2" type="button">해당장소선택</button>
+      <input name="files2" type="file" multiple />
+      <input name="cont2" type="text" placeholder="해당 장소에 대하여 설명을 적어주세요.2" size="100"/>
+    </li>
+    <li class="copied-form3">
+      <input name="place3" class="ga-input-box3" type="text" placeholder="(장소명), (장소 주소)" list="searchOptions" size="60"/>
+      <button id="place-add-btn3" type="button">해당장소선택</button>
+      <input class="files3" name="files3" type="file" multiple />
+      <input class="cont3" name="cont3" type="text" placeholder="해당 장소에 대하여 설명을 적어주세요.3" size="100"/>
+    </li>
+    <li class="copied-form4">
+      <input name="place4" class="ga-input-box4" type="text" placeholder="(장소명), (장소 주소)" list="searchOptions" size="60"/>
+      <button id="place-add-btn4" type="button">해당장소선택</button>
+      <input class="files4" name="files4" type="file" multiple />
+      <input class="cont4" name="cont4" type="text" placeholder="해당 장소에 대하여 설명을 적어주세요.4" size="100"/>
+    </li>
+    <li class="copied-form5">
+      <input name="place5" class="ga-input-box5" type="text" placeholder="(장소명), (장소 주소)" list="searchOptions" size="60"/>
+      <button id="place-add-btn5" type="button">해당장소선택</button>
+      <input class="files5" name="files5" type="fi단ultiple />
+      <input class="cont5" name="cont5" type="text" placeholder="해당 장소에 대하여 설명을 적어주세요.5" size="100"/>
+    </li>
+  </ul>
+
+  <br>
+
+  <select name="tpname">이동수
+    <option value="도보" selected></option>
+    <option value="자전거"></option>
+    <option value="자차"></option>
+    <option value="대중교통"></option>
+  </select>
+
+  <br>
+
+  <input type="checkbox" name="pet" value="true" />반려동물 가능 여부<br>
+  <input type='checkbox' name="frd" value="true" />친구<br>
+  <input type='checkbox' name="cple" value="true" />연인<br>
+  <input type='checkbox' name="fmly" value="true" />가족<br>
+  <input type='checkbox' name="solo" value="true" />혼자<br>
+
+  <p>
+    <button id="add-jang-so-review-btn" type="submit">저장</button>
+    <a href="recommendationList">취소</a>
+  </p>
+</form>
+
+<script src="../js/kakao.js"></script>
+
+</body>
+</html>

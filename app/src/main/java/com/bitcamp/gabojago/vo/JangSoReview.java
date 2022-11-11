@@ -7,15 +7,9 @@ public class JangSoReview {
   private int prvno; // 장소후기번호
   private String cont; // 내용
   private int recono; // 코스추천글번호
-  private int plno; // 장소번호
-
   private String plname; // 장소이름
-
-  //private JangSo jangSo; // 장소 목록들
-
-
-  // 첨부파일 정보를 저장할 필드
-  private List<JangSoReviewAttachedFile> attachedFiles;
+  private String adrs; // 장소주소
+  private List<JangSoReviewAttachedFile> attachedFiles; // 첨부파일 List를 저장하는 필드
 
   public int getPrvno() {
     return prvno;
@@ -41,14 +35,6 @@ public class JangSoReview {
     this.recono = recono;
   }
 
-  public int getPlno() {
-    return plno;
-  }
-
-  public void setPlno(int plno) {
-    this.plno = plno;
-  }
-
   public String getPlname() {
     return plname;
   }
@@ -57,23 +43,32 @@ public class JangSoReview {
     this.plname = plname;
   }
 
+  public String getAdrs() {
+    return adrs;
+  }
+
+  public void setAdrs(String adrs) {
+    this.adrs = adrs;
+  }
+
   public List<JangSoReviewAttachedFile> getAttachedFiles() {
     return attachedFiles;
   }
 
-  public void setAttachedFiles(List<JangSoReviewAttachedFile> attachedFiles) {
+  public void setAttachedFiles(
+      List<JangSoReviewAttachedFile> attachedFiles) {
     this.attachedFiles = attachedFiles;
   }
 
   @Override
   public String toString() {
     return "JangSoReview{" +
-            "prvno=" + prvno +
-            ", cont='" + cont + '\'' +
-            ", recono=" + recono +
-            ", plno=" + plno +
-            ", plname='" + plname + '\'' +
-            ", attachedFiles=" + attachedFiles +
-            '}';
+        "prvno=" + prvno +
+        ", cont='" + cont + '\'' +
+        ", recono=" + recono +
+        ", plname='" + plname + '\'' +
+        ", address='" + adrs + '\'' +
+        ", attachedFiles=" + attachedFiles +
+        '}';
   }
 }

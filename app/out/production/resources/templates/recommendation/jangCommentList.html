@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>exhibition</title>
+<style>
+tr:hover {
+  background-color: navy;
+  color: white;
+}
+</style>
+</head>
+<body>
+  <h1>코스추천글 댓글 목록</h1>
+  <a href='form'>새 글</a>
+  <table jangComment='1'>
+
+
+  <!-- 첨부파일 후에 추가-->
+
+
+    <th>번호</th><td><input name='cmno' type='number'
+                          value='1'
+                          data-th-value="${jangComment.cmno}"
+                          readonly></td>
+
+    <tr>
+      <th>아이디</th><td data-th-text="${jangComment.id}">홍길동</td>
+    </tr>
+
+
+    <th>내용</th>
+
+    <td data-th-href="@{detail(cmno=${jangComment.cmno})}"
+        data-th-text="${jangComment.cont == ''} ? '(제목없음)' : ${jangComment.cont}">
+      <input name='cont' type='text'
+               value='ㅎ'
+               data-th-value="${jangComment.cont}"
+               readonly></td>
+
+    <tr>
+      <th>작성일</th><td data-th-text="${jangComment.wdate}">2022-1-1</td>
+    </tr>
+
+
+
+
+  </table>
+  <p><a href='../'>메인</a></p>
+
+
+</body>
+</html>
+
+
+
+    
