@@ -1,0 +1,12 @@
+POST http://localhost:9999/app/support/notice/noticeUpdate
+
+<> 2022-11-07T161507.500.json
+
+###
+
+GET http://localhost:9999/app/support/notice/noticeDelete
+
+<> 2022-11-07T125128.500.json
+
+###
+
