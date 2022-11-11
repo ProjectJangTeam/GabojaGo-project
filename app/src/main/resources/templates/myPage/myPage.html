@@ -1,21 +1,48 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
-    <meta charset="UTF-8">
+    <meta charset="utf-8">
+    <link th:href="@{/css/bootstrap.min.css}"
+          href="../css/bootstrap.min.css" rel="stylesheet">
     <title>myPage</title>
+
+    <style>
+
+        .container {
+            max-width: 500px;
+        }
+
+    </style>
 </head>
 <body>
 
-<div>nickname</div>
-<div th:text="${nickname}"></div>
+<div class="container">
 
-<div>email</div>
-<div th:text="${email}"></div>
+    <div class="py-5 text-center">
+        <h2>profile</h2>
+    </div>
 
+<!--    <div>-->
+      <img th:src="@{/board/files/} + ${profileFig}"/>
+<!--    </div>-->
 
-<button onclick="location.href='profileDetail.html'"
-                th:onclick="|location.href='@{/myPage/modify/profileDetail}'|"
-                type="button">프로필 수정</button>
+    <div>
+      <label>nickname</label>
+      <div th:text="${nickname}"></div>
+    </div>
+
+    <div>
+    <label>MBTI</label>
+    <div th:text="${mbti}"></div>
+    </div>
+
+    <button onclick="location.href='profileDetail.html'"
+                    th:onclick="|location.href='@{/myPage/modify/profileDetail}'|"
+                    type="button">프로필 수정</button>
+
+    <button onclick="location.href='myAccountDetail.html'"
+            th:onclick="|location.href='@{/myPage/modify/myAccountDetail}'|"
+            type="button">개인정보 수정</button>
 
 </body>
 </html>

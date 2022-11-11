@@ -2,7 +2,7 @@
 <!DOCTYPE mapper
         PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="com.bitcamp.gabojago.dao.ProfileDao">
+<mapper namespace="com.bitcamp.gabojago.dao.ModifyMyPageDao">
 
     <resultMap type="member" id="memberMap">
         <id column="ID" property="id"/>
@@ -17,8 +17,21 @@
         <result column="SNS" property="snsAddress"/>
         <result column="MBTI" property="mbti"/>
         <result column="STATUS" property="status"/>
-
     </resultMap>
+
+    <update id="profileUpdate" parameterType="member">
+        update jang_member set
+        PROFILE=#{profileFig}
+        where ID=#{id}
+    </update>
+
+    <update id="myAccountUpdate" parameterType="member">
+        update jang_member set
+        PWD=#{password},
+        EMAIL=#{email},
+        PNUM=#{phoneNo}
+        where ID=#{id}
+    </update>
 
     <select id="findById" resultMap="memberMap">
         select
@@ -36,10 +49,6 @@
         ID=#{id}
     </select>
 
-    <update id="update" parameterType="member">
-        update jang_member set
-        MBTI=#{mbti}
-        where ID=#{value}
-    </update>
+
 
 </mapper>

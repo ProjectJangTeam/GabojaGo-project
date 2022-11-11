@@ -7,8 +7,6 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import javax.servlet.http.HttpSession;
-import java.util.HashMap;
-import java.util.Map;
 
 @Controller
 @RequestMapping("/myPage")
@@ -26,8 +24,9 @@ public class MyPageController {
 
         } else {
 
+            model.addAttribute("profileFig", loginMember.getProfileFig());
             model.addAttribute("nickname", loginMember.getNickName());
-            model.addAttribute("email", loginMember.getEmail());
+            model.addAttribute("mbti", loginMember.getMbti());
 
             return "myPage/myPage";
 

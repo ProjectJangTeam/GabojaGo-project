@@ -7,13 +7,31 @@
 <body>
 <h1>프로필 수정</h1>
 
+<form action='profileUpdate' method="post" enctype="multipart/form-data">
+
+  <div>
+    <label></label>
+    <input name='id' type='hidden' class="form-control"
+           data-th-value="${member.id}">
   </div>
 
   <div>
-    <label>ID</label>
-    <input name='id' type='text' class="form-control"
-           data-th-value="${member.id}"
-           readonly>
+    <label>Select your Picture!</label>
+    <a href="files/test.gif"
+       data-th-href="@{files/{path}(path=${member.profileFig})}"
+       data-th-text="${member.profileFig}">test.gif</a>
+    <label>파일추가</label>
+    <input name="file" type="file" multiple >
+  </div>
+
+  <div>
+    <label>nickName</label>
+    <input name='nickName' type='text' class="form-control"
+           data-th-value="${member.nickName}">
+  </div>
+
+  <div>
+    <label></label>
   </div>
 
 <!--  <div>-->

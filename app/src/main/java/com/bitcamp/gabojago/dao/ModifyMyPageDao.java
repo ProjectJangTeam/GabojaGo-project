@@ -4,12 +4,12 @@ package com.bitcamp.gabojago.dao;
 import com.bitcamp.gabojago.vo.Member;
 import org.apache.ibatis.annotations.Mapper;
 
-import java.util.List;
-
 @Mapper
-public interface ProfileDao {
+public interface ModifyMyPageDao {
 
-    int update(Member member);
+    int profileUpdate(Member member);
+
+    int myAccountUpdate(Member member);
 
     Member findById(String id);
 
