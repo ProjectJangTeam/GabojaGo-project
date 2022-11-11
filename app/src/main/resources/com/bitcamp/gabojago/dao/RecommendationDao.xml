@@ -4,7 +4,7 @@
         "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.bitcamp.gabojago.dao.RecommendationDao">
 
-    <!-- 자바 객체의 프로퍼티와 컬럼 이름을 연결 -->
+    <!-- resultMap -->
     <resultMap type="recommendation" id="recommendationMap">
         <result column="RECONO" property="recono"/>
         <result column="TITLE" property="title"/>
@@ -16,7 +16,7 @@
         <result column="CPLE" property="cple"/>
         <result column="FMLY" property="fmly"/>
         <result column="SOLO" property="solo"/>
-        <result column="TPNO" property="tpno"/>
+        <result column="TPNAME" property="tpname"/>
 
         <association property="writer" javaType="member">
             <id column="id" property="id"/>
@@ -26,6 +26,8 @@
         <collection property="jangSoReviews" ofType="jangSoReview">
             <id column="PRVNO" property="prvno"/>
             <result column="CONT" property="cont"/>
+            <result column="PLNAME" property="plname"/>
+            <result column="ADRS" property="adrs"/>
         </collection>
 
     </resultMap>
@@ -34,7 +36,8 @@
         <id column="prvno" property="prvno"/>
         <result column="cont" property="cont"/>
         <result column="recono" property="recono"/>
-        <result column="plno" property="plno"/>
+        <result column="plname" property="plname"/>
+        <result column="adrs" property="adrs"/>
 
         <collection property="attachedFiles" ofType="jangSoReviewAttachedFile">
             <id column="recofno" property="recofno"/>
@@ -50,8 +53,9 @@
         <result column="path" property="filepath"/>
         <result column="fname" property="fname"/>
     </resultMap>
+    <!-- resultMap 끝 -->
 
-
+    <!-- recommendationList -->
     <select id="recommendationList" resultMap="recommendationMap">
         select
         recono, title, wdate
@@ -61,40 +65,27 @@
         act=true
     </select>
 
+    <!-- recommendationAdd - 1 -->
     <insert id="recommendationAdd" parameterType="recommendation"
       useGeneratedKeys="true" keyColumn="recono" keyProperty="recono">
-        insert into jang_so_recommendation(id, title, act, frd, cple, fmly, solo, tpno)
-        values(#{writer.id}, #{title}, true, true, true, true, true, 1)
+        insert into jang_so_recommendation(id, title, act, pet, frd, cple, fmly, solo, tpname)
+        values(#{writer.id}, #{title}, true, #{pet}, #{frd}, #{cple}, #{fmly}, #{solo}, #{tpname})
     </insert>
 
+    <!-- recommendationAdd - 2 -->
     <insert id="jangSoReviewAdd" parameterType="jangSoReview"
       useGeneratedKeys="true" keyColumn="prvno" keyProperty="prvno">
-        insert into jang_so_review(cont,recono,plno)
-        values(#{cont}, #{recono}, 1)
+        insert into jang_so_review(cont,recono,plname,adrs)
+        values(#{cont}, #{recono}, #{plname}, #{adrs})
     </insert>
 
+    <!-- recommendationAdd - 3 -->
     <insert id="jangSoReviewAttachedFileAdd" parameterType="jangSoReviewAttachedFile">
         insert into jang_so_review_file(path,fname,prvno)
         values(#{filepath}, #{fname}, #{prvno})
     </insert>
 
-<!--    <insert id="jangSoReviewAdd" parameterType="recommendation"-->
-<!--      useGeneratedKeys="true" keyColumn="prvno" keyProperty="prvno">-->
-<!--        insert into jang_so_review(cont,recono)-->
-<!--        values-->
-<!--        <foreach collection="jangSoReviews" item="jangSoReview" separator=",">-->
-<!--            (#{jangSoReview.cont}, #{recono})-->
-<!--        </foreach>-->
-<!--    </insert>-->
-
-<!--    <insert id="jangSoReviewAttachedFileAdd" parameterType="jangSoReview">-->
-<!--        insert into jang_so_review_file(path,fname,prvno)-->
-<!--        values-->
-<!--        <foreach collection="attachedFiles" item="file" separator=",">-->
-<!--            (#{file.filepath}, #{file.filename}, #{prvno})-->
-<!--        </foreach>-->
-<!--    </insert>-->
-
+    <!-- recommendationDetail - 1 -->
     <select id="getRecommendation" resultMap="recommendationMap">
         select
         recono,
@@ -107,12 +98,13 @@
         cple,
         fmly,
         solo,
-        tpno
+        tpname
         from
         jang_so_recommendation
         where recono = #{value}
     </select>
 
+    <!-- recommendationDisable -->
     <update id="disableRecommend">
         update jang_so_recommendation set
         act=false

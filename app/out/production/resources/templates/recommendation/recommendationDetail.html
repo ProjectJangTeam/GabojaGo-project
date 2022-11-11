@@ -17,6 +17,13 @@
 
 <h1>코스추천_상세페이지_스크롤</h1>
 <h2 data-th-text="${recommendation.title}">코스추천_제목</h2>
+<h5>추천하는 주 이동수단</h5>
+<h5 data-th-text="${recommendation.tpname}">주 이동수단 명</h5>
+<h5 data-th-if="${recommendation.pet == true}">애완동물 동행이 가능합니다.</h5>
+<h5 data-th-if="${recommendation.frd == true}">친구와 함께 하기 좋아요.</h5>
+<h5 data-th-if="${recommendation.cple == true}">연인과 함께 하기 좋아요.</h5>
+<h5 data-th-if="${recommendation.fmly == true}">가족과 함께 하기 좋아요.</h5>
+<h5 data-th-if="${recommendation.solo == true}">혼자 가도 좋아요.</h5>
 
 <table border='1'>
     <tr>
@@ -30,8 +37,8 @@
 
     <div class="ga-review" data-th-each="jangSoReview : ${jangSoReviews}">
         <p data-th-text="${jangSoReview.prvno}">100</p>
-        <p data-th-text="${jangSoReview.plno}">50</p>
         <p data-th-text="${jangSoReview.plname}">50</p>
+        <p data-th-text="${jangSoReview.adrs}">50</p>
 
             <textarea rows="10" cols="25"
                     data-th-text="${jangSoReview.cont == ''} ? '(내용없음)' : ${jangSoReview.cont}"

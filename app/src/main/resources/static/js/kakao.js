@@ -294,49 +294,50 @@ $(".ga-input-box4").keyup(doSearch4);
 $(".ga-input-box5").keyup(doSearch5);
 
 
-// ------------------------------------
-// li 태그
-var copiedform4 = document.querySelector(".copied-form4");
-var copiedform3 = document.querySelector(".copied-form3");
-var copiedform5 = document.querySelector(".copied-form5");
-// review-add-btn 태그
-var rvadbtn2 = document.querySelector(".review-add-btn2");
-var rvadbtn3 = document.querySelector(".review-add-btn3");
-var rvadbtn4 = document.querySelector(".review-add-btn4");
-// review-remove-btn 태그
-var rvrmbtn5 = document.querySelector(".review-remove-btn5");
-var rvrmbtn4 = document.querySelector(".review-remove-btn4");
-var rvrmbtn3 = document.querySelector(".review-remove-btn3");
 
-function addReview2() {
-  copiedform3.style.display = "block";
-  rvadbtn2.style.display = "none";
-}
-function addReview3() {
-  copiedform4.style.display = "block";
-  rvadbtn3.style.display = "none";
-  rvrmbtn3.style.display = "none";
-}
-function addReview4() {
-  copiedform5.style.display = "block";
-  rvadbtn4.style.display = "none";
-  rvrmbtn4.style.display = "none";
-}
-function removeReview5() {
-  copiedform5.style.display = "none";
-  document.querySelector(".cont5").value = null;
-  rvadbtn4.style.display = "inline-block";
-  rvrmbtn4.style.display = "inline-block";
-}
-function removeReview4() {
-  copiedform4.style.display = "none";
-  document.querySelector(".cont4").value = null;
-  rvadbtn3.style.display = "inline-block";
-  rvrmbtn3.style.display = "inline-block";
-}
-function removeReview3() {
-  copiedform3.style.display = "none";
-  document.querySelector(".cont3").value = null;
-  rvadbtn2.style.display = "inline-block";
-  rvrmbtn2.style.display = "inline-block";
-}
+//// ------------------------------------
+//// li 태그
+//var copiedform4 = document.querySelector(".copied-form4");
+//var copiedform3 = document.querySelector(".copied-form3");
+//var copiedform5 = document.querySelector(".copied-form5");
+//// review-add-btn 태그
+//var rvadbtn2 = document.querySelector(".review-add-btn2");
+//var rvadbtn3 = document.querySelector(".review-add-btn3");
+//var rvadbtn4 = document.querySelector(".review-add-btn4");
+//// review-remove-btn 태그
+//var rvrmbtn5 = document.querySelector(".review-remove-btn5");
+//var rvrmbtn4 = document.querySelector(".review-remove-btn4");
+//var rvrmbtn3 = document.querySelector(".review-remove-btn3");
+//
+//function addReview2() {
+//  copiedform3.style.display = "block";
+//  rvadbtn2.style.display = "none";
+//}
+//function addReview3() {
+//  copiedform4.style.display = "block";
+//  rvadbtn3.style.display = "none";
+//  rvrmbtn3.style.display = "none";
+//}
+//function addReview4() {
+//  copiedform5.style.display = "block";
+//  rvadbtn4.style.display = "none";
+//  rvrmbtn4.style.display = "none";
+//}
+//function removeReview5() {
+//  copiedform5.style.display = "none";
+//  document.querySelector(".cont5").value = null;
+//  rvadbtn4.style.display = "inline-block";
+//  rvrmbtn4.style.display = "inline-block";
+//}
+//function removeReview4() {
+//  copiedform4.style.display = "none";
+//  document.querySelector(".cont4").value = null;
+//  rvadbtn3.style.display = "inline-block";
+//  rvrmbtn3.style.display = "inline-block";
+//}
+//function removeReview3() {
+//  copiedform3.style.display = "none";
+//  document.querySelector(".cont3").value = null;
+//  rvadbtn2.style.display = "inline-block";
+//  rvrmbtn2.style.display = "inline-block";
+//}
