@@ -1,14 +1,22 @@
 package com.bitcamp.gabojago.service;
 
+import com.bitcamp.gabojago.dao.ExhibitionReviewDao;
 import com.bitcamp.gabojago.dao.MemberDao;
+import com.bitcamp.gabojago.vo.ExhibitionReview;
 import com.bitcamp.gabojago.vo.Member;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
+
+import java.util.List;
 
 @Service
 public class DefaultMemberService implements MemberService {
   @Autowired
   MemberDao memberDao;
+
+  @Autowired
+  ExhibitionReviewDao exhibitionReviewDao;
 
   @Override
   public Member idCheck(String id) throws Exception {
@@ -44,5 +52,34 @@ public class DefaultMemberService implements MemberService {
   public Member emailCheck(String email) throws Exception {
     return memberDao.findByEmail(email);
   }
+
+
+
+  /* 밑으로 꼉이 수정중*/
+  @Transactional
+  @Override
+  public boolean delete(String id) throws Exception {
+    /*boardDao.deleteFilesByMemberBoards(no); // 회원이 작성한 게시글의 모든 첨부파일 삭제
+    boardDao.deleteByMember(no); // 회원이 작성한 게시글 삭제*/
+/*
+    exhibitionReviewDao.deleteByMember(Integer.parseInt(id)); // 전시회 리뷰 삭제
+*/
+    return memberDao.delete(id) > 0; // 회원 삭제
+  }
+
+  @Override
+  public List<Member> list() throws Exception {
+    return memberDao.findAll();
+  }
+
+  @Override
+  public Member get(String id)throws Exception {
+    return memberDao.findByIdAll(id);
+  }
+
+  public boolean update(Member member) throws Exception {
+    return memberDao.update(member) > 0;
+  }
+
 
 }

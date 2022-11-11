@@ -11,14 +11,14 @@ public class ExhibitionFile {
 
 public ExhibitionFile(){}
 
-  public ExhibitionFile(String fname, String path){
-  this.fname=fname;
-  this.path = path;
+  public ExhibitionFile( String path,String fname){
+    this.path = path;
+  this.fname= fname;
   }
-
+/*
   public ExhibitionFile(String fname) {
     this.fname = fname;
-  }
+  }*/
 
 
   public int getExfno() {

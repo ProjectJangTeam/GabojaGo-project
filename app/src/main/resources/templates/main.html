@@ -16,12 +16,13 @@
 <!--    <script src="./script/jquery-3.6.0.js"></script>-->
 <!--    <script src="./script/script.js"></script>-->
 
-    <meta name ="google-signin-client_id"
+    <!--<meta name ="google-signin-client_id"
           content="400828157542-5kee4rg9u2va7k0c5q762jqnl973c4dv.apps.googleusercontent.com">
-
+-->
   </head>
 
-  <script src="https://apis.google.com/js/platform.js" async defer></script>
+<!--  <script src="https://apis.google.com/js/platform.js" async defer></script>
+  <script src="https://apis.google.com/js/platform.js?onload=init" async defer></script>-->
 
   <body class="pt-5">
     <!-- body 이름 바꿈 -->
@@ -41,8 +42,7 @@
 
 
 
-
-
+<!--          <a href="http://localhost:9999/app/">구글 아이디로 로그인</a>-->
 
           <div class="g-signin2" data-onsuccess="onSignIn"></div>
 
@@ -57,7 +57,7 @@
 
           </script>
 
-          <a href="#" onClick="signOut();">Sign out</a>
+         <!-- <a href="#" onClick="signOut();">Sign out</a>-->
           <script>
             function signOut() {
               var auth2 = gapi.auth2.getAuthInstance();
@@ -66,12 +66,6 @@
               });
             }
           </script>
-
-          <script src="https://apis.google.com/js/platform.js?onload=init" async defer></script>
-
-
-
-
 
 
 
@@ -119,7 +113,7 @@
                   <span class="sr-only">(current)</span>
                 </a>
               </li>
-              <li class="nav-item"><a class="nav-link" href="#">Search</a></li>
+              <li class="nav-item"><a class="nav-link" href="search/searchForm">Search</a></li>
               <li class="nav-item">
                 <a class="nav-link" href="recommendation/recommendationList">코스추천</a>
               </li>
@@ -140,10 +134,16 @@
               </li>
 
               <li class="nav-item">
-                <a class="nav-link" href="#">
+                <a class="nav-link" href="/app/myPage/">
                   <img src="./images/mypage.png" width="90%" height="25"
                 /></a>
               </li>
+
+
+              <!--테스트 중-->
+
+              <li><a href='member/list'>회원</a></li>
+
             </ul>
           </div>
         </div>

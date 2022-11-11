@@ -33,19 +33,27 @@
 
 
     <select id="exhibitionList" resultMap="exhibitionMap">
-        select
-        jexhb.EXNO, -- 전시회번호
-        jexhb.EXNAME, -- 전시회제목
-        jexhb.STDATE, -- 시작일
-        jexhb.EDDATE, -- 종료일
-        jexhbf.EXFNO, -- 전시회게시글첨부파일번호
-        jexhbf.PATH -- 전시회게시글첨부파일경로
-        from
-        jang_exhibition jexhb
-        left join
-        jang_exhibition_file jexhbf
+      select
+        jang_exhibition.*,
+        jang_exhibition_file.*
+        from jang_exhibition
+        left join jang_exhibition_file
         on
-        jexhb.EXNO = jexhbf.EXNO;
+        jang_exhibition.EXNO = jang_exhibition_file.EXNO;
+
+
+       <!-- select
+        jang_exhibition.*,
+        jang_exhibition_file.*
+        from jang_exhibition
+        left join jang_exhibition_file
+        on
+        jang_exhibition.EXNO = jang_exhibition_file.EXNO
+        where jang_exhibition_file.EXNO
+        AND jang_exhibition_file.EXFNO
+        IN(SELECT MIN(EXFNO) FROM jang_exhibition_file
+        group by EXNO );
+-->
 
         <!--  where
           (jexhb.STDATE  <![CDATA[<]]> CURDATE()) and (jexhb.EDDATE <![CDATA[>]]> CURDATE())-->
@@ -54,9 +62,13 @@
 
 <!-- 상세보기-->
     <select id="exhibitionSelect"  resultMap="exhibitionMap">
-        select  * from jang_exhibition
+       <!-- select  * from jang_exhibition
+        where jang_exhibition.EXNO=#{value};-->
 
+        select  * from jang_exhibition
+        left join jang_exhibition_file jef on jang_exhibition.EXNO = jef.EXNO
         where jang_exhibition.EXNO=#{value};
+
     </select>
 
     <insert id="exhibitionInsert"  parameterType="exhibition"
@@ -68,11 +80,11 @@
     </insert>
 
     <delete id="delete">
-       <!-- delete from jang_exhibition_file
+      <!--  delete from jang_exhibition_file
         where jang_exhibition_file.EXNO=#{value};-->
-
+<!--
         delete from jang_exhibition_review
-        where jang_exhibition_review.EXNO=#{value};
+        where jang_exhibition_review.EXNO=#{value};-->
 
      <!--   delete from jang_ticket
         where jang_ticket.EXNO=#{value};
@@ -80,6 +92,7 @@
         where jang_baguni.EXNO=#{value};-->
         delete from jang_exhibition
         where jang_exhibition.EXNO=#{value};
+
     </delete>
 
 
@@ -107,11 +120,11 @@
         exno = #{exno}
     </select>
 
-    <insert id="insertFiles" parameterType="exhibition">
-        insert into jang_exhibition_file(PATH,EXNO,FNAME)
+    <insert id="insertFiles" parameterType="exhibition" >
+        insert into jang_exhibition_file(path,exno,fname)
         values
         <foreach collection="exhibitionFiles" item="file" separator=",">
-            (#{file.path},#{exno}, #{fname})
+            (#{file.path},#{exno},#{file.fname})
         </foreach>
     </insert>
 
@@ -140,7 +153,7 @@
         from
         jang_exhibition_file
         where
-        exno = #{value};
+        exfno = #{value};
     </select>
 
 

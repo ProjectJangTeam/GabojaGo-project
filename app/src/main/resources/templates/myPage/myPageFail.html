@@ -1,0 +1,14 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+  <meta charset="UTF-8">
+  <title>myPageFail</title>
+  <script th:inline="javascript">
+    const message = [[${message}]];
+    alert(message);
+    history.back();
+  </script>
+</head>
+<body>
+</body>
+</html>

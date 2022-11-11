@@ -10,8 +10,27 @@ public class ExhibitionReview {
   private String id; // 아이디
   private int exno; // 전시회 번호
 
+  private Member writer; // 회원 id
 
+  @Override
+  public String toString() {
+    return "ExhibitionReview{" +
+        "rvno=" + rvno +
+        ", cont='" + cont + '\'' +
+        ", wdate=" + wdate +
+        ", id='" + id + '\'' +
+        ", exno=" + exno +
+        ", writer=" + writer +
+        '}';
+  }
 
+  public Member getWriter() {
+    return writer;
+  }
+
+  public void setWriter(Member writer) {
+    this.writer = writer;
+  }
 
   public int getRvno() {
     return rvno;
@@ -53,14 +72,4 @@ public class ExhibitionReview {
     this.exno = exno;
   }
 
-  @Override
-  public String toString() {
-    return "ExhibitionReview{" +
-        "rvno=" + rvno +
-        ", cont='" + cont + '\'' +
-        ", wdate=" + wdate +
-        ", id='" + id + '\'' +
-        ", exno=" + exno +
-        '}';
-  }
 }

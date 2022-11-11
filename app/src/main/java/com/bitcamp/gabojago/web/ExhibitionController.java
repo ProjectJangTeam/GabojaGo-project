@@ -10,9 +10,12 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
+import javax.imageio.ImageIO;
 import javax.servlet.ServletContext;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpSession;
+import java.awt.*;
+import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
@@ -30,13 +33,13 @@ public class ExhibitionController {
   @Autowired
   ExhibitionReviewService exhibitionReviewService;
 
-@Autowired
+  @Autowired
   ServletContext servletContext; // 테스트 필요
 
 
 
 // 파일
-/*
+/* 멀티 사용
   private List<ExhibitionFile> saveExhibitionFiles(Part[] files)
       throws IOException,ServletException{
     List<ExhibitionFile> exhibitionFiles = new ArrayList<>();
@@ -55,24 +58,82 @@ public class ExhibitionController {
   }
 */
 
+
+
+
+
   private List<ExhibitionFile> saveExhibitionFiles(MultipartFile[] files)
       throws IOException, ServletException {
     List<ExhibitionFile> exhibitionFiles = new ArrayList<>();
-///src/main/webapp/board/files
-     String path = servletContext.getRealPath("/board/files");
-    System.out.println("호출:" + path);
-    for (MultipartFile part : files) {
-      if (part.isEmpty()) {
+
+     String dirpath = servletContext.getRealPath("/board/files");
+    System.out.println("호출:" + dirpath);
+    for (MultipartFile file : files) {
+      if (file.isEmpty()) {
         continue;
       }
-// 다운로드 컨트롤러 준비
-      // 외부 파일 다운로드
-      String fname = UUID.randomUUID().toString();
-      part.transferTo(new File(path + "/" + fname));
-      exhibitionFiles.add(new ExhibitionFile(fname));
+      String path = UUID.randomUUID().toString();
+      String fname = file.getOriginalFilename();
+      file.transferTo(new File(dirpath + "/" + path));
+      exhibitionFiles.add(new ExhibitionFile(path,fname));
     }
+
+
     return exhibitionFiles;
   }
+
+
+
+/*
+  @RequestMapping(value = "uploadTest", method = RequestMethod.POST)
+  public void uploadTestPOST(MultipartFile[] files) {
+
+    String dirpath = servletContext.getRealPath("/board/files");
+    System.out.println("호출:" + dirpath);
+
+    for (MultipartFile file : files) {
+      if (file.isEmpty()) {
+        continue;
+      }
+
+      String fname = file.getOriginalFilename();
+      String path = UUID.randomUUID().toString();
+     fname = path + "_" + fname;
+
+     File saveFile = new File(path,fname);
+
+      try {
+        file.transferTo(saveFile);
+        File thumbnailFile = new File(path, "s_" + fname) ;
+
+        BufferedImage bo_image = ImageIO.read(saveFile);
+
+        */
+/* 비율 *//*
+
+        double ratio = 3;
+        int width = (int) (bo_image.getWidth() / ratio);
+        int height = (int) (bo_image.getHeight() / ratio);
+
+        // 생성자 매개변수 넓이, 높이, 생성될 이미지 타입
+        BufferedImage bt_image = new BufferedImage(width, height, BufferedImage.TYPE_3BYTE_BGR);
+
+        Graphics2D graphic = bt_image.createGraphics();
+
+        graphic.drawImage(bo_image, 0, 0, width, height, null);
+
+        ImageIO.write(bt_image, "jpg", thumbnailFile);
+        */
+/* ...................... *//*
+
+      } catch (Exception e) {
+        e.printStackTrace();
+      }
+    }
+  }
+*/
+
+
 
 
 
@@ -97,10 +158,9 @@ public class ExhibitionController {
 
 
   @GetMapping("detail")
-  public void detail(int exno, Model model) throws Exception {
+  public void detail(int exno, Model model, HttpSession session) throws Exception {
     model.addAttribute("exhibition", exhibitionService.exhibitionSelect(exno));
     model.addAttribute("exhibitionReviews", exhibitionReviewService.exhibitionReviewList(exno));
-
 
   } // 강사님 보드는 map 사용
 
@@ -117,7 +177,7 @@ public class ExhibitionController {
 }  추후에 어드민 추가 */
 
 @GetMapping("delete")
-public String delete(int exno, HttpSession session) throws Exception {
+public String delete(int exno/* HttpSession session*/) throws Exception {
     //  checkOwner(no, session);
     if(!exhibitionService.delete(exno)) {
       throw new Exception("게시글을 삭제 할 수 없습니다.");
@@ -129,6 +189,7 @@ public String delete(int exno, HttpSession session) throws Exception {
   @GetMapping("updateform") // 수정창, 내용수정하고 서브밋 누르면
   public void update(int exno, Model model) throws Exception{
     model.addAttribute("exhibition", exhibitionService.exhibitionSelect(exno));
+
   }
 
 @PostMapping("update") // 내용 저장됨

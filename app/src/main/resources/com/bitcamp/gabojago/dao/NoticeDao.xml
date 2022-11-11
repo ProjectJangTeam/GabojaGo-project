@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.bitcamp.gabojago.dao.NoticeDao">
+
+    <resultMap type="notice" id="noticeMap">
+        <id column="NTNO" property="no"/>
+        <result column="TITLE" property="title"/>
+        <result column="CONT" property="content"/>
+        <result column="WDATE" property="createdDate"/>
+    </resultMap>
+
+    <insert id="insert" parameterType="notice"
+            useGeneratedKeys="true" keyColumn="NTNO" keyProperty="no">
+        insert into jang_notice(TITLE,CONT,WDATE)
+        values(#{title},#{content},now())
+    </insert>
+
+    <update id="update" parameterType="notice">
+        update jang_notice set
+        TITLE=#{title},
+        CONT=#{content}
+        where NTNO=#{no}
+    </update>
+
+    <select id="findAll" resultMap="noticeMap">
+        select
+        NTNO,
+        TITLE,
+        WDATE
+        from
+        jang_notice
+    </select>
+
+    <select id="findByNo" resultMap="noticeMap">
+        select
+        NTNO,
+        TITLE,
+        CONT,
+        WDATE
+        from
+        jang_notice
+        where
+        NTNO=#{value}
+    </select>
+
+    <select id="findByEditNo" resultMap="noticeMap">
+        select
+        NTNO,
+        TITLE,
+        CONT,
+        WDATE
+        from
+        jang_notice
+        where
+        NTNO=#{value}
+    </select>
+
+    <delete id="delete">
+        delete from jang_notice
+        where NTNO=#{value}
+    </delete>
+</mapper>

@@ -2,6 +2,7 @@ package com.bitcamp.gabojago.web;
 
 import com.bitcamp.gabojago.service.ExhibitionReviewService;
 import com.bitcamp.gabojago.vo.ExhibitionReview;
+import com.bitcamp.gabojago.vo.Member;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
@@ -25,25 +26,24 @@ ExhibitionReviewService exhibitionReviewService;
   @PostMapping("add")
   public String exhibitionReviewInsert(ExhibitionReview exhibitionReview,
       HttpSession session) throws Exception {
-
+    exhibitionReview.setWriter((Member) session.getAttribute("loginMember"));
     exhibitionReviewService.exhibitionReviewInsert(exhibitionReview);
     return "redirect:../exhibition/detail?exno="+exhibitionReview.getExno();
   }
 
   @GetMapping("delete")
   public String exhibitionReviewDelete(int rvno, HttpSession session, ExhibitionReview exhibitionReview) throws Exception {
-    //  checkOwner(no, session);
+    int exno = checkOwner(rvno, session);
     if(!exhibitionReviewService.exhibitionReviewDelete(rvno)) {
       throw new Exception("리뷰를 삭제 할 수 없습니다.");
     }
-
-    return "redirect:../exhibition/exhibitionlist";
+    return "redirect:../exhibition/detail?exno=" + exno;
   }
 
   @PostMapping("update")
   public String update(ExhibitionReview exhibitionReview, HttpSession session) throws Exception{
 
-//  checkOwner(board.getNo(), session);
+     checkOwner(exhibitionReview.getRvno(),session);
 
     if(!exhibitionReviewService.exhibitionReviewUpdate(exhibitionReview)){
       throw new Exception("리뷰를 변경 할 수 없습니다!");
@@ -51,7 +51,14 @@ ExhibitionReviewService exhibitionReviewService;
     return "redirect:../exhibition/exhibitionlist";
   }
 
-
+  private int checkOwner(int rvno, HttpSession session) throws Exception {
+    Member loginMember = (Member) session.getAttribute("loginMember");
+  ExhibitionReview review  = exhibitionReviewService.get(rvno) ;
+    if (!exhibitionReviewService.get(rvno).getId().equals(loginMember.getId())) {
+      throw new Exception("리뷰 작성자가 아닙니다.");
+    }
+    return review.getExno();
+  }
 
 
 }

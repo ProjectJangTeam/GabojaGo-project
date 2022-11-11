@@ -1,0 +1,124 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+  <meta charset="utf-8">
+  <link th:href="@{/css/bootstrap.min.css}"
+        href="../css/bootstrap.min.css" rel="stylesheet">
+
+  <title>myAccountDetail</title>
+  <style>
+
+    .container {
+      max-width: 500px;
+    }
+
+  </style>
+
+  <script type="text/javascript">
+
+
+
+    function checkPassword() {
+      if(document.getElementById('password').value !=='' && document.getElementById('confirmPassword').value!=='') {
+        if (document.getElementById('password').value === document.getElementById('confirmPassword').value) {
+          document.getElementById('confirm').innerHTML = '비밀번호가 일치합니다.'
+          document.getElementById('confirm').style.color = 'blue';
+        } else {
+          document.getElementById('confirm').innerHTML = '비밀번호가 일치하지 않습니다.';
+          document.getElementById('confirm').style.color = 'red';
+        }
+      }
+    }
+
+    function identifyPassword() {
+      var password = document.getElementById('password').value;
+      var confirmPassword = document.getElementById('confirmPassword').value;
+      if(password.length <= 0 || confirmPassword.length <= 0) {
+        alert('비밀번호를 입력해 주세요')
+        return;
+      }
+      document.querySelector("#modifyForm").submit();
+    }
+
+  </script>
+
+</head>
+<body>
+
+<div class="container">
+
+  <div class="py-5 text-center">
+    <h2>개인정보 수정</h2>
+  </div>
+
+  <form action='myAccountUpdate' method="post" id="modifyForm">
+      <div>
+        <label>아이디</label>
+        <input name='id' type='text' class="form-control"
+               value='id'
+               data-th-value="${member.id}"
+               readonly>
+      </div>
+
+      <div>
+        <label>비밀번호</label>
+        <input name='password' id='password' type='text' class="form-control"
+               value='password' onchange='checkPassword()'
+               data-th-value='${member.password}'>
+      </div>
+
+      <div>
+        <label>비밀번호 확인</label>
+        <input name='confirmPassword' id='confirmPassword' type='text' class="form-control"
+               value='confirmPassword' onchange='checkPassword()'
+               data-th-value='${member.password}'><span id="confirm"></span>
+      </div>
+
+      <div>
+        <label>이름</label>
+        <input name='name' type='text' class="form-control"
+               value='name'
+               data-th-value='${member.name}' readonly>
+      </div>
+
+      <div>
+        <label>이메일</label>
+        <input name='email' type='text' class="form-control"
+               value='email'
+               data-th-value='${member.email}'>
+      </div>
+
+      <div>
+        <label>전화번호</label>
+        <input name='phoneNo' type='text' class="form-control"
+               value='phoneNo'
+               data-th-value='${member.phoneNo}'>
+      </div>
+
+      <div>
+        <label>생일</label>
+        <input name='birthDay' type='text' class="form-control"
+               value='birthDay'
+               data-th-value='${member.birthDay}' readonly>
+      </div>
+
+      <hr class="my-4">
+
+      <div class="row">
+
+      <div class="col">
+        <button class="w-100 btn btn-primary btn-lg" style="background-color: black; border-color: black"
+                onclick="location.href='myPage.html'"
+                th:onclick="|location.href='@{/myPage/}'|"
+                type="button">이전</button>
+      </div>
+
+      <div class="col">
+        <button class="w-100 btn btn-primary btn-lg" style="background-color: black; border-color: black"
+                onclick="identifyPassword()" type="button">수정</button>
+      </div>
+    </div>
+  </form>
+</div>
+</body>
+</html>
