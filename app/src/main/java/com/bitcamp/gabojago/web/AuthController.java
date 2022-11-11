@@ -2,6 +2,7 @@ package com.bitcamp.gabojago.web;
 
 import com.bitcamp.gabojago.service.MemberService;
 import com.bitcamp.gabojago.vo.Member;
+import java.util.regex.Pattern;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -9,6 +10,7 @@ import org.springframework.web.bind.annotation.CookieValue;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
 import javax.servlet.http.Cookie;
@@ -23,9 +25,77 @@ public class AuthController {
   MemberService memberService;
 
   @GetMapping("register")
-  public String form(@CookieValue(name = "id", defaultValue="") String id, Model model) throws Exception {
+  public void register(@CookieValue(name = "id", defaultValue="") String id, Model model) throws Exception {
     model.addAttribute("id", id);
-    return "auth/register";
+  }
+
+  @ResponseBody
+  @PostMapping("idCheck")
+  public String idCheck(String id) throws Exception {
+    String filter = "^[a-z0-9]*$";
+    Member result = memberService.idCheck(id);
+
+    return inputCheck(id, result, filter);
+  }
+
+  @ResponseBody
+  @GetMapping("nickNameCheck")
+  public String nickNameCheck(String nickName) throws Exception {
+    String filter = "^[A-Za-z0-9가-힣]*$";
+    Member result = memberService.nickNameCheck(nickName);
+
+    return inputCheck(nickName, result, filter);
+  }
+
+  private String inputCheck(String inputString, Member result, String filter) throws Exception {
+    if (
+        Pattern.matches(filter, inputString) == true &&
+            inputString.length() >= 4 &&
+            inputString.length() <= 12) {
+      if (result == null) {
+        return "true";
+      } else {
+        return "duplicated";
+      }
+    } else {
+      return "incorrect";
+    }
+  }
+
+  @ResponseBody
+  @GetMapping("phoneNoCheck")
+  public String phoneNoCheck(String phoneNo) throws Exception {
+    Member result = memberService.phoneNoCheck(phoneNo);
+    if (result == null) {
+      return "true";
+    } else {
+      return "false";
+    }
+  }
+
+  @ResponseBody
+  @PostMapping("lastCheck")
+  public String lastCheck(String finalCheck) throws Exception {
+    if (finalCheck.equals("1")) {
+      return "true";
+    } else {
+      return "false";
+    }
+
+  }
+
+  @PostMapping("join")
+  public String join(String email, String phoneNo, Member member, Model model) throws Exception {
+      if(memberService.join(email, phoneNo, member)) {
+        return "/auth/joinResult";
+    } else {
+        model.addAttribute("checkResult", "false");
+        return "/auth/register";
+    }
+  }
+
+  @GetMapping("loginfail")
+  public void loginfail() {
   }
 
   @PostMapping("login")

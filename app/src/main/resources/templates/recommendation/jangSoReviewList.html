@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>recommendation</title>
+    <style>
+        tr:hover {
+            background-color: navy;
+            color: white;
+        }
+    </style>
+</head>
+<body>
+
+<h1>코스추천_상세페이지_스크롤</h1>
+<h2 data-th-text="${recommendation.title}">코스추천_제목</h2>
+
+<table border='1'>
+    <tr>
+        <th>번호</th>
+        <th>장소후기번호</th>
+        <th>장소이름</th>
+        <th>내용</th>
+    </tr>
+    <tr data-th-each="jangSoReview : ${jangSoReviews}">
+        <td data-th-text="${jangSoReview.prvno}">100</td>
+        <td data-th-text="${jangSoReview.plno}">50</td>
+        <td data-th-text="${jangSoReview.plname}">50</td>
+        <td>
+            <!--            <th>장소번호</th><td data-th-text="${jangSoReview.plno == }">100</td>-->
+            <textarea
+                    rows="10"
+                    cols="25"
+                    data-th-text="${jangSoReview.cont == ''} ? '(내용없음)' : ${jangSoReview.cont}"
+                    readonly></textarea>
+        </td>
+    </tr>
+
+</table>
+<p><a href='recommendationList'>코스추천글메인으로</a></p>
+
+
+</body>
+</html>

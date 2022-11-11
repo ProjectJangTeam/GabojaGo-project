@@ -1,0 +1,60 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="utf-8">
+    <link th:href="@{/css/bootstrap.min.css}"
+            href="../css/bootstrap.min.css" rel="stylesheet">
+
+</head>
+<body>
+
+<div class="container" style="max-width: 600px">
+    <div class="py-5 text-center">
+        <h2>QnA 목록</h2>
+    </div>
+
+    <div class="row">
+        <div class="col">
+            <button class="btn btn-primary float-end"
+                    onclick="location.href='addForm.html'"
+                    th:onclick="|location.href='@{/support/qna/addForm}'|"
+                    type="button">새 글</button>
+        </div>
+    </div>
+
+    <hr class="my-4">
+    <div>
+        <table class="table">
+            <thead>
+            <tr>
+                <th>No.</th>
+                <th>제목</th>
+                <th>아이디</th>
+                <th>작성일</th>
+                <th>답변일</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr data-th-each="qnaBoard : ${qnaBoards}">
+                <td data-th-text="${qnaBoard.no}">100</td>
+                <td>
+                    <a href='detail?no=1'
+                       data-th-href="@{detail(no=${qnaBoard.no})}"
+                       data-th-text="${qnaBoard.title == ''} ? '(제목없음)' : ${qnaBoard.title}">제목</a>
+                </td>
+                <td data-th-text="${qnaBoard.id}">홍길동</td>
+                <td data-th-text="${qnaBoard.createdDate}">2022-1-1</td>
+                <td>
+                    <a href='detail?no=1'
+                       data-th-href="@{detail(no=${qnaBoard.no})}"
+                       data-th-text="${qnaBoard.answerDate == '' || qnaBoard.answerDate == null} ? '미답변' : ${qnaBoard.answerDate}">답변일</a>
+                </td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+
+</div> <!-- /container -->
+
+</body>
+</html>

@@ -1,0 +1,89 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="utf-8">
+    <link th:href="@{/css/bootstrap.min.css}"
+            href="../css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        .container {
+            max-width: 700px;
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+
+    <div class="py-5 text-center">
+        <h2>QnA 상세</h2>
+    </div>
+
+    <div>
+        <label>No.</label>
+        <input name='no' type='number' class="form-control"
+         value='1'
+         data-th-value="${qnaBoard.no}"
+         readonly>
+    </div>
+
+    <div>
+        <label>제목</label>
+        <input name='title' type='text' class="form-control"
+         value='제목'
+         data-th-value='${qnaBoard.title}' readonly>
+    </div>
+
+    <div>
+        <label>내용</label>
+        <textarea name='content' rows='10' cols='60' class="form-control"
+                  data-th-text='${qnaBoard.questionContent}' readonly></textarea>
+    </div>
+
+    <div>
+        <label>작성일</label>
+        <input name='createdDate' type='date' class="form-control"
+               value='2022-11-11'
+               data-th-value="${qnaBoard.createdDate}" readonly>
+    </div>
+
+    <div>
+        <label>작성자</label>
+        <input name='id' type='text' class="form-control"
+               data-th-value="${qnaBoard.id}" readonly>
+    </div>
+
+    <div>
+        <label>공개여부</label>
+        <input name='disclosure' type='text' class="form-control"
+               data-th-value="${qnaBoard.disclosure == true} ? '비공개' : '공개'" readonly>
+    </div>
+
+    <hr class="my-4">
+
+    <div class="row">
+        <div class="col">
+            <button class="w-100 btn btn-primary btn-lg"
+                    onclick="location.href='editForm.html'"
+                    th:onclick="|location.href='@{/support/qna/editForm(no=${qnaBoard.no})}'|"
+                    type="button">내용수정</button>
+        </div>
+
+        <div class="col">
+            <button class="w-100 btn btn-primary btn-lg"
+                    onclick="location.href='list.html'"
+                    th:onclick="|location.href='@{delete(no=${qnaBoard.no})}'|"
+                    type="submit">삭제</button>
+        </div>
+
+        <div class="col">
+            <button class="w-100 btn btn-secondary btn-lg"
+                    onclick="location.href='list.html'"
+                    th:onclick="|location.href='@{/support/qna/list}'|"
+                    type="button">목록으로</button>
+        </div>
+
+    </div>
+
+</div> <!-- /container -->
+</body>
+</html>
