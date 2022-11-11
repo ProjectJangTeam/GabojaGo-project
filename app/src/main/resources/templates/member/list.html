@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+
+  <title>gabojago</title>
+  <style>
+    tr:hover {
+      background-color: navy;
+      color: white;
+    }
+  </style>
+</head>
+<body>
+<h1>회원</h1>
+
+<!--<a href='form'>새 회원</a>-->
+<table border='1'>
+  <tr>
+    <th>아이디</th>
+    <th>이름</th>
+    <th>닉네임</th>
+    <th>이메일</th>
+    <th>가입일</th>
+    <th>전화번호</th>
+    <th>생일</th>
+    <th>성별</th>
+    <th>SNS</th>
+    <th>MBTI</th>
+    <th>활성여부</th>
+  </tr>
+
+
+
+
+  <tr data-th-each="member : ${members}">
+
+    <td><a href='detail?id=${member.id}'
+   data-th-href="@{detail(id=${member.id})}"/>
+  <td data-th-text="${member.id}">user1</td>
+
+  <td><a href='detail?id=${member.id}'
+         data-th-href="@{detail(id=${member.id})}"
+         data-th-text="${member.name}">이름</a></td>
+
+  <td data-th-text="${member.nickName}">꼉이</td>
+  <td data-th-text="${member.email}">user@test.com</td>
+  <td data-th-text="${member.createdDate}">1996-03-22</td>
+  <td data-th-text="${member.phoneNo}">01000000000</td>
+  <td data-th-text="${member.birthDay}">1996-03-22</td>
+    <td data-th-text="${member.gender.toString()}">여자</td>
+
+    <td data-th-text="${member.snsAddress}">sns...</td>
+  <td data-th-text="${member.mbti}">ESTJ</td>
+  <td data-th-text="${member.status}">활성</td>
+ </tr>
+
+</table>
+<p><a href='../'>메인</a></p>
+</body>
+</html>
+
+
+

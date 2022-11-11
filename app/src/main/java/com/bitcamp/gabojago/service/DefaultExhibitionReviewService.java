@@ -41,4 +41,10 @@ public class DefaultExhibitionReviewService implements ExhibitionReviewService {
 }
     return true;
   }
+
+  @Override
+  public ExhibitionReview get(int rvno) throws Exception {
+    ExhibitionReview review =  exhibitionReviewDao.exhibitionReviewSelect(rvno);
+    return review;
+  }
 }

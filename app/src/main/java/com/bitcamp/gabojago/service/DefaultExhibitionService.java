@@ -18,6 +18,7 @@ public class DefaultExhibitionService implements ExhibitionService  {
   @Autowired
   ExhibitionReviewDao exhibitionReviewDao;
 
+
   @Override
   public List<Exhibition> exhibitionList() throws Exception {
     return exhibitionDao.exhibitionList();
@@ -34,7 +35,7 @@ public class DefaultExhibitionService implements ExhibitionService  {
     if (exhibitionDao.exhibitionInsert(exhibition) == 0) {
       throw new Exception("게시글 등록 실패!");
     }
-    // 2) 첨부파일 등록 나중에 생성
+    // 2) 첨부파일 등록
 if (exhibition.getExhibitionFiles().size()>0){
   exhibitionDao.insertFiles(exhibition);
 }
