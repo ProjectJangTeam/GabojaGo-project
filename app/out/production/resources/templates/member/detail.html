@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <title>bitcamp</title>
+</head>
+<body>
+<h1>회원 상세 정보</h1>
+<form action='detail' method="post">
+  <table border='1'>
+    <tr>
+      <th>ID</th><td><input name='id' type='text'
+                            value='user1'
+                            data-th-value="${member.id}"
+                            readonly></td>
+    </tr>
+    <tr>
+      <th>이름</th><td><input name='name' type='text'
+                            value='꼉이'
+                            data-th-value="${member.name}"
+                            size='60'></td>
+    </tr>
+
+    <tr>
+      <th>닉네임</th><td><input name='nickName' type='text'
+                            value='꼉이'
+                            data-th-value="${member.nickName}"
+                            size='60'></td>
+    </tr>
+
+    <tr>
+      <th>이메일</th><td><input name='email' type='email'
+                             value='user@test.com'
+                             data-th-value="${member.email}"
+                             size='60' readonly></td>
+
+
+    </tr>
+
+    <!--<tr>
+      <th>암호</th><td><input name='password' type='password' size='10'
+                            data-th-text="${member.password}"
+    ></td>-->
+    </tr>
+    <tr>
+      <th>가입일</th><td data-th-text="${member.createdDate}">2022-1-1</td>
+    </tr>
+    <tr>
+      <th>전화번호</th><td data-th-text="${member.phoneNo}">0100000000</td>
+    </tr>
+    <tr>
+      <th>생일</th><td data-th-text="${member.birthDay}">2022-1-1</td>
+    </tr>
+
+    <tr>
+      <th>성별</th><td data-th-text="${member.gender.toString()}">성별</td>
+    </tr>
+
+    <tr>
+      <th>SNS</th><td data-th-text="${member.snsAddress}">sns</td>
+    </tr>
+
+    <tr>
+      <th>MBTI</th><td data-th-text="${member.mbti}">ESTJ</td>
+    </tr>
+
+    <tr>
+      <th>status</th><td data-th-text="${member.status}">활성</td>
+    </tr>
+  </table>
+
+
+
+
+  <p>
+    <button type='submit'>변경</button>
+    <a href='delete?id= user1'
+       data-th-href="@{delete(id=${member.id})}">삭제</a>
+  </p>
+</form>
+
+</body>
+</html>
