@@ -13,16 +13,16 @@
       rel="stylesheet"
       href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
     />
-<!--    <script src="./script/jquery-3.6.0.js"></script>-->
-<!--    <script src="./script/script.js"></script>-->
+    <script src="./script/jquery-3.6.0.js"></script>
+    <script src="./script/script.js"></script>
 
-    <!--<meta name ="google-signin-client_id"
+    <meta name ="google-signin-client_id"
           content="400828157542-5kee4rg9u2va7k0c5q762jqnl973c4dv.apps.googleusercontent.com">
--->
-  </head>
 
-<!--  <script src="https://apis.google.com/js/platform.js" async defer></script>
-  <script src="https://apis.google.com/js/platform.js?onload=init" async defer></script>-->
+  
+  
+  </head>
+  <script src="https://apis.google.com/js/platform.js" async defer></script>
 
   <body class="pt-5">
     <!-- body 이름 바꿈 -->
@@ -42,7 +42,8 @@
 
 
 
-<!--          <a href="http://localhost:9999/app/">구글 아이디로 로그인</a>-->
+
+
 
           <div class="g-signin2" data-onsuccess="onSignIn"></div>
 
@@ -57,7 +58,7 @@
 
           </script>
 
-         <!-- <a href="#" onClick="signOut();">Sign out</a>-->
+          <a href="#" onClick="signOut();">Sign out</a>
           <script>
             function signOut() {
               var auth2 = gapi.auth2.getAuthInstance();
@@ -66,6 +67,12 @@
               });
             }
           </script>
+
+          <script src="https://apis.google.com/js/platform.js?onload=init" async defer></script>
+
+
+
+
 
 
 
@@ -113,9 +120,9 @@
                   <span class="sr-only">(current)</span>
                 </a>
               </li>
-              <li class="nav-item"><a class="nav-link" href="search/searchForm">Search</a></li>
+              <li class="nav-item"><a class="nav-link" href="../">Search</a></li>
               <li class="nav-item">
-                <a class="nav-link" href="recommendation/recommendationList">코스추천</a>
+                <a class="nav-link" href="#">코스추천</a>
               </li>
               <li class="nav-item"><a class="nav-link" href="exhibition/exhibitionlist">전시회</a></li>
               <li class="nav-item">
@@ -134,47 +141,103 @@
               </li>
 
               <li class="nav-item">
-                <a class="nav-link" href="/app/myPage/">
+                <a class="nav-link" href="auth/register">회원가입</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="#">
                   <img src="./images/mypage.png" width="90%" height="25"
                 /></a>
               </li>
-
-
-              <!--테스트 중-->
-
-              <li><a href='member/list'>회원</a></li>
-
             </ul>
           </div>
         </div>
       </nav>
-      
-      <div class="background_image_config">
-        
-      <div class="recommand">
-        <p>서울시 | 모양의 성적대로 | 코스추천</p>
-        <h3>후기를 바탕으로<span>코스를 추천해드립니다.</span></h3>
-      </div>
-      <div class="step1">
-        <h5>STEP1. 누구와 함께 하시나요?</h5>
-        <ul>
-          <li>
-            <a href="#"
-              ><img src="./images/recommand_card1.png" alt="친구"
-            /></a>
-          </li>
-          <li>
-            <a href="#"
-              ><img src="./images/recommand_card2.png" alt="가족"
-            /></a>
-          </li>
-          <li>
-            <a href="#"
-              ><img src="./images/recommand_card3.png" alt="연인"
-            /></a>
-          </li>
-        </ul>
-      </div>
+
+
+      <!-- Header-->
+			<header class="bg-dark py-4">
+			
+			  <div class="container px-4 px-lg-5 my-5">
+			    <div class="text-center text-white">
+			      <h1 class="display-4 fw-bolder">가보자GO 전시회</h1>
+			    <!--  <p class="lead fw-normal text-white-50 mb-0">?</p>-->
+			    </div>
+			  </div>
+			</header>
+
+			<section class="py-5 " style=" width: 100%;">
+			  <!--justify-content-center-->
+			  <div class="container px-4 px-lg-5 mt-5">
+			    <div class="row gx-4 gx-lg-5 row-cols-2 row-cols-md-3 row-cols-xl-4 ">
+			      <div class="col mb-5" data-th-each="exhibition : ${exhibitionResult}">
+			        <div class="card h-100">
+			
+			          <td th:text="${exhibition['EXNO']}">100</td>
+			
+			          <!-- Product image 첨부파일 갤러리화 -->
+			         <!-- class="card-img-top"-->
+			          <img  src="https://cdn.pixabay.com/photo/2016/03/27/16/23/woman-1283009__480.jpg"
+			               alt="..." />
+			
+			          <!-- 전시 제목,날짜 정렬-->
+			          <div class="card-body p-4">
+			            <div class="text-center">
+			
+			
+			              <!-- 전시 name-->
+			
+			              <h5>
+			                <a href='detail?exno=1'
+			                   th:href="@{../app/exhibition/detail(exno=${exhibition['EXNO']})}"
+			                   th:text="${exhibition['EXNAME'] == ''} ? '(제목없음)' : ${exhibition['EXNO']}"
+			                   style="word-wrap: break-word"
+			                >제목rlfldsdfasdfasdf</a>
+			              </h5>
+			
+			
+			                <td th:text="${exhibition['STDATE']}">2022-1-1</td>
+			              <td th:text="${exhibition['EDDATE']}">2022-1-1</td>
+			
+			            </div>
+			          </div>
+			
+			          <!-- Product actions-->
+			
+			          <div class="card-footer p-4 pt-0 border-top-0 bg-transparent">
+			            <div class="text-center"><a class="btn btn-outline-dark mt-auto" href="#">보러가기</a></div>
+			          </div>
+			          
+			         </div>
+			       </div>
+			     </div>
+        </div>
+			</section>
+
+      <table class="table table-success table-striped">
+        <thead>
+          <tr>
+            <th scope="col">아이디</th>
+            <th scope="col">닉네임</th>
+            <th scope="col">프로필 사진</th>
+            <th scope="col">이메일</th>
+            <th scope="col">성별</th>
+            <th scope="col">SNS</th>
+            <th scope="col">MBTI</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr th:each="result : ${memberResult}">
+            <td th:text="${result['ID']}">1</td>
+            <td th:text="${result['NNAME']}">2</td>
+            <td th:text="${result['PROFILE']}">3</td>
+            <td th:text="${result['EMAIL']}">4</td>
+            <td th:text="${result['GENDER']}">3</td>
+            <td th:text="${result['SNS']}">4</td>
+            <td th:text="${result['MBTI']}">4</td>
+            <hr>
+          </tr>
+        </tbody>
+      </table>
 
     </div>
     <!-- Footer-->

@@ -13,16 +13,15 @@
       rel="stylesheet"
       href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
     />
-<!--    <script src="./script/jquery-3.6.0.js"></script>-->
-<!--    <script src="./script/script.js"></script>-->
+    <script src="./script/jquery-3.6.0.js"></script>
+    <script src="./script/script.js"></script>
 
-    <!--<meta name ="google-signin-client_id"
+    <meta name ="google-signin-client_id"
           content="400828157542-5kee4rg9u2va7k0c5q762jqnl973c4dv.apps.googleusercontent.com">
--->
-  </head>
 
-<!--  <script src="https://apis.google.com/js/platform.js" async defer></script>
-  <script src="https://apis.google.com/js/platform.js?onload=init" async defer></script>-->
+
+  </head>
+  <script src="https://apis.google.com/js/platform.js" async defer></script>
 
   <body class="pt-5">
     <!-- body 이름 바꿈 -->
@@ -42,7 +41,8 @@
 
 
 
-<!--          <a href="http://localhost:9999/app/">구글 아이디로 로그인</a>-->
+
+
 
           <div class="g-signin2" data-onsuccess="onSignIn"></div>
 
@@ -57,7 +57,7 @@
 
           </script>
 
-         <!-- <a href="#" onClick="signOut();">Sign out</a>-->
+          <a href="#" onClick="signOut();">Sign out</a>
           <script>
             function signOut() {
               var auth2 = gapi.auth2.getAuthInstance();
@@ -66,6 +66,12 @@
               });
             }
           </script>
+
+          <script src="https://apis.google.com/js/platform.js?onload=init" async defer></script>
+
+
+
+
 
 
 
@@ -113,9 +119,9 @@
                   <span class="sr-only">(current)</span>
                 </a>
               </li>
-              <li class="nav-item"><a class="nav-link" href="search/searchForm">Search</a></li>
+              <li class="nav-item"><a class="nav-link" href="#">Search</a></li>
               <li class="nav-item">
-                <a class="nav-link" href="recommendation/recommendationList">코스추천</a>
+                <a class="nav-link" href="#">코스추천</a>
               </li>
               <li class="nav-item"><a class="nav-link" href="exhibition/exhibitionlist">전시회</a></li>
               <li class="nav-item">
@@ -134,49 +140,36 @@
               </li>
 
               <li class="nav-item">
-                <a class="nav-link" href="/app/myPage/">
+                <a class="nav-link" href="auth/register">회원가입</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="#">
                   <img src="./images/mypage.png" width="90%" height="25"
                 /></a>
               </li>
-
-
-              <!--테스트 중-->
-
-              <li><a href='member/list'>회원</a></li>
-
             </ul>
           </div>
         </div>
       </nav>
       
-      <div class="background_image_config">
-        
-      <div class="recommand">
-        <p>서울시 | 모양의 성적대로 | 코스추천</p>
-        <h3>후기를 바탕으로<span>코스를 추천해드립니다.</span></h3>
-      </div>
-      <div class="step1">
-        <h5>STEP1. 누구와 함께 하시나요?</h5>
-        <ul>
-          <li>
-            <a href="#"
-              ><img src="./images/recommand_card1.png" alt="친구"
-            /></a>
-          </li>
-          <li>
-            <a href="#"
-              ><img src="./images/recommand_card2.png" alt="가족"
-            /></a>
-          </li>
-          <li>
-            <a href="#"
-              ><img src="./images/recommand_card3.png" alt="연인"
-            /></a>
-          </li>
-        </ul>
-      </div>
 
-    </div>
+    <script>
+    function Checkform(){     
+      if(search.keyword.value.length <= 1){
+        alert("검색어는 한 글자 이상이어야 합니다.");
+        search.keyword.focus();
+        return false;
+      }
+      
+      return true;
+    }
+    </script>
+    
+	<form style="padding: 20px" name = "search" action="searchResult" method="get" onSubmit="return Checkform()">
+		  <input name="keyword" type="text" class="border border-primary">
+		  <input class="btn btn-primary" type="submit">
+	</form>
+    
     <!-- Footer-->
     <footer class="py-4 bg-dark">
       <div class="container">
