@@ -38,4 +38,13 @@ public class QnaServiceImpl implements QnaService {
     public Boolean delete(int no) throws Exception {
         return qnaDao.deleteByNo(no) > 0;
     }
+
+    @Override
+    public boolean update(QnaBoard qnaBoard) throws Exception {
+        System.out.println("QnaServiceImplUpdate : " + qnaBoard.toString());
+        if (qnaDao.update(qnaBoard) == 0) {
+            return false;
+        }
+        return true;
+    }
 }

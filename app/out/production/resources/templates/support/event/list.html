@@ -1,0 +1,58 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="utf-8">
+    <link th:href="@{/css/bootstrap.min.css}"
+            href="../css/bootstrap.min.css" rel="stylesheet">
+
+</head>
+<body>
+
+<div class="container" style="max-width: 600px">
+    <div class="py-5 text-center">
+        <h2>이벤트 목록</h2>
+    </div>
+
+    <div class="row">
+        <div class="col">
+            <button class="btn btn-primary float-end"
+                    onclick="location.href='addForm.html'"
+                    th:onclick="|location.href='@{/support/event/addForm}'|"
+                    type="button">새 글</button>
+        </div>
+    </div>
+
+    <hr class="my-4">
+    <div>
+        <table class="table">
+            <thead>
+            <tr>
+                <th>No.</th>
+                <th>구분</th>
+                <th>제목</th>
+                <th>시작일</th>
+                <th>종료일</th>
+
+            </tr>
+            </thead>
+            <tbody>
+            <tr data-th-each="event : ${events}">
+                <td data-th-text="${event.no}">100</td>
+                <td data-th-text="${event.eventCode}">선착순or차등지급</td>
+                <td>
+                    <a href='detail?no=1'
+                       data-th-href="@{detail(no=${event.no})}"
+                       data-th-text="${event.title == ''} ? '(제목없음)' : ${event.title}">제목</a>
+                </td>
+                <td data-th-text="${event.startDate}">2022-12-01</td>
+                <td data-th-text="${event.endDate}">2022-12-31</td>
+
+            </tr>
+            </tbody>
+        </table>
+    </div>
+
+</div> <!-- /container -->
+
+</body>
+</html>
