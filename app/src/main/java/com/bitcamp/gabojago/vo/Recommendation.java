@@ -6,22 +6,19 @@ import java.util.List;
 public class Recommendation {
 
   private int recono; // 코스추천글번호
-  //private String id; // 아이디
   private String title; // 코스추천글제목
   private Date wdate; // 코스추천글 등록일
   private int cnt; // 조회수
-  private boolean act; // 활성여부
-  private boolean pet; // 반려동물동반가능여부
-  private boolean frd; // 친구동행추천
-  private boolean cple; // 연인동행추천
-  private boolean fmly; // 가족동행추천
-  private boolean solo; // 혼자여행추천
-  private int tpno; // 이동수단번호
-
+  private Boolean act; // 활성여부
+  private Boolean pet; // 반려동물동반가능여부
+  private Boolean frd; // 친구동행추천
+  private Boolean cple; // 연인동행추천
+  private Boolean fmly; // 가족동행추천
+  private Boolean solo; // 혼자여행추천
+  private String tpname; // 이동수단명
   private Member writer; // 글쓴 회원정보
 
   private List<JangSoReview> jangSoReviews;
-//  private JangSoReview jangSoReview;
 
   public int getRecono() {
     return recono;
@@ -55,60 +52,60 @@ public class Recommendation {
     this.cnt = cnt;
   }
 
-  public boolean isAct() {
+  public Boolean getAct() {
     return act;
   }
 
-  public void setAct(boolean act) {
+  public void setAct(Boolean act) {
     this.act = act;
   }
 
-  public boolean isPet() {
+  public Boolean getPet() {
     return pet;
   }
 
-  public void setPet(boolean pet) {
+  public void setPet(Boolean pet) {
     this.pet = pet;
   }
 
-  public boolean isFrd() {
+  public Boolean getFrd() {
     return frd;
   }
 
-  public void setFrd(boolean frd) {
+  public void setFrd(Boolean frd) {
     this.frd = frd;
   }
 
-  public boolean isCple() {
+  public Boolean getCple() {
     return cple;
   }
 
-  public void setCple(boolean cple) {
+  public void setCple(Boolean cple) {
     this.cple = cple;
   }
 
-  public boolean isFmly() {
+  public Boolean getFmly() {
     return fmly;
   }
 
-  public void setFmly(boolean fmly) {
+  public void setFmly(Boolean fmly) {
     this.fmly = fmly;
   }
 
-  public boolean isSolo() {
+  public Boolean getSolo() {
     return solo;
   }
 
-  public void setSolo(boolean solo) {
+  public void setSolo(Boolean solo) {
     this.solo = solo;
   }
 
-  public int getTpno() {
-    return tpno;
+  public String getTpname() {
+    return tpname;
   }
 
-  public void setTpno(int tpno) {
-    this.tpno = tpno;
+  public void setTpname(String tpname) {
+    this.tpname = tpname;
   }
 
   public Member getWriter() {
@@ -140,7 +137,7 @@ public class Recommendation {
             ", cple=" + cple +
             ", fmly=" + fmly +
             ", solo=" + solo +
-            ", tpno=" + tpno +
+            ", tpno=" + tpname +
             ", writer=" + writer +
             ", jangSoReviews=" + jangSoReviews +
             '}';

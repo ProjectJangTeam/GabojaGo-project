@@ -42,11 +42,12 @@ public class RecommendationController {
   @Transactional
   @PostMapping("recommendationAdd")
   public String recommendationAdd(
-      MultipartFile[] files1, String cont1,
-      MultipartFile[] files2, String cont2,
-      MultipartFile[] files3, String cont3,
-      MultipartFile[] files4, String cont4,
-      MultipartFile[] files5, String cont5,
+      String place1, MultipartFile[] files1, String cont1,
+      String place2, MultipartFile[] files2, String cont2,
+      String place3, MultipartFile[] files3, String cont3,
+      String place4, MultipartFile[] files4, String cont4,
+      String place5, MultipartFile[] files5, String cont5,
+      String pet, String frd, String cple, String fmly, String solo, String tpname,
       HttpSession session, Recommendation recommendation) throws Exception {
 
     // 작성자정보 set하기
@@ -55,9 +56,18 @@ public class RecommendationController {
     // 변수분류 저장
     MultipartFile[][] files = {files1, files2, files3, files4, files5};
     String[] cont = {cont1, cont2, cont3, cont4, cont5};
+    String[] place = {place1, place2, place3, place4, place5};
 
     // recommendation에 JangSoReview List를 set하기
-    recommendation.setJangSoReviews(saveJangSoReviews(files, cont));
+    recommendation.setJangSoReviews(saveJangSoReviews(files, cont, place));
+
+    // recommendation에 meta 데이터 set하기
+    recommendation.setTpname(tpname);
+    if (pet != null) {recommendation.setPet(true);} else {recommendation.setPet(false);}
+    if (frd != null) {recommendation.setFrd(true);} else {recommendation.setFrd(false);}
+    if (cple != null) {recommendation.setCple(true);} else {recommendation.setCple(false);}
+    if (fmly != null) {recommendation.setFmly(true);} else {recommendation.setFmly(false);}
+    if (solo != null) {recommendation.setSolo(true);} else {recommendation.setSolo(false);}
 
     // recommendation add하기
     recommendationService.recommendationAdd(recommendation);
@@ -65,23 +75,32 @@ public class RecommendationController {
     return "redirect:recommendationList";
   }
 
-  private List<JangSoReview> saveJangSoReviews(MultipartFile[][] files, String[] cont)
-      throws Exception {
+  private List<JangSoReview> saveJangSoReviews(
+      MultipartFile[][] files, String[] cont, String[] place) throws Exception {
 
     // JangSoReview List 생성
     List<JangSoReview> jangSoReviews = new ArrayList<>();
 
     // 각각의 JangSoReview 저장
     for (int i = 0; i < cont.length; i++) {
-      // 내용이 없다면 저장하지 않는다. (=첨부파일 유무와 관계없다)
-      if (cont[i].length() == 0) {
+      // 내용이 없거나 장소정보가 없다면 저장하지 않는다. (=첨부파일 유무와 관계없다)
+      if (cont[i].length() == 0 || place[i].length() == 0) {
         continue;
       }
 
+      // 장소정보 parsing
+
       // JangSoReview 객체 생성
       JangSoReview jangSoReview = new JangSoReview();
+      // 해당 리뷰글 set
       jangSoReview.setCont(cont[i]);
+      // 장소명 parsing 및 set
+      jangSoReview.setPlname(place[i].split(", ")[0]);
+      // 장소주소 parsing 및 set
+      jangSoReview.setAdrs(place[i].split(", ")[1]);
+      // 첨부파일 저장 및 set
       jangSoReview.setAttachedFiles(saveJangSoReviewAttachedFiles(files[i]));
+      // JangSoReview List에 처리가 끝난 JangSoReview add
       jangSoReviews.add(jangSoReview);
     }
 
