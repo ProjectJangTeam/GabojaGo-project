@@ -2,7 +2,7 @@ package com.bitcamp.gabojago.service.search.exhibition;
 
 import java.util.List;
 import java.util.Map;
-import com.bitcamp.gabojago.dao.search.ExhibitionSearchDAO;
+import com.bitcamp.gabojago.dao.search.ExhibitionSearchDao;
 import com.bitcamp.gabojago.service.search.SearchType;
 
 /**
@@ -25,7 +25,7 @@ public enum ExhibitionSearchType implements SearchType{
    */
   TITLE{
     @Override
-    protected List<Map<String, String>> execute(ExhibitionSearchDAO dao, String[] keyword) {
+    protected List<Map<String, String>> execute(ExhibitionSearchDao dao, String[] keyword) {
       return dao.resultByTitle(keyword);
     }
   },
@@ -36,7 +36,7 @@ public enum ExhibitionSearchType implements SearchType{
    */
   CONTENT{
     @Override
-    protected List<Map<String, String>> execute(ExhibitionSearchDAO dao, String[] keyword) {
+    protected List<Map<String, String>> execute(ExhibitionSearchDao dao, String[] keyword) {
       return dao.resultByContent(keyword);
     }
   },
@@ -47,7 +47,7 @@ public enum ExhibitionSearchType implements SearchType{
    */
   TITLE_WITH_CONTENT{
     @Override
-    protected List<Map<String, String>> execute(ExhibitionSearchDAO dao, String[] keyword) {
+    protected List<Map<String, String>> execute(ExhibitionSearchDao dao, String[] keyword) {
       return dao.resultByTitleAndContent(keyword);
     }
   },
@@ -59,9 +59,9 @@ public enum ExhibitionSearchType implements SearchType{
    */
   DATE{
     @Override
-    protected List<Map<String, String>> execute(ExhibitionSearchDAO dao, String[] keyword) {
+    protected List<Map<String, String>> execute(ExhibitionSearchDao dao, String[] keyword) {
       return dao.resultByDate(keyword);
     }    
   };
-  protected abstract List<Map<String, String>> execute(ExhibitionSearchDAO dao, String[] keyword);
+  protected abstract List<Map<String, String>> execute(ExhibitionSearchDao dao, String[] keyword);
 }

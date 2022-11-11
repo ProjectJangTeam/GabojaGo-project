@@ -5,7 +5,7 @@ import java.util.Map;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
-import com.bitcamp.gabojago.dao.search.ExhibitionSearchDAO;
+import com.bitcamp.gabojago.dao.search.ExhibitionSearchDao;
 import com.bitcamp.gabojago.service.search.AbstractSearchService;
 
 /**
@@ -23,7 +23,7 @@ import com.bitcamp.gabojago.service.search.AbstractSearchService;
 public class ExhibitionSearchService extends AbstractSearchService<ExhibitionSearchType> {
 
   @Autowired
-  private ExhibitionSearchDAO searchDAO;
+  private ExhibitionSearchDao searchDAO;
 
   /**
    * <p>

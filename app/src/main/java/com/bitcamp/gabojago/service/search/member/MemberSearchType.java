@@ -2,7 +2,7 @@ package com.bitcamp.gabojago.service.search.member;
 
 import java.util.List;
 import java.util.Map;
-import com.bitcamp.gabojago.dao.search.MemberSearchDAO;
+import com.bitcamp.gabojago.dao.search.MemberSearchDao;
 import com.bitcamp.gabojago.service.search.SearchType;
 
 /**
@@ -25,7 +25,7 @@ public enum MemberSearchType implements SearchType{
    */
   PUBLIC{
     @Override
-    protected List<Map<String, String>> execute(MemberSearchDAO dao, String keyword) {
+    protected List<Map<String, String>> execute(MemberSearchDao dao, String keyword) {
       return dao.resultForPublic(keyword);
     }
   },
@@ -37,10 +37,10 @@ public enum MemberSearchType implements SearchType{
    */
   ADMIN{
     @Override
-    protected List<Map<String, String>> execute(MemberSearchDAO dao, String keyword) {
+    protected List<Map<String, String>> execute(MemberSearchDao dao, String keyword) {
       return dao.resultForAdmin(keyword);
     }
   };
 
-  protected abstract List<Map<String, String>> execute(MemberSearchDAO dao, String keyword);
+  protected abstract List<Map<String, String>> execute(MemberSearchDao dao, String keyword);
 }

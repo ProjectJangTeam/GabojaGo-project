@@ -11,7 +11,7 @@ import com.bitcamp.gabojago.service.search.member.MemberSearchService;
 import com.bitcamp.gabojago.service.search.member.MemberSearchType;
 
 @Controller
-@RequestMapping("/")
+@RequestMapping("/search/")
 public class SearchController {
   
   @Autowired
@@ -20,17 +20,13 @@ public class SearchController {
   @Autowired
   MemberSearchService memberSearchService;
   
-  @GetMapping("search")
-  public String search(Model model) throws Exception {
-    return "search";
+  @GetMapping("searchForm")
+  public void search(Model model) throws Exception {
   }
   
   @GetMapping("searchResult")
-  public String searchResult(Model model, String keyword) throws Exception {
+  public void searchResult(Model model, String keyword) throws Exception {
     model.addAttribute("exhibitionResult", exhibitionSearchService.getResult(ExhibitionSearchType.TITLE, keyword));
     model.addAttribute("memberResult", memberSearchService.getResult(MemberSearchType.PUBLIC, keyword));      
-    
-    return "searchResult";
   }
-  
 }

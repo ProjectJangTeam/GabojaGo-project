@@ -5,7 +5,7 @@ import java.util.Map;
 import org.apache.ibatis.annotations.Mapper;
 
 @Mapper
-public interface ExhibitionSearchDAO{
+public interface ExhibitionSearchDao{
   
   List<Map<String, String>> resultByTitle(String[] keyword);
   
