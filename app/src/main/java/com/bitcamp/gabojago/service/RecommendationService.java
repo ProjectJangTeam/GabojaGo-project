@@ -11,29 +11,22 @@ import java.util.List;
 
 public interface RecommendationService {
 
+  // recommendationAdd
   void recommendationAdd(Recommendation recommendation) throws Exception;
 
-  boolean update(Recommendation recommendation) throws Exception;
-
-  Recommendation getRecommendation(int recono) throws Exception;
-
-  //boolean delete(int no) throws Exception;
-
+  // recommendationList
   List<Recommendation> recommendationList() throws Exception;
 
+  // recommendationDetail - 1
+  Recommendation getRecommendation(int recono) throws Exception;
+
+  // recommendationDetail - 2
+  List<JangSoReview> getJangSoReviewList(int recono) throws Exception;
+
+  // recommendationDisable
   boolean disableRecommend(int recono);
 
-  //AttachedFile getAttachedFile(int fileNo) throws Exception;
+  void setCntRecommendation(int recono) throws Exception;
 
-  //boolean deleteAttachedFile(int fileNo) throws Exception;
-
-
-  int jangSoReviewAdd(JangSoReview jangSoReview) throws Exception;
-
-  List<JangSoReview> jangSoReviewList(int recono) throws Exception;
-
-  JangSoReviewAttachedFile getAttachedFile(int fileNo) throws Exception;
-
-  boolean deleteAttachedFile(int fileNo) throws Exception;
 
 }

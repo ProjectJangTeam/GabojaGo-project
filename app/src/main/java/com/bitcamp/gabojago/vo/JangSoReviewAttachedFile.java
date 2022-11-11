@@ -8,8 +8,9 @@ public class JangSoReviewAttachedFile {
 
   public JangSoReviewAttachedFile() {}
 
-  public JangSoReviewAttachedFile(String filepath) {
+  public JangSoReviewAttachedFile(String filepath, String filename) {
     this.filepath = filepath;
+    this.fname = filename;
   }
 
   public int getRecofno() {

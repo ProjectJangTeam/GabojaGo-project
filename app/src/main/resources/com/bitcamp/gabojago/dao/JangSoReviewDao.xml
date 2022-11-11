@@ -11,23 +11,38 @@
         <result column="RECONO" property="recono"/>
         <result column="PLNO" property="plno"/>
         <result column="PLNAME" property="plname"/>
-<!--        <result column="JANGSO" property="jangSo"/>-->
+
+        <collection property="attachedFiles" ofType="jangSoReviewAttachedFile">
+            <id column="recofno" property="recofno"/>
+            <result column="path" property="filepath"/>
+            <result column="fname" property="fname"/>
+        </collection>
+
     </resultMap>
 
-    <select id="jangSoReviewList" resultMap="jangSoReviewMap">
+    <resultMap type="jangSoReviewAttachedFile" id="attachedFileMap">
+        <id column="recofno" property="recofno"/>
+        <result column="prvno" property="prvno"/>
+        <result column="path" property="filepath"/>
+        <result column="fname" property="fname"/>
+    </resultMap>
+
+    <select id="getJangSoReviewList" resultMap="jangSoReviewMap">
         select
-            jsr.cont, jsr.plno, js.plname
+            jsr.prvno,
+            jsr.cont,
+            js.plno,
+            js.plname,
+            jsrf.recofno,
+            jsrf.path,
+            jsrf.fname
         from
-            jang_so_review jsr, jang_so js
+            jang_so_review jsr
+            join jang_so js on jsr.plno = js.plno
+            left outer join jang_so_review_file jsrf on jsr.prvno = jsrf.prvno
         where
             jsr.recono = #{value}
-            and jsr.plno = js.plno
     </select> <!-- 나중에 장소 테이블 추가해야함 -->
-
-    <insert id="jangSoReviewAdd" parameterType="jangSoReview">
-                insert into jang_so_review(cont, recono, plno)
-                values(#{cont}, (select recono from jang_so_recommendation order by recono desc limit 1) ,2)
-    </insert>
 
 <!-- 상세보기-->
 <!--    <select id="exhibitionSelect"  resultMap="exhibitionMap">-->
