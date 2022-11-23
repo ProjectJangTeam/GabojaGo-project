@@ -42,14 +42,11 @@ public class ModifyMyPageServiceImpl implements ModifyMyPageService {
     @Override
     public int pwCheck(String memberId, String memberPw) throws Exception {
         int result = modifyMyPageDao.checkPassword(memberId, memberPw);
-        System.out.println("pwCheckServiceImpl = " + result);
         return result;
     }
     @Override
     public int resignMember(String memberId, String memberPw) throws Exception {
-        System.out.println("resignMemberServiceImpl = "+ memberId+", "+memberPw);
         int result = modifyMyPageDao.resignMemberStatus(memberId, memberPw);
-        System.out.println("resignMemberResult = " + result);
         return result;
     }
 }

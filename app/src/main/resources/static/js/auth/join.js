@@ -1,25 +1,7 @@
 // 비밀번호 확인
-var password = document.getElementById("password")
-  ,confirm_password = document.getElementById("passwordConfirm");
-
-function validatePassword() {
-  if(password.value != passwordConfirm.value) {
-    // 만일 두 인풋 필드값이 같지 않을 경우
-    // setCustomValidity의 값을 지정해 무조건 경고 표시가 나게 하고
-    passwordConfirm.setCustomValidity("비밀번호가 일치하지 않습니다.");
-  }
-  else {
-    // 만일 두 인풋 필드값이 같을 경우
-    // 오류가 없으면 메시지를 빈 문자열로 설정해야한다. 오류 메시지가 비어 있지 않은 한 양식은 유효성 검사를 통과하지 않고 제출되지 않는다.
-    // 따라서 빈값을 주어 submit 처리되게 한다
-    passwordConfirm.setCustomValidity('');
-  }
-}
-
-password.onchange = validatePassword;
-passwordConfirm.onkeyup = validatePassword;
-
-
+// submit 시에 체크
+var password = document.getElementById("password");
+var confirm_password = document.getElementById("passwordConfirm");
 
 // 아이디 중복 확인
   var doId = function () {
@@ -40,7 +22,7 @@ passwordConfirm.onkeyup = validatePassword;
         idCheckBox.style.color = "red";
         window.cid = 0;
       } else if (result == "incorrect") {
-        idCheckBox.innerHTML = "영문, 숫자 조합으로 4~12자로 입력해주세요.";
+        idCheckBox.innerHTML = "영문 소문자, 숫자 조합으로 4~12자로 입력해주세요.";
         idCheckBox.style.color = "red";
         window.cid = 0;
       }
@@ -184,10 +166,15 @@ passwordConfirm.onkeyup = validatePassword;
     data: { finalCheck: finalCheck},
     success: function (result) {
       if(result == "true") {
-        document.getElementById("join_Form").submit();
+        if(password.value != passwordConfirm.value) {
+          // 만일 두 비밀번호 기재란의 값이 같지 않을 경우
+          alert("비밀번호가 일치하지 않습니다.");
+        }
+        else {
+          document.getElementById("join_Form").submit();
+        }
       } else if (result == "false") {
         alert("올바른 정보를 입력해주세요.");
-        window.location.reload();
       }
     },
   });

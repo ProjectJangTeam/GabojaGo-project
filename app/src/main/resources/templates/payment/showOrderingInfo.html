@@ -1,10 +1,9 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
-  <head>
-    <link rel="stylesheet"
+  <link rel="stylesheet"
         href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"/>
   <link href="https://cdn.jsdelivr.net/npm/@coreui/coreui@4.2.0/dist/css/coreui.min.css" rel="stylesheet" integrity="sha384-UkVD+zxJKGsZP3s/JuRzapi4dQrDDuEf/kHphzg8P3v8wuQ6m9RLjTkPGeFcglQU" crossorigin="anonymous">
-
+  <head>
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -156,105 +155,42 @@
       
         <div class="container px-4 px-lg-5 my-5">
           <div class="text-center text-white">
-            <h1 class="display-4 fw-bolder">장바구니</h1>
+            <h1 class="display-4 fw-bolder">주문 내역</h1>
           <!--  <p class="lead fw-normal text-white-50 mb-0">?</p>-->
           </div>
         </div>
       </header>
 
-      <script>
-        let queryString = new String();
-
-        function clickedCheckbox(){
-          let resultCount = 0;
-          let str = new String();
-          let checkedBoxList = document.getElementsByName("paymentBox");
-
-          for(let i=0; i< checkedBoxList.length; i++){
-            if(checkedBoxList[i].checked == true){
-              resultCount++;
-              str += checkedBoxList[i].value + ",";
-            }
-          }
-          queryString = str;
-
-          document.getElementById("resultCount").innerHTML = resultCount;
-          
-        }
-        
-        function doPayment(){
-          let resultCount = document.getElementById("resultCount").innerHTML;
-
-        	if(resultCount < 1){
-        		alert("한개 이상의 티켓을 선택해주세요.");
-        	}
-        	else{
-            location.replace("http://localhost:9999/app/payment/paymentPage?exno=" + queryString);
-          }
-        }
-      </script>
-
       <div class="container mx-auto my-auto">
-        <div class="row justify-content-between">
 
-          <div class="colume align-items-center flex-fill mx-5">
+        <div class="shadow-lg w-100 my-5 py-4 px-4 bg-body rounded">
+          
+          <div class="text-center my-3"><h2><b> 주문 내역 </b></h2></div>
 
-      <!-- 전시회 폼 -->
-        <div class="shadow-lg w-100 my-5 py-4 px-4 bg-body rounded" style="position: relative;" th:each="exhibition : ${cartList}">
-                <div class="payment-check" style="margin-right: 100px;">
-                  <input onclick="clickedCheckbox()" class="check-input" type="checkbox" name="paymentBox" th:value="${exhibition['EXNO']}">
-                  <label class="check-label" for="flexCheckDefault">
-                    결제
-                  </label>
-                </div>
-
-                <section id="exhibitionForm">
-
-                <h5 style="position: absolute; top: 10px; right: 10px;">
-                  <a href='detail?exno=1'
-                  name="EXNAME"
-                  th:value="${exhibition['EXNAME']}"
-                  data-th-href="@{detail(exno=${exhibition['EXNO']})}"
-                  data-th-text="${exhibition['EXNAME'] == ''} ? '(제목없음)' : ${exhibition['EXNAME']}"
-                  style="word-wrap: break-word"
-               >지킬과 하이드</a>
-                </h5>
-  
-                <h5 name="STDATE" style="position: absolute; top: 40px; right: 115px" data-th-text="${exhibition['STDATE']}" th:value="${exhibition['STDATE']}">
-                  2022-11-11 ~ 
-                </h5>
-
-                <h5 name="EDDATE" style="position: absolute; top: 40px; right: 10px" data-th-text="${exhibition['EDDATE']}" th:value="${exhibition['EDDATE']}">
-                  2022-12-12
-                </h5>
-
-                <h5 name="CNT" style="position: absolute; top: 200px; right: 10px" data-th-text="${exhibition['CNT']}" th:value="${exhibition['CNT']}">
-                  2매
-                </h5>
-              
-                <h5 name="PRICE" style="position: absolute; top: 230px; right: 10px" data-th-text="${exhibition['PRICE']}" th:value="${exhibition['PRICE']}">
-                  10000
-                </h5>
-
-			          <img style="width:200px; height:200px" src="https://cdn.pixabay.com/photo/2016/03/27/16/23/woman-1283009__480.jpg"
-			               alt="..." />
-
-                </section>
+          <table class="table table-striped">
+            <thead>
+              <tr>
+                <th scope="col">#</th>
+                <th scope="col">구매 수량</th>
+                <th scope="col">구매일</th>
+                <th scope="col">결제수단</th>
+                <th scope="col">취소일</th>
+                <th scope="col">취소 요청일</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr th:each="infoList : ${orderingInfoList}">
+                <th scope="row" th:text="${infoListStat.count}">1</th>
+                <td th:text = "${infoList.cnt}">Mark</td>
+                <td th:text = "${infoList.purdate}">Otto</td>
+                <td th:text = "${infoList.payment}">@mdo</td>
+                <td th:text = "${infoList.ccdate}">Otto</td>
+                <td th:text = "${infoList.crdate}">@mdo</td>
+              </tr>
+            </tbody>
+          </table>
 
           </div>
-        </div>
-
-          <!-- 주문 창 -->
-          <div class="shadow-lg w-25 my-5 py-4 px-4 bg-body rounded" style="position: relative; width: 280px;">
-            
-            <span style="position: absolute; bottom: 160px; right: 10px; font-weight: bold;">주문 상품수</span>
-            <span id="resultCount" style="position: absolute; bottom: 130px; right: 10px;"></span>
-            <span style="position: absolute; bottom: 90px; right: 10px; font-weight: bold;">총 결제 금액</span>
-            <span id="resultPrice" style="position: absolute; bottom: 60px; right: 10px;"></span>
-
-              <button style="position: absolute; bottom: 10px; right: 10px;" type="button" class="btn btn-primary" onclick="doPayment()">모두 결제</button>
-      </div>
-           </div>
            </div>
 
     

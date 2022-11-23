@@ -180,15 +180,15 @@ public class RecommendationController {
   }
 
   @GetMapping("recommendationListOrderByRecentAll")
-  public void recommendationListOrderByRecentAll(Model model, @RequestParam("page") Integer page, @RequestParam(value = "size", defaultValue = "3") Integer size) throws Exception {
+  public void recommendationListOrderByRecentAll(Model model, @RequestParam("page") Integer page, @RequestParam(value = "size", defaultValue = "4") Integer size) throws Exception {
     int total = recommendationService.getTotal();
     page -= PAGE_CORRECTION;
-    List<Recommendation> recommendationList = recommendationService.recommendationListPage((page) * size, size);
+    List<Recommendation> recommendationList = recommendationService.recommendationListPageOrderByRecent((page) * size, size);
 
     PageMakerDTO pageMakerDTO = new PageMakerDTO(page, size, total, recommendationList);
 
     model.addAttribute("recommendationListOrderByRecent", pageMakerDTO.getDtoList());
-    model.addAttribute("pages", pageMakerDTO.getPage());
+    model.addAttribute("page", pageMakerDTO.getPage());
     model.addAttribute("pageNum", pageMakerDTO.getTotal());
     model.addAttribute("pageStart", pageMakerDTO.getStart());
     model.addAttribute("pageEnd", pageMakerDTO.getEnd());
@@ -196,13 +196,36 @@ public class RecommendationController {
     model.addAttribute("next", pageMakerDTO.isNext());
   }
   @GetMapping("recommendationListOrderByCommentsAll")
-  public void recommendationListOrderByCommentsAll(Model model) throws Exception {
-    model.addAttribute("recommendationsOrderByComments", recommendationService.recommendationListOrderByCommentsAll());
+  public void recommendationListOrderByCommentsAll(Model model, @RequestParam("page") Integer page, @RequestParam(value = "size", defaultValue = "4") Integer size) throws Exception {
+    int total = recommendationService.getTotal();
+    page -= PAGE_CORRECTION;
+    List<Recommendation> recommendationList = recommendationService.recommendationListPageOrderByComments((page) * size, size);
+
+    PageMakerDTO pageMakerDTO = new PageMakerDTO(page, size, total, recommendationList);
+
+    model.addAttribute("recommendationsOrderByComments", pageMakerDTO.getDtoList());
+    model.addAttribute("page", pageMakerDTO.getPage());
+    model.addAttribute("pageNum", pageMakerDTO.getTotal());
+    model.addAttribute("pageStart", pageMakerDTO.getStart());
+    model.addAttribute("pageEnd", pageMakerDTO.getEnd());
+    model.addAttribute("prev", pageMakerDTO.isPrev());
+    model.addAttribute("next", pageMakerDTO.isNext());
   }
 
   @GetMapping("recommendationListOrderByCntAll")
-  public void recommendationListOrderByCntAll(Model model) throws Exception {
-    model.addAttribute("recommendationsOrderByCnt", recommendationService.recommendationListOrderByCntAll());
+  public void recommendationListOrderByCntAll(Model model, @RequestParam("page") Integer page, @RequestParam(value = "size", defaultValue = "4") Integer size) throws Exception {
+    int total = recommendationService.getTotal();
+    page -= PAGE_CORRECTION;
+    List<Recommendation> recommendationList = recommendationService.recommendationListPageOrderByCnt((page) * size, size);
+
+    PageMakerDTO pageMakerDTO = new PageMakerDTO(page, size, total, recommendationList);
+    model.addAttribute("recommendationsOrderByCnt",  pageMakerDTO.getDtoList());
+    model.addAttribute("page", pageMakerDTO.getPage());
+    model.addAttribute("pageNum", pageMakerDTO.getTotal());
+    model.addAttribute("pageStart", pageMakerDTO.getStart());
+    model.addAttribute("pageEnd", pageMakerDTO.getEnd());
+    model.addAttribute("prev", pageMakerDTO.isPrev());
+    model.addAttribute("next", pageMakerDTO.isNext());
   }
 
   // Detail

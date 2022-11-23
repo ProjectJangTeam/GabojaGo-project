@@ -32,9 +32,13 @@
         <result column="rstdate" property="rstdate"/>
     </resultMap>
 
+    <!--회원 추가-->
+    <insert id="join" parameterType="Member">
+        insert into jang_member(ID,PWD,NAME,EMAIL,NNAME,PNUM)
+        values(#{id},sha2(#{password},256),#{name},#{email},#{nickName},#{phoneNo})
+    </insert>
 
-
-
+    <!--로그인 조회-->
     <select id="findByIdPassword" resultMap="memberMap">
         select
             ID,
@@ -48,7 +52,7 @@
             jang_member
         where
             ID=#{id} and PWD=sha2(#{password},256)
-            and STATUS = 'A'
+            and (STATUS = '활성' or STATUS='신고')
     </select>
 
     <select id="findById" resultMap="memberMap">

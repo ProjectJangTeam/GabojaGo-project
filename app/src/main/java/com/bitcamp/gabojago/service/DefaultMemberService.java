@@ -100,8 +100,8 @@ public class DefaultMemberService implements MemberService {
     map.put("password", newPw); // map정보 받아서 pw 수정
     memberDao.findpwdupdate(map); // pw 업데이트
 
-    String id = "bitcampproject@naver.com";
-    String pw = "Jang!@34";
+    String id = "";
+    String pw = "";
 
     Properties prop = new Properties();
     prop.put("mail.smtp.host", "smtp.naver.com");

@@ -104,14 +104,11 @@ public class ModifyMyPageController {
     @GetMapping("resignmemberform")
     public ModelAndView resignMemberForm(HttpSession session) throws Exception {
         Member member = (Member)session.getAttribute("loginMember");
-        System.out.println("resignMemberForm Controller ");
         ModelAndView mv = new ModelAndView();
         if(member == null) {
-            System.out.println("비상!! resignMemberForm Controller member가 null이다!!");
             mv.setViewName("/auth/loginExpire");
             return mv;
         }
-        System.out.println("편안~ resignMemberForm Controller member가 null이 아니다~");
         mv.setViewName("/myPage/modify/resignMemberForm");
         mv.addObject("member", member);
         return mv;
@@ -121,25 +118,19 @@ public class ModifyMyPageController {
     @PostMapping("pwcheck")
     public int pwCheck(String memberId, String memberPw,HttpSession session) throws Exception {
         Member member = (Member) session.getAttribute("loginMember");
-        System.out.println("pwcheckController "+memberId+", "+memberPw);
         if(member == null) {
-            System.out.println("비상!! pwcheckController member 가 null 이다!!");
             return -1004;
         }
-        System.out.println("pwcheckController session "+memberId+", "+member.getId());
         if(!member.getId().equals(memberId)) {
-            System.out.println("비상!! session 정보랑 입력받은 정보랑 다르다!!");
             session.invalidate();
             return -1005;
         }
-        System.out.println("편안~ pwcheckController member 가 null이 아니다~");
         return modifyMyPageService.pwCheck(memberId, memberPw);
     }
 
     @ResponseBody
     @PostMapping("resignmember")
     public int resignMember(String memberId, String memberPw, HttpSession session) throws Exception {
-        System.out.println("resignMemberController "+memberId+", "+memberPw);
         int result = modifyMyPageService.resignMember(memberId, memberPw);
         if(result == 1) {
             session.invalidate();

@@ -17,7 +17,6 @@ public class QnaServiceImpl implements QnaService {
     @Transactional
     @Override
     public void add(QnaBoard qnaBoard) throws  Exception {
-        System.out.println("QnaServiceImpl : " + qnaBoard.toString());
 
         if (qnaDao.insert(qnaBoard) == 0) {
             throw new Exception("게시글 등록 실패!!");
@@ -36,7 +35,6 @@ public class QnaServiceImpl implements QnaService {
 
     @Override
     public boolean update(QnaBoard qnaBoard) throws Exception {
-        System.out.println("QnaServiceImplUpdate : " + qnaBoard.toString());
         if (qnaDao.update(qnaBoard) == 0) {
             return false;
         }

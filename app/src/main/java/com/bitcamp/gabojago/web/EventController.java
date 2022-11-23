@@ -108,10 +108,8 @@ public class EventController {
             EventItem eventItem,
             MultipartFile file,
             HttpSession session) throws Exception {
-        System.out.println("eventCotrollerAdd_item before:" + eventItem.toString());
         EventAttachedFile eventAttachedFile = saveAttachedFile(file);
         eventItem.setEventAttachedFile(eventAttachedFile);
-        System.out.println("eventCotrollerAdd_item after :" + eventItem.toString());
         eventService.itemAdd(eventItem);
         return "redirect:../detail?no=" + eventItem.getEventNo();
     }
@@ -120,17 +118,12 @@ public class EventController {
             throws IOException, ServletException {
         EventAttachedFile eventAttachedFile = new EventAttachedFile();
         String dirPath = sc.getRealPath("/event/files");
-        System.out.println("Path : " + sc.getContextPath());
         if (file.isEmpty()) {
             return eventAttachedFile;
         }
 
         String fileName = UUID.randomUUID().toString();
-        System.out.println("new file name : " + fileName);
-        System.out.println("new file path before : " + (dirPath + "/"));
-        System.out.println("new file path before : " + file.getContentType());
         file.transferTo(new File(dirPath + "/" + fileName + "." + file.getContentType().split("/")[1]));
-        System.out.println("new file path after : " + (dirPath + "/"));
         eventAttachedFile.setFileName(fileName + "." + file.getContentType().split("/")[1]);
         eventAttachedFile.setFilePath(dirPath+"/");
         return eventAttachedFile;

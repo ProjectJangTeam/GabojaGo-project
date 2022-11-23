@@ -261,6 +261,7 @@
       const reportBody = document.querySelector(".modal-report-body");
       const reportModal = document.querySelector(".modal-report");
       const reportBtnOpenPopup = document.querySelector(".reportBtn-open-popup");
+      const reasonDetail = document.querySelector(".modal-report-form-rsn2");
 
       reportBtnOpenPopup.addEventListener("click", () => {
         reportModal.classList.toggle("show");
@@ -276,6 +277,7 @@
 
           if (!reportModal.classList.contains("show")) {
             body.style.overflow = "auto";
+            reasonDetail.value = '';
           }
         }
       });

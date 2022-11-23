@@ -71,5 +71,7 @@ public interface RecommendationService {
   //paging
   int getTotal();
 
-  List<Recommendation> recommendationListPage(int displayPost, int postNum) throws Exception;
+  List<Recommendation> recommendationListPageOrderByRecent(int displayPost, int postNum) throws Exception;
+  List<Recommendation> recommendationListPageOrderByComments(int displayPost, int postNum) throws Exception;
+  List<Recommendation> recommendationListPageOrderByCnt(int displayPost, int postNum) throws Exception;
 }

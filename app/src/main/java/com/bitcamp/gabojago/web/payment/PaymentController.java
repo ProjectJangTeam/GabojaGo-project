@@ -25,22 +25,36 @@ public class PaymentController {
   }
   
   @GetMapping("paymentPage")
-  public String paymentPage (Model model, HttpSession session) throws Exception {
+  public String paymentPage (Model model,  HttpSession session, String exno) throws Exception {
     Member member = (Member) session.getAttribute("loginMember");
     
-    model.addAttribute("member", member);
+    model.addAttribute("cartList", paymentService.getCheckedCartList(member, exno));
+    model.addAttribute("exno", exno);
     
     return "payment/paymentPage";
   }
   
   @GetMapping("paymentSuccessful")
-  public String paymentSuccessful (Model model, HttpSession session, String paymentType, Integer price) throws Exception {
+  public String paymentSuccessful (Model model, HttpSession session, String paymentType, String exno, String totalPrice) throws Exception {
     Member member = (Member) session.getAttribute("loginMember");
     
-    model.addAttribute("member", member);
-    model.addAttribute("paymentType", paymentType);
-    model.addAttribute("price", price);
+    paymentService.insertOrderingInfo(paymentType, member, exno);
+    
+    model.addAttribute("totalPrice", totalPrice);
     
     return "payment/paymentSuccessful";
+  }
+  
+  @GetMapping("showOrderingInfo")
+  public String showOrderingInformation(Model model, HttpSession session) {
+    Member member = (Member) session.getAttribute("loginMember");
+    
+    model.addAttribute("orderingInfoList", paymentService.getOrderingInfo(member));
+    
+    if (member.getId().equals("admin")) {
+      return "payment/showAdminOrderingInfo";
+    } else {
+      return "payment/showOrderingInfo";
+    }
   }
 }

@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no" />
     <title>가보자GO</title>
 
     <link rel="stylesheet"
@@ -17,22 +17,33 @@
             integrity="sha256-3zlB5s2uwoUzrXK3BT7AX3FyvojsraNFxCc2vC/7pNI="
             crossorigin="anonymous"></script>
 
+    <link href="https://fonts.googleapis.com/css?family=Poppins:300,400,500,600,700" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Montserrat:300,400,500,700" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Herr+Von+Muellerhoff" rel="stylesheet">
+
+    <link rel="stylesheet" href="../css/open-iconic-bootstrap.min.css">
+    <link rel="stylesheet" href="../css/animate.css">
+
+    <link rel="stylesheet" href="../css/owl.carousel.min.css">
+    <link rel="stylesheet" href="../css/owl.theme.default.min.css">
+    <link rel="stylesheet" href="../css/magnific-popup.css">
+
+    <link rel="stylesheet" href="../css/aos.css">
+
+    <link rel="stylesheet" href="../css/ionicons.min.css">
+
+    <link rel="stylesheet" href="../css/bootstrap-datepicker.css">
+    <link rel="stylesheet" href="../css/jquery.timepicker.css">
+
+
+    <link rel="stylesheet" href="../css/flaticon.css">
+    <link rel="stylesheet" href="../css/icomoon.css">
+    <link rel="stylesheet" href="../css/jiminstyle.css">
+
 
 </head>
 
-<!-- Header-->
-<header class="bg-dark py-4">
-
-    <div class="container px-4 px-lg-5 my-5">
-        <div class="text-center text-white">
-            <h1 class="display-4 fw-bolder">가보자GO 코스추천글</h1>
-            <!--  <p class="lead fw-normal text-white-50 mb-0">?</p>-->
-        </div>
-    </div>
-</header>
-
-
-<body class="background">  <!--class="pt-5"-->
+<body class="pt-5">
 
 <div class="modal">
     <div class="modal_body" style=" background: rgba(255,255,255,0.9); ">
@@ -121,71 +132,116 @@
         </div>
     </div>
 </nav>
-<!--width: 1150px; margin-top: 30px;-->
 
-<ul class="nav justify-content-end" >
-    <li class="nav-item" style="float: right; margin-top: 30px; width: 200px;">
-        <h5><a class="nav-link active" aria-current="page" href="recommendationForm"
-               data-th-if="${session.loginMember} != null"
-               style="color: black">코스추천 글쓰기</a></h5>
-    </li>
-    <!--  <li class="nav-item">
-        <a class="nav-link" href="#">Link</a>
-      </li>
-      <li class="nav-item">
-        <a class="nav-link" href="#">Link</a>
-      </li>-->
-    <li class="nav-item" style="float: right; margin-top: 30px; width: 200px;">
-        <h5> <a class="nav-link"  href="../"
-                style="color: black; ">메인</a></h5>
-
-    </li>
-</ul>
 
 <!--누구랑 갈지 선택-->
+<div id="colorlib-page">
+    <a href="javascript" class="js-colorlib-nav-toggle colorlib-nav-toggle"><i></i></a>
+    <aside id="colorlib-aside" role="complementary" class="js-fullheight text-center">
+        <h1 id="colorlib-logo"><a href="/app/recommendation/recommendationList"><span class="img"></span>코스추천메인</a></h1>
+        <nav id="colorlib-main-menu" role="navigation">
 
-<a class="reco-family" href='recommendationListForFamily'>가족</a>
-<br>
-<a class="reco-friend" href='recommendationListForFriend'>친구</a>
-<br>
-<a class="reco-couple" href='recommendationListForCouple'>연인</a>
-<br>
-<a class="reco-alone" href='recommendationListForAlone'>혼자</a>
-<br>
-<br>
-<br>
+            <ul>
+                <li class="colorlib-active"><a onclick="location.href='list.html'"
+                       th:onclick="|location.href='recommendationListForFamily'|">가족</a></li>
+                <li><a onclick="location.href='list.html'"
+                       th:onclick="|location.href='recommendationListForFriend'|">친구</a></li>
+                <li><a onclick="location.href='list.html'"
+                       th:onclick="|location.href='recommendationListForCouple'|">연인</a></li>
+                <li><a onclick="location.href='list.html'"
+                       th:onclick="|location.href='recommendationListForAlone'|">혼자</a></li>
+            </ul>
+            <br>
+            <ul>
+                <li><a onclick="location.href='list.html'"
+                       th:onclick="|location.href='#recommendationListOrderByRecent'|">최신순</a></li>
+                <li><a onclick="location.href='list.html'"
+                       th:onclick="|location.href='#recommendationListOrderByComments'|">댓글순</a></li>
+                <li><a onclick="location.href='list.html'"
+                       th:onclick="|location.href='#recommendationListOrderByCnt'|">인기순</a></li>
+            </ul>
+            <br>
+            <br>
+            <ul>
+                <li>
+                    <a onclick="location.href='list.html'"
+                       th:onclick="|location.href='recommendationForm'|"
+                       data-th-if="${session.loginMember} != null">코스추천 글쓰기</a>
+                </li>
+            </ul>
+        </nav>
+    </aside>
+    <div id="colorlib-main">
+        <section class="ftco-section-no-padding bg-light">
+            <div class="hero-wrap">
+                <div class="overlay"></div>
+                <div class="d-flex align-items-center js-fullheight">
+                    <div class="author-image text img d-flex">
+                        <section class="home-slider js-fullheight owl-carousel">
+                            <div class="slider-item js-fullheight"
+                                 style="background-image:
+                                 url(../images/reco1.jpeg);
+                                    ">
+                            </div>
 
+                            <div class="slider-item js-fullheight"
+                                 style="background-image:
+                                 url(../images/reco2.jpeg);
+                                 ">
+                            </div>
 
+                            <div class="slider-item js-fullheight"
+                                 style="background-image:url(../images/reco3.jpeg);
+                                 ">
+                            </div>
 
-<!--리스트-->
-<div style="position: fixed; left: 10px; bottom: 280px;">
-    <br>
-    <a href='#recommendationListOrderByRecent'>최신순</a>
-    <br>
-    <a href='#recommendationListOrderByComments'>댓글순</a>
-    <br>
-    <a href='#recommendationListOrderByCnt'>인기순</a>
-    <br>
-</div>
-<br>
-<br>
-
+                            <div class="slider-item js-fullheight"
+                                 style="background-image:url(../images/reco4.jpeg);
+                                 ">
+                            </div>
+                        </section>
+                    </div>
+                    <div class="author-info text p-3 p-md-5">
+                        <div class="desc">
+                            <span class="subheading">안녕하세요.</span>
+                            <h1 class="big-letter">가보자Go!</h1>
+                            <h1 class="mb-4" style="color: #004085">
+                                <span>가보자Go!</span> <br> 코스추천글 메인 페이지 입니다.</span></h1>
+                            <h3 class="mb-4" style="color: #A9BCF5">여러분만의 코스를 공유해봐요:)</h3>
+                            <h3 class="signature h1">by Dingadung</h3>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
 <!--최신순-->
-<a id="recommendationListOrderByRecent">
-    <h5>최신순</h5>
-</a>
-<div style="float:right; margin-right: 40px">
-    <a href='recommendationListOrderByRecentAll'>전체보기</a>
-</div>
-<section class="py-5 " id="section1"  style=" width: 100%;">
-    <div class="container  px-4 px-lg-5 mt-5" >
-        <div class="row  gx-4 gx-lg-5 row-cols-2 row-cols-md-3 row-cols-xl-4 ">
+
+        <section class="py-5 " id="recommendationListOrderByRecent"  style=" width: 100%;">
+            <div class="container  px-4 px-lg-5 mt-5" >
+
+                <section class="ftco-bread py-6">
+                    <div class="container">
+                        <div class="slider-text justify-content-center align-items-center">
+                            <div class="col-md-11 ftco-animate">
+                                <p class="breadcrumbs">
+                            <span class="mr-2">
+                                <a href="recommendationListOrderByRecentAll?page=1">전체보기</a>
+                            </span>
+                                </p>
+                                <h1 class="bread">최신순</h1>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+
+                <!--최신순 List 시작-->
+        <div class="row  gx-4 gx-lg-5 row-cols-2 row-cols-md-3 row-cols-xl-4 pl-5">
             <div class="col mb-5" data-th-each="recommendation : ${recommendationsOrderByRecentForFamily}">
 
                 <div class="card h-100"
-                     style= "background: rgba(0,0,0,0.7); "><!--#FFFFFF50-->
+                     style= "background: rgba(0,0,0,0.7); border-radius: 13px;"><!--#FFFFFF50-->
 
-                    <td data-th-text="${recommendation.recono}">100</td>
+                    <h3></h3>
 
                     <!-- Product image 첨부파일 갤러리화 -->
                     <div th:if="${recommendation.path != null}" style="text-align : center;">
@@ -230,24 +286,35 @@
         </div>
     </div>
 </section>
+        <hr class="my-4">
 
 <!--댓글순-->
-<a id="recommendationListOrderByComments">
-    <h5>댓글순</h5>
-</a>
-<div style="float:right; margin-right: 40px">
-    <a href='recommendationListOrderByCommentsAll'>전체보기</a>
-</div>
-<section class="py-5 " id="section2" style=" width: 100%;">
+        <section class="py-5 " id="recommendationListOrderByComments" style=" width: 100%;">
 
-    <div class="container  px-4 px-lg-5 mt-5" >
-        <div class="row  gx-4 gx-lg-5 row-cols-2 row-cols-md-3 row-cols-xl-4 ">
+            <div class="container  px-4 px-lg-5 mt-5" >
+                <section class="ftco-bread py-6">
+                    <div class="container">
+                        <div class="slider-text justify-content-center align-items-center">
+                            <div class="col-md-11 ftco-animate">
+                                <p class="breadcrumbs">
+                            <span class="mr-2">
+                                <a href="recommendationListOrderByCommentsAll?page=1">전체보기</a>
+                            </span>
+                                </p>
+                                <h1 class="bread">댓글순</h1>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+
+                <!--댓글순 리스트 시작-->
+        <div class="row  gx-4 gx-lg-5 row-cols-2 row-cols-md-3 row-cols-xl-4 pl-5">
             <div class="col mb-5" data-th-each="recommendation : ${recommendationsOrderByCommentsForFamily}">
 
                 <div class="card h-100"
-                     style= "background: rgba(0,0,0,0.7); "><!--#FFFFFF50-->
+                     style= "background: rgba(0,0,0,0.7); border-radius: 13px;"><!--#FFFFFF50-->
 
-                    <td data-th-text="${recommendation.recono}">100</td>
+                    <h3></h3>
 
                     <!-- Product image 첨부파일 갤러리화 -->
                     <div th:if="${recommendation.path != null}" style="text-align : center;">
@@ -292,23 +359,34 @@
         </div>
     </div>
 </section>
+        <hr class="my-4">
 
 <!--인기순(조회순)-->
-<a id="recommendationListOrderByCnt">
-    <h5>인기순</h5>
-</a>
-<div style="float:right; margin-right: 40px">
-    <a href='recommendationListOrderByCntAll'>전체보기</a>
-</div>
-<section class="py-5 " id="section3" style=" width: 100%;">
-    <div class="container  px-4 px-lg-5 mt-5" >
-        <div class="row  gx-4 gx-lg-5 row-cols-2 row-cols-md-3 row-cols-xl-4 ">
+        <section class="py-5 " id="recommendationListOrderByCnt" style=" width: 100%;">
+            <div class="container  px-4 px-lg-5 mt-5" >
+                <section class="ftco-bread py-6">
+                    <div class="container">
+                        <div class="slider-text justify-content-center align-items-center">
+                            <div class="col-md-11 ftco-animate">
+                                <p class="breadcrumbs">
+                                    <!--                            <span>최신순</span>-->
+                                    <span class="mr-2">
+                                <a href="recommendationListOrderByCntAll?page=1">전체보기</a>
+                            </span>
+                                </p>
+                                <h1 class="bread">인기순</h1>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+                <!--인기순List 시작!-->
+        <div class="row  gx-4 gx-lg-5 row-cols-2 row-cols-md-3 row-cols-xl-4 pl-5">
             <div class="col mb-5" data-th-each="recommendation : ${recommendationsOrderByCntForFamily}">
 
                 <div class="card h-100"
-                     style= "background: rgba(0,0,0,0.7); "><!--#FFFFFF50-->
+                     style= "background: rgba(0,0,0,0.7); border-radius: 13px;"><!--#FFFFFF50-->
 
-                    <td data-th-text="${recommendation.recono}">100</td>
+                    <h3></h3>
 
                     <!-- Product image 첨부파일 갤러리화 -->
                     <div th:if="${recommendation.path != null}" style="text-align : center;">
@@ -323,11 +401,9 @@
                         />
                     </div>
 
-                    <!-- 전시 제목,날짜 정렬-->
                     <div class="card-body p-4">
                         <div class="text-center">
 
-                            <!-- 전시 name-->
                             <h5>
                                 <a href='recommendationDetail?recono=1'
                                    data-th-href="@{recommendationDetail(recono=${recommendation.recono})}"
@@ -358,7 +434,6 @@
 
 <br>
 <br>
-<!--<div style="position: absolute; right: 0px; bottom: 0px;">-->
 
 <div style="position: fixed; right: 10px; bottom: 280px;">
     <button type="button" class="btn btn-secondary"
@@ -387,16 +462,10 @@
 
 </script>
 
-
-<!-- Footer-->
-<footer>
-    <p>Copyright &copy;가보자GO</p>
-</footer>
-
 <style>
     .reco-family {
         font-weight: bold;
-        font-size: large;
+        font-size: x-large;
     }
 
     footer {
@@ -413,15 +482,8 @@
         text-align:center;
     }
 
-    /* // 백그라운드배경
-    https://cdn.pixabay.com/photo/2019/07/03/09/41/national-history-museum-4314035_1280.jpg)
-    https://images.pexels.com/photos/2425012/pexels-photo-2425012.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2
-    */
-
-
     .background {
         background-color: white;
-        /*background-image: url(https://cdn.pixabay.com/photo/2019/07/03/09/41/national-history-museum-4314035_1280.jpg);*/
         background-attachment: fixed;
         background-repeat: no-repeat;
         background-size: cover;
@@ -466,8 +528,33 @@
     })
 
 </script>
+
+<script src="../js/jquery.min.js"></script>
+<script src="../js/jquery-migrate-3.0.1.min.js"></script>
+<script src="../js/popper.min.js"></script>
+<script src="../js/bootstrap.min.js"></script>
+<script src="../js/jquery.easing.1.3.js"></script>
+<script src="../js/jquery.waypoints.min.js"></script>
+<script src="../js/jquery.stellar.min.js"></script>
+<script src="../js/owl.carousel.min.js"></script>
+<script src="../js/jquery.magnific-popup.min.js"></script>
+<script src="../js/aos.js"></script>
+<script src="../js/jquery.animateNumber.min.js"></script>
+<script src="../js/bootstrap-datepicker.js"></script>
+<script src="../js/jquery.timepicker.min.js"></script>
+<script src="../js/scrollax.min.js"></script>
+<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBVWaKrjvy3MaE7SQ74_uJiULgl1JY0H2s&sensor=false"></script>
+<script src="../js/google-map.js"></script>
+<script src="../js/main.js"></script>
+</div><!-- END COLORLIB-MAIN -->
+</div><!-- END COLORLIB-PAGE -->
+
+
 </body>
+<!-- Footer-->
+<div class="container-fluid">
+    <footer>
+        <p>Copyright &copy;가보자GO</p>
+    </footer>
+</div>
 </html>
-
-
-

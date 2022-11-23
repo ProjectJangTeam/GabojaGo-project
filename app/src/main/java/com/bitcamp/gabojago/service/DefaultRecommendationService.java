@@ -269,8 +269,18 @@ public class DefaultRecommendationService implements RecommendationService  {
   }
 
   @Override
-  public List<Recommendation> recommendationListPage(int displayPost, int size) throws Exception{
-    return recommendationDao.recommendationListPage(displayPost, size);
+  public List<Recommendation> recommendationListPageOrderByRecent(int displayPost, int size) throws Exception{
+    return recommendationDao.recommendationListPageOrderByRecent(displayPost, size);
+  }
+
+  @Override
+  public List<Recommendation> recommendationListPageOrderByComments(int displayPost, int size) throws Exception{
+    return recommendationDao.recommendationListPageOrderByComments(displayPost, size);
+  }
+
+  @Override
+  public List<Recommendation> recommendationListPageOrderByCnt(int displayPost, int size) throws Exception{
+    return recommendationDao.recommendationListPageOrderByCnt(displayPost, size);
   }
 
 }

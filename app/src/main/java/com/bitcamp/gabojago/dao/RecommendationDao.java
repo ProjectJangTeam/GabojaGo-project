@@ -76,6 +76,8 @@ public interface RecommendationDao {
   int getTotal();
 
   /* 게시판 목록(페이징 적용) */
-  List<Recommendation> recommendationListPage(@Param("displayPost") int displayPost, @Param("size") int size);
+  List<Recommendation> recommendationListPageOrderByRecent(@Param("displayPost") int displayPost, @Param("size") int size);
+  List<Recommendation> recommendationListPageOrderByComments(@Param("displayPost") int displayPost, @Param("size") int size);
+  List<Recommendation> recommendationListPageOrderByCnt(@Param("displayPost") int displayPost, @Param("size") int size);
 
 }

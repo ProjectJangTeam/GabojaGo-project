@@ -20,43 +20,10 @@
   </div>
 </header>
 
-<script>
+<script th:inline="javascript">
+  let totalPrice = 0;
+  let exno = [[${exno}]];
   let paymentType;
-  
-  // 다음부터 타임리프 #numbers.sequence 사용
-  function showExhibition (){
-    alert(sessionStorage.getItem('resultCount'));
-      for(let i = 0; i<sessionStorage.getItem('resultCount'); i++){
-        alert("showExhibition()");
-
-        let str;
-        let list = JSON.parse(sessionStorage.getItem('exhibition_' + i));
-
-        str += "<div class=" + "shadow-lg w-100 my-5 py-4 px-4 bg-body rounded"  + "style=" + "position: relative;" + ">";
-
-        str += "<h5 style=" + "position: absolute; top: 10px; right: 10px;" + ">";
-        str += "<p id=" + "EXNAME" + "style=" + "word-wrap: break-word" + ">" + list[0].value + "</p></h5>";
-
-        str += "<h5 id=" + "STDATE" + "style=" + "position: absolute; top: 40px; right: 115px" + ">" + list[1].value + "</h5>";
-
-        str += "<h5 id=" + "EDDATE" + "style=" + "position: absolute; top: 40px; right: 10px" + ">"+ list[2].value +"</h5>";
-
-        str += "<h5 id=" + "CNT" + "style=" + "position: absolute; top: 190px; right: 10px" + ">"
-          + list[3].value +
-        "</h5>";
-
-        str += "<span id=" + "PRICE" + "style=" + "position: absolute; top: 220px; right: 10px" + ">"
-          + list[4].value +
-        "</span>";
-
-        str += "<img style=" + "width:200px; height:200px" + "src=" + "https://cdn.pixabay.com/photo/2016/03/27/16/23/woman-1283009__480.jpg" + "alt=" + "..." + "/>";
-
-        str += "</div>";
-
-        console.log(str);
-        document.getElementById('exhibitionForm').innerHTML = str;
-      }
-    }
 
   function getPayType(payType){
     paymentType = payType;
@@ -64,23 +31,21 @@
 
   function doPayment(){
     if(paymentType == "accountTransfer"){
-      location.replace("http://localhost:9999/app/payment/paymentSuccessful?paymentType=accountTransfer&price=");
+      location.replace("http://localhost:9999/app/payment/paymentSuccessful?paymentType=accountTransfer" + "&exno=" + exno + "&totalPrice=" + totalPrice);
     }
     else if(paymentType == "depositWithoutBankbook"){
-      location.replace("http://localhost:9999/app/payment/paymentSuccessful?paymentType=depositWithoutBankbook");
+      location.replace("http://localhost:9999/app/payment/paymentSuccessful?paymentType=depositWithoutBankbook" + "&exno=" + exno + "&totalPrice=" + totalPrice);
     }
     else if(paymentType == "kakao"){
-      location.replace("http://localhost:9999/app/payment/paymentSuccessful?paymentType=kakao");
+      location.replace("http://localhost:9999/app/payment/paymentSuccessful?paymentType=kakao" + "&exno=" + exno + "&totalPrice=" + totalPrice);
     }
     else if(paymentType == "mobilePayment"){
-      location.replace("http://localhost:9999/app/payment/paymentSuccessful?paymentType=mobilePayment");
+      location.replace("http://localhost:9999/app/payment/paymentSuccessful?paymentType=mobilePayment" + "&exno=" + exno + "&totalPrice=" + totalPrice);
     }
     else{
       alert("결제 방식을 선택해 주세요.");
     }
   }
-
-  showExhibition();
 </script>
 
 
@@ -137,26 +102,49 @@
 </style>
 
 <body>
+  <div class="colume align-items-center flex-fill mx-5">
+
+    <!-- 전시회 폼 -->
+      <div class="shadow-lg w-100 my-5 py-4 px-4 bg-body rounded" style="position: relative;" th:each="exhibition : ${cartList}">
+
+              <section id="exhibitionForm">
+
+              <h5 style="position: absolute; top: 10px; right: 10px;">
+                <a href='detail?exno=1'
+                name="EXNAME"
+                th:value="${exhibition['EXNAME']}"
+                data-th-href="@{detail(exno=${exhibition['EXNO']})}"
+                data-th-text="${exhibition['EXNAME'] == ''} ? '(제목없음)' : ${exhibition['EXNAME']}"
+                style="word-wrap: break-word"
+             >지킬과 하이드</a>
+              </h5>
+
+              <h5 name="STDATE" style="position: absolute; top: 40px; right: 115px" data-th-text="${exhibition['STDATE']}" th:value="${exhibition['STDATE']}">
+                2022-11-11 ~ 
+              </h5>
+
+              <h5 name="EDDATE" style="position: absolute; top: 40px; right: 10px" data-th-text="${exhibition['EDDATE']}" th:value="${exhibition['EDDATE']}">
+                2022-12-12
+              </h5>
+
+              <h5 name="CNT" style="position: absolute; top: 180px; right: 10px" data-th-text="${exhibition['CNT']}" th:value="${exhibition['CNT']}">
+                2매
+              </h5>
+            
+              <h5 name="PRICE" style="position: absolute; top: 210px; right: 10px" data-th-text="${exhibition['PRICE']}" th:value="${exhibition['PRICE']}">
+                10000
+              </h5>
+
+              <img style="width:200px; height:200px" src="https://cdn.pixabay.com/photo/2016/03/27/16/23/woman-1283009__480.jpg"
+                   alt="..." />
+
+              </section>
+
+        </div>
+      </div>
+
+
       <div class="colume align-items-center flex-fill mx-5">
-
-       <!-- <table class="table table-bordered">
-        <thead>
-          <tr>
-            <th> 전시회 이름 </th>
-            <th> 전시회 시작일 </th>
-            <th> 전시회 종료일 </th>
-            <th> 티켓 수량 </th>
-            <th> 가격 </th>
-          </tr>
-        </thead>
-        <tbody id="exhibitionList">
-
-        </tbody>
-       </table> -->
-
-    <section id="exhibitionForm">
-
-    </section>
 
     <div class="shadow-lg w-100 my-5 py-4 px-4 bg-body rounded">
       <h4 style="text-align: center; padding-bottom: 30px;"><b>필수 입력 사항</b></h4>
@@ -236,7 +224,7 @@
 
     <div class="shadow-lg w-100 my-5 py-4 px-4 bg-body rounded">
       <h4 style="text-align: center; padding-bottom: 20px;"><b>총 결제 금액</b></h4>
-      <h2 th:text="${price}" style="text-align: center; padding-bottom: 30px;"><b>40000 원</b></h2>
+      <h2 id="totalPrice" style="text-align: center; padding-bottom: 30px;"><b>40000 원</b></h2>
 
       <div class="d-grid gap-2">
         <button onclick="doPayment()" class="btn btn-primary" type="button">바로 결제</button>
@@ -244,14 +232,25 @@
     </div>
   </div>
 
+  <script>
+    function getTotalPrice(){
+      let arr = document.getElementsByName('PRICE');
 
+      for(let price of arr){
+        totalPrice += parseInt(price.innerHTML);
+      }
+
+      document.getElementById('totalPrice').innerHTML = totalPrice;
+    }
+
+    getTotalPrice();
+</script>
 
 <!-- Footer-->
 <footer class="bg-dark" >
   <p>Copyright &copy;가보자GO</p>
 </footer>
-
-
+  
 <style>
   footer {
     /* footer를 aside위에 올리기 위해 사용(부유객체) */

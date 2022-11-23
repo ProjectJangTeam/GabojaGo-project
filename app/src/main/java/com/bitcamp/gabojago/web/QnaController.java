@@ -53,7 +53,6 @@ public class QnaController {
             QnaBoard qnaBoard,
             HttpSession session) throws Exception {
         Member member = (Member) session.getAttribute("loginMember");
-        System.out.println("qnaControllerAdd : " + qnaBoard.toString());
         qnaBoard.setId(member.getId());
         qnaService.add(qnaBoard);
         return "redirect:list?page=1";
@@ -96,7 +95,6 @@ public class QnaController {
     public String update(
             QnaBoard qnaBoard,
             HttpSession session) throws Exception {
-        System.out.println("qnaControllerUpdate : " + qnaBoard.toString());
         Member member = (Member) session.getAttribute("loginMember");
         if (member == null) {
             return "redirect:list?page=1";
