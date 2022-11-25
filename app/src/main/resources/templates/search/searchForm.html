@@ -15,6 +15,7 @@
     />
     <script src="./script/jquery-3.6.0.js"></script>
     <script src="./script/script.js"></script>
+    <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
 
     <meta name ="google-signin-client_id"
           content="400828157542-5kee4rg9u2va7k0c5q762jqnl973c4dv.apps.googleusercontent.com">
@@ -151,7 +152,7 @@
     <script>
     function Checkform(){     
       if(search.keyword.value.length <= 1){
-        alert("검색어는 한 글자 이상이어야 합니다.");
+        swal("검색어의 형식이 올바르지 않습니다.", "검색어는 한 글자 이상이어야 합니다.", "error");
         search.keyword.focus();
         return false;
       }

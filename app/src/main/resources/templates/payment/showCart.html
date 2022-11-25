@@ -15,7 +15,8 @@
 
     <script src="./script/jquery-3.6.0.js"></script>
     <script src="./script/script.js"></script>
-
+    <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+    
     <meta name ="google-signin-client_id"
           content="400828157542-5kee4rg9u2va7k0c5q762jqnl973c4dv.apps.googleusercontent.com">
 
@@ -171,7 +172,7 @@
           let resultCount = document.getElementById("resultCount").innerHTML;
 
         	if(resultCount < 1){
-        		alert("한개 이상의 티켓을 선택해주세요.");
+        		swal("올바르지 못한 상태", "한 개 이상의 티켓을 선택해주세요.", "error");
         	}
         	else{
             location.replace("paymentPage?exno=" + queryString);

@@ -1,5 +1,7 @@
 package com.bitcamp.gabojago.web.payment;
 
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.List;
 import java.util.Map;
 import javax.servlet.http.HttpSession;
@@ -69,11 +71,16 @@ public class PaymentController {
   }
   
   @GetMapping("showOrderInfoDetail")
-  public String showOrderInfoDetail(Model model, HttpSession session, String exno) {
+  public String showOrderInfoDetail(Model model, HttpSession session, String extkno) {
     Member member = (Member) session.getAttribute("loginMember");
     
-    model.addAttribute("orderingInfo", paymentService.getOrderingInfoDetail(member, exno));
+    model.addAttribute("infoList", paymentService.getOrderingInfoDetail(member, extkno).get(0));
     
-    return null;
+    return "payment/showOrderInfoDetail";
+  }
+  
+  public String cancelOrder(Model model, String extkno) {
+    paymentService.insertCancleDate(extkno, new SimpleDateFormat ("yyyy-MM-dd").format(new Date()));
+    return "payment/cancleOrder";
   }
 }

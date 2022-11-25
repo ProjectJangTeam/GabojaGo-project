@@ -163,7 +163,7 @@
 
       <div class="shadow-lg w-100 my-5 py-4 px-4 bg-body rounded">
         <div class="text-center">
-          <h5 class="display-4 fw-bolder"><b>전시회 검색결과</b></h5>
+          <h5 class="display-4 my-4 fw-bolder"><b>전시회 검색결과</b></h5>
           </div>
 
 			<section id="exhibition" class="py-5 " style=" width: 100%;">
@@ -216,7 +216,7 @@
     </div>
       <div class="shadow-lg w-100 my-5 py-4 px-4 bg-body rounded">
         <div class="text-center">
-          <h5 class="display-4 fw-bolder"><b>회원 검색결과</b></h5>
+          <h5 class="display-4 my-4 fw-bolder"><b>회원 검색결과</b></h5>
       </div>
       <table class="table table-success table-striped">
         <thead>
@@ -243,8 +243,62 @@
           </tr>
         </tbody>
       </table>
-
     </div>
+
+    <div class="shadow-lg w-100 my-5 py-4 px-4 bg-body rounded">
+      <div class="text-center">
+        <h5 class="display-4 my-4 fw-bolder"><b>코스 추천글 검색결과</b></h5>
+    </div>
+    <div class="row  gx-4 gx-lg-5 row-cols-2 row-cols-md-3 row-cols-xl-4 pl-5">
+      <div style="padding: 10px"
+           data-th-each="recommendation : ${recommendationResult}">
+
+          <div class="card h-100"
+               style= "background: rgba(0,0,0,0.7); border-radius: 13px;">
+              <h3></h3>
+              <!-- Product image 첨부파일 갤러리화 -->
+              <div th:if="${recommendation['PATH'] != null}" style="text-align : center;">
+                  <img data-th-src="${'../board/files/'+ recommendation['PATH']}"
+                       width="230"
+                       height="230"/>
+              </div>
+              <div th:if="${recommendation['PATH'] == null}" style="text-align : center;">
+                  <img src="https://img.freepik.com/free-photo/downtown-cityscape-at-night-in-seoul-south-korea_335224-272.jpg" alt="서울 사진"
+                       width="230"
+                       height="230"
+                  />
+              </div>
+
+              <div class="card-body p-4">
+                  <div class="text-center">
+
+                      <h5>
+                          <a href='recommendationDetail?recono=1'
+                             data-th-href="@{../recommendation/recommendationDetail(recono=${recommendation['RECONO']})}"
+                             data-th-text="${recommendation['TITLE'] == ''} ? '(제목없음)' : ${recommendation['TITLE']}"
+                             style="word-wrap: break-word"
+                          >제목rlfldsdfasdfasdf</a>
+                      </h5>
+                      <br>
+                      <td data-th-text="${recommendation['WDATE']}"  >2022-1-1</td>
+                  </div>
+              </div>
+
+              <!-- Product actions-->
+              <div class="card-footer p-4 pt-0 border-top-0 bg-transparent">
+                  <div class="text-center">
+                      <a class="btn btn-outline-dark mt-auto"  data-th-href="@{recommendationDetail(recono=${recommendation['RECONO']})}"
+                         style="color: #E0EBFF">보러가기</a>
+                  </div>
+              </div>
+
+          </div>
+      </div>
+  </div>
+</div>
+</section>
+
+  </div>
 
     </div>
 

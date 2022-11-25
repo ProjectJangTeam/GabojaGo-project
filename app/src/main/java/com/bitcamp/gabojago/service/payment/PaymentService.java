@@ -52,12 +52,17 @@ public class PaymentService {
   }
   
   @Transactional
-  public List<Map<String, String>> getOrderingInfoDetail(Member member, String exno) {
-    return cartDao.getTicketDetail(member.getId(), exno);
+  public List<Map<String, String>> getOrderingInfoDetail(Member member, String extkno) {
+    return cartDao.getTicketDetail(member.getId(), extkno);
   }
   
   @Transactional
   public void deleteBaguni(Member member, String exno) {
     cartDao.deleteBaguni(member.getId(), exno.split(","));
+  }
+  
+  @Transactional
+  public void insertCancleDate(String extkno, String date) {
+    cartDao.insertCancleDate(extkno, date);
   }
 }

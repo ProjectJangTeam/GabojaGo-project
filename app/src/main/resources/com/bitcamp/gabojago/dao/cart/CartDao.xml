@@ -79,10 +79,15 @@
           INSERT INTO jang_baguni(ID, EXNO, CNT, ACT) VALUES (#{id}, #{exno}, #{cnt}, #{act});
     </insert>
     
+    <insert id="insertCancleDate" parameterType="String">
+          INSERT INTO jang_ticket(CCDATE) VALUES (#{date}) WHERE EXTKNO = #{extkno};
+    </insert>
+    
     <select id="getTicket" resultType="hashMap" parameterType="String">
           SELECT
       ex.EXNAME,
       ex.PRICE * ti.CNT AS PRICE,
+      ti.EXTKNO,
       ti.PURDATE,
       ti.PAYMENT,
       ti.CCDATE,
@@ -101,6 +106,7 @@
           SELECT
       ex.EXNAME,
       ex.PRICE * ti.CNT AS PRICE,
+      ti.EXTKNO,
       ti.PURDATE,
       ti.PAYMENT,
       ti.CCDATE,
@@ -112,8 +118,9 @@
     ON
       ex.EXNO = ti.EXNO
     WHERE
-      ti.ID = #{id} AND ti.EXNO = #{exno};
+      ti.ID = #{id} AND ti.EXTKNO = #{extkno};
     </select>
+  
     
   <delete id="deleteBaguni" parameterType="String">
     DELETE FROM jang_baguni WHERE (

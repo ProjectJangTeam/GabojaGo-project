@@ -24,5 +24,7 @@ public interface CartDao {
   
   List<Map<String, String>> getTicket(String id);
   
-  List<Map<String, String>> getTicketDetail( @Param("id") String id, @Param("exno") String exno);
+  List<Map<String, String>> getTicketDetail( @Param("id") String id, @Param("extkno") String extkno);
+  
+  void insertCancleDate ( @Param("extkno") String extkno, @Param("date") String date);
 }

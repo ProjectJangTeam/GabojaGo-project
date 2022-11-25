@@ -177,7 +177,11 @@
             <tbody>
               <tr th:each="infoList : ${orderingInfoList}">
                 <th scope="row" th:text="${infoListStat.count}">1</th>
-                <td th:text = "${infoList['EXNAME']}"><a href="showOrderInfoDetail?&">Mark</a></td>
+                <td><a href='showOrderInfoDetail?extkno=1'
+                  data-th-text="${infoList['EXNAME'] == ''} ? '(제목없음)' : ${infoList['EXNAME']}"
+                  data-th-href="@{showOrderInfoDetail(extkno=${infoList['EXTKNO']})}"
+                  style="word-wrap: break-word"
+               >제목rlfldsdfasdfasdf</a></td>
                 <td th:text = "${infoList['PRICE']}">Mark</td>
                 <td th:text = "${infoList['PURDATE']}">Otto</td>
                 <td name = "payment" th:text = "${infoList['PAYMENT']}">@mdo</td>

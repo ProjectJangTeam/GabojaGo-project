@@ -12,6 +12,7 @@
       src="https://code.jquery.com/jquery-3.6.1.js"
       integrity="sha256-3zlB5s2uwoUzrXK3BT7AX3FyvojsraNFxCc2vC/7pNI="
       crossorigin="anonymous"></script>
+      <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
   <link rel="stylesheet"
         href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"/>
   <link href="https://cdn.jsdelivr.net/npm/@coreui/coreui@4.2.0/dist/css/coreui.min.css" rel="stylesheet" integrity="sha384-UkVD+zxJKGsZP3s/JuRzapi4dQrDDuEf/kHphzg8P3v8wuQ6m9RLjTkPGeFcglQU" crossorigin="anonymous">
@@ -50,7 +51,7 @@
       location.replace("paymentSuccessful?paymentType=mobilePayment" + "&exno=" + exno + "&totalPrice=" + totalPrice);
     }
     else{
-      alert("결제 방식을 선택해 주세요.");
+      swal("올바르지 못한 상태", "상단의 결제 방식을 선택해 주세요.", "error");
     }
   }
 </script>
@@ -195,38 +196,38 @@
 
       <ul class="nav justify-content-center">
         <li class="nav-item mx-3">
-          <div class="card text-bg-primary mb-3" style="max-width: 18rem;">
+          <div class="card text-bg-info mb-3" style="max-width: 18rem;">
             <div class="card-header">계좌이체</div>
             <div class="card-body nav justify-content-center">
               <input type="radio" class="btn-check" name="options-outlined" id="accountTransfer" autocomplete="off" checked>
-              <label onclick="getPayType('accountTransfer')" class="btn btn-outline-success" for="accountTransfer">선택</label>
+              <label onclick="getPayType('accountTransfer')" class="btn btn-outline-primary" for="accountTransfer">선택</label>
             </div>
           </div>
         </li>
         <li class="nav-item mx-3">
-          <div class="card text-bg-primary mb-3" style="max-width: 18rem;">
+          <div class="card text-bg-info mb-3" style="max-width: 18rem;">
             <div class="card-header">무통장입금</div>
             <div class="card-body nav justify-content-center">
               <input type="radio" class="btn-check" name="options-outlined" id="depositWithoutBankbook" autocomplete="off" checked>
-              <label onclick="getPayType('depositWithoutBankbook')" class="btn btn-outline-success" for="depositWithoutBankbook">선택</label>
+              <label onclick="getPayType('depositWithoutBankbook')" class="btn btn-outline-primary" for="depositWithoutBankbook">선택</label>
             </div>
           </div>
         </li>
         <li class="nav-item mx-3">
-          <div class="card text-bg-primary mb-3" style="max-width: 18rem;">
+          <div class="card text-bg-info mb-3" style="max-width: 18rem;">
             <div class="card-header">카카오페이</div>
             <div class="card-body nav justify-content-center">
               <input type="radio" class="btn-check" name="options-outlined" id="kakao" autocomplete="off" checked>
-              <label onclick="getPayType('kakao')" class="btn btn-outline-success" for="kakao">선택</label>
+              <label onclick="getPayType('kakao')" class="btn btn-outline-primary" for="kakao">선택</label>
             </div>
           </div>
         </li>
         <li class="nav-item mx-3">
-          <div class="card text-bg-primary mb-3" style="max-width: 18rem;">
+          <div class="card text-bg-info mb-3" style="max-width: 18rem;">
             <div class="card-header">휴대폰 소액결제</div>
             <div class="card-body nav justify-content-center">
               <input type="radio" class="btn-check" name="options-outlined" id="mobilePayment" autocomplete="off" checked>
-              <label onclick="getPayType('mobilePayment')" class="btn btn-outline-success" for="mobilePayment">선택</label>
+              <label onclick="getPayType('mobilePayment')" class="btn btn-outline-primary" for="mobilePayment">선택</label>
             </div>
           </div>
         </li>
