@@ -13,6 +13,7 @@ import com.bitcamp.gabojago.service.RecommendationService;
 
 import javax.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.Banner;
 import org.springframework.stereotype.Controller;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.ui.Model;
@@ -43,13 +44,13 @@ public class RecommendationController {
   @Transactional
   @PostMapping("recommendationAdd")
   public String recommendationAdd(
-      String place1, MultipartFile[] files1, String cont1,
-      String place2, MultipartFile[] files2, String cont2,
-      String place3, MultipartFile[] files3, String cont3,
-      String place4, MultipartFile[] files4, String cont4,
-      String place5, MultipartFile[] files5, String cont5,
-      String pet, String frd, String cple, String fmly, String solo, String tpname,
-      HttpSession session, Recommendation recommendation) throws Exception {
+          String place1, MultipartFile[] files1, String cont1,
+          String place2, MultipartFile[] files2, String cont2,
+          String place3, MultipartFile[] files3, String cont3,
+          String place4, MultipartFile[] files4, String cont4,
+          String place5, MultipartFile[] files5, String cont5,
+          String pet, String frd, String cple, String fmly, String solo, String tpname,
+          HttpSession session, Recommendation recommendation) throws Exception {
 
     // 작성자정보 set하기
     // 현재 사용자가 회원인지 확인
@@ -87,7 +88,7 @@ public class RecommendationController {
   }
 
   private List<JangSoReview> saveJangSoReviews(
-      MultipartFile[][] files, String[] cont, String[] place) throws Exception {
+          MultipartFile[][] files, String[] cont, String[] place) throws Exception {
 
     // JangSoReview List 생성
     List<JangSoReview> jangSoReviews = new ArrayList<>();
@@ -124,22 +125,22 @@ public class RecommendationController {
   }
 
   private List<JangSoReviewAttachedFile> saveJangSoReviewAttachedFiles(
-      MultipartFile[] files)
-      throws Exception {
+          MultipartFile[] files)
+          throws Exception {
 
-  List<JangSoReviewAttachedFile> jangSoReviewAttachedFiles = new ArrayList<>();
-  String dirPath = sc.getRealPath("/board/files");
+    List<JangSoReviewAttachedFile> jangSoReviewAttachedFiles = new ArrayList<>();
+    String dirPath = sc.getRealPath("/board/files");
 
     for (MultipartFile file : files) {
-    if (file.isEmpty()) {
-      continue;
-    }
+      if (file.isEmpty()) {
+        continue;
+      }
 
-    String filepath = UUID.randomUUID().toString();
-    String filename = file.getOriginalFilename();
-    file.transferTo(new File(dirPath + "/" + filepath));
+      String filepath = UUID.randomUUID().toString();
+      String filename = file.getOriginalFilename();
+      file.transferTo(new File(dirPath + "/" + filepath));
       jangSoReviewAttachedFiles.add(new JangSoReviewAttachedFile(filepath, filename));
-  }
+    }
     return jangSoReviewAttachedFiles;
   }
   // Add method 끝
@@ -253,12 +254,12 @@ public class RecommendationController {
       Member member = (Member) session.getAttribute("loginMember");
       // 작성자 본인인지 확인
       if (!recommendationService.getRecommendation(recono).getWriter().getId()
-          .equals(member.getId())) {
+              .equals(member.getId())) {
         return "redirect:recommendationList";
         // 제재받은 사용자인지 확인
       } else if (!recommendationService.checkCorrectUser(member.getId())) {
-          return "redirect:recommendationList";
-        }
+        return "redirect:recommendationList";
+      }
     }
 
     // 삭제를 가장한 비활성화
@@ -279,7 +280,7 @@ public class RecommendationController {
       Member member = (Member) session.getAttribute("loginMember");
       // 작성자 본인인지 확인
       if (!recommendationService.getRecommendation(recono).getWriter().getId()
-          .equals(member.getId())) {
+              .equals(member.getId())) {
         return "redirect:recommendationList";
         // 제재받은 사용자인지 확인
       } else if (!recommendationService.checkCorrectUser(member.getId())) {
@@ -296,13 +297,13 @@ public class RecommendationController {
   // Update - 2
   @PostMapping("recommendationUpdateConfirm")
   public String recommendationUpdateConfirm(
-      String place1, MultipartFile[] files1, String cont1,
-      String place2, MultipartFile[] files2, String cont2,
-      String place3, MultipartFile[] files3, String cont3,
-      String place4, MultipartFile[] files4, String cont4,
-      String place5, MultipartFile[] files5, String cont5,
-      String pet, String frd, String cple, String fmly, String solo, String tpname,
-      int recono, Recommendation recommendation) throws Exception {
+          String place1, MultipartFile[] files1, String cont1,
+          String place2, MultipartFile[] files2, String cont2,
+          String place3, MultipartFile[] files3, String cont3,
+          String place4, MultipartFile[] files4, String cont4,
+          String place5, MultipartFile[] files5, String cont5,
+          String pet, String frd, String cple, String fmly, String solo, String tpname,
+          int recono, Recommendation recommendation) throws Exception {
 
     // 원래 recono 다시 set 하기
     recommendation.setRecono(recono);
@@ -333,7 +334,7 @@ public class RecommendationController {
   @Transactional
   @PostMapping("recommendationReport")
   public String recommendationReport(
-      int recono, String rsn1, String rsn2, HttpSession session) throws Exception {
+          int recono, String rsn1, String rsn2, HttpSession session) throws Exception {
     // 신고자 로그인상태 확인
     if (session.getAttribute("loginMember") == null) {
       session.setAttribute("reportResult", "empty");
@@ -392,52 +393,62 @@ public class RecommendationController {
   // JangComment : 코스추천글에 댓글 작성 기능
   @PostMapping("jangCommentInsert")
   public String jangCommentInsert(
-      JangComment jangComment, HttpSession session) throws Exception {
-    checkOwner(session);
-    // 제재당한 이용자는 댓글을 작성할 수 없다.
-    if (!recommendationService.checkCorrectUser(((Member) session.getAttribute("loginMember")).getId())) {
-      return "redirect:recommendationList";
+          JangComment jangComment, HttpSession session, Model model) throws Exception {
+    // 로그인을 하지 않은 경우 댓글 작성이 불가능하다.
+    boolean check = checkOwner(session);
+    model.addAttribute("checkInsert", check);
+
+    if(check) {
+      jangComment.setWriter((Member) session.getAttribute("loginMember"));
+      jangCommentService.jangCommentInsert(jangComment);
+
+      // 제재당한 이용자는 댓글을 작성할 수 없다.
+      if (!recommendationService.checkCorrectUser(((Member) session.getAttribute("loginMember")).getId())) {
+        return "redirect:recommendationList";
+      }
     }
-    jangComment.setWriter((Member) session.getAttribute("loginMember"));
-    jangCommentService.jangCommentInsert(jangComment);
+
     return "redirect:../recommendation/recommendationDetail?recono="+jangComment.getRecono();
   }
 
   @GetMapping("jangCommentDelete")
-  public String jangCommentDelete(int cmno, HttpSession session, JangComment jangComment) throws Exception {
+  public String jangCommentDelete(int cmno, HttpSession session, JangComment jangComment, Model model) throws Exception {
     int recono = jangCommentService.getJangCommentByCmno(cmno).getRecono();
-    checkOwner(jangCommentService.getJangCommentByCmno(cmno), session);
-    // 제재당한 이용자는 댓글을 삭제할 수 없다.
-    if (!recommendationService.checkCorrectUser(((Member) session.getAttribute("loginMember")).getId())) {
-      return "redirect:recommendationList";
-    }
-    if(!jangCommentService.jangCommentDelete(cmno)) {
-      throw new Exception("댓글을 삭제 할 수 없습니다.");
+    boolean check =checkOwner(jangCommentService.getJangCommentByCmno(cmno), session);
+
+    if(check) {
+      // 제재당한 이용자는 댓글을 삭제할 수 없다.
+      if (!recommendationService.checkCorrectUser(((Member) session.getAttribute("loginMember")).getId())) {
+        return "redirect:recommendationList";
+      }
+
+      if (!jangCommentService.jangCommentDelete(cmno)) {
+        throw new Exception("댓글을 삭제 할 수 없습니다.");
+      }
     }
 
     return "redirect:../recommendation/recommendationDetail?recono="+recono;
   }
 
-  private void checkOwner(JangComment jangComment, HttpSession session) throws Exception {
+  private boolean checkOwner(JangComment jangComment, HttpSession session) throws Exception {
     Member loginMember = (Member) session.getAttribute("loginMember");
     if(loginMember == null) {
-      throw new Exception("로그인 이용자만 가능한 기능입니다.");
+      return false;
     }
     if (!jangComment.getWriter().getId().equals(loginMember.getId())) {
-      throw new Exception("게시글 작성자가 아닙니다.");
+      return false;
     }
+    return true;
   }
-  private void checkOwner(HttpSession session) throws Exception {
+
+  private boolean checkOwner(HttpSession session) throws Exception {
     Member loginMember = (Member) session.getAttribute("loginMember");
     if(loginMember == null) {
-      throw new Exception("로그인 이용자만 가능한 기능입니다.");
+      return false;
+      //throw new Exception("로그인 이용자만 가능한 기능입니다.");
     }
+    System.out.println(loginMember);
+    return true;
   }
 
 }
-
-
-
-
-
-

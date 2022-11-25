@@ -10,9 +10,20 @@
     <link rel="stylesheet" href="../css/recommendation/recommendationDetail.css" />
     <link rel="stylesheet" href="../css/recommendation/recommendation-report-modal.css" />
     <link
-        rel="stylesheet"
-        href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
+            rel="stylesheet"
+            href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
     />
+
+    <!-- sweetAlert2-->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/sweetalert2@11.4.10/dist/sweetalert2.min.css">
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11.4.10/dist/sweetalert2.min.js"></script>
+    <!-- jQuery -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <!-- SweetAlert2 -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/limonte-sweetalert2/7.2.0/sweetalert2.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/limonte-sweetalert2/7.2.0/sweetalert2.all.min.js"></script>
+
+
 </head>
 <body class="pt-5">
 <!-- Navigation 사실상의 header -->
@@ -32,9 +43,9 @@
                 </li>
                 <li class="nav-item" th:if="${session.loginMember != null}">
                     <a
-                      class="nav-link"
-                      href="/app/auth/logout"
-                      th:text="${session.loginMember.name}+'(로그아웃)'">홍길동(로그아웃)</a>
+                            class="nav-link"
+                            href="/app/auth/logout"
+                            th:text="${session.loginMember.name}+'(로그아웃)'">홍길동(로그아웃)</a>
                 </li>
                 <li class="nav-item" th:if="${session.loginMember == null}">
                     <span class="nav-link btn-open-popup">로그인</span>
@@ -114,7 +125,7 @@
                 <textarea class="ga-comment-write-input" type='text' name='cont' placeholder="댓글을 작성해 주세요."></textarea>
             </div>
             <input type='hidden' name='recono' data-th-value="${recommendation.recono}">
-            <button class="ga-comment-write-btn" type='submit'>등록</button>
+            <button id="comment-insert-btn" class="ga-comment-write-btn" type='submit'>등록</button>
         </form>
     </div>
     <!-- 댓글 리스트 -->
@@ -136,8 +147,14 @@
                 </td>
                 <!--readonly-->
                 <td class="ga-comment-list-date" data-th-text="${jangComment.wdate}">2022-1-1</td>
-                <td class="ga-comment-list-delete"><a href="jangCommentDelete?cmno=1"
-                    data-th-href="@{/recommendation/jangCommentDelete(cmno=${jangComment.cmno})}">삭제</a></td>
+                <td class="ga-comment-list-delete">
+                    <a id="comment-delete-btn"
+                       data-th-if="${session.loginMember} != null"
+                       href="jangCommentDelete?cmno=1"
+                       data-th-href="@{/recommendation/jangCommentDelete(cmno=${jangComment.cmno})}">
+                        삭제
+                    </a>
+                </td>
             </tr>
         </table>
     </div>
@@ -203,13 +220,13 @@
             <div class="g-signin2" data-onsuccess="onSignIn"></div>
 
             <script>
-            function signOut() {
-              var auth2 = gapi.auth2.getAuthInstance();
-              auth2.signOut().then(function () {
-                console.log('User signed out.');
-              });
-            }
-          </script>
+                function signOut() {
+                    var auth2 = gapi.auth2.getAuthInstance();
+                    auth2.signOut().then(function () {
+                        console.log('User signed out.');
+                    });
+                }
+            </script>
 
             <div class="savecheck">
                 <input id="savecheckbox" type="checkbox" name="saveEmail"><label for="savecheckbox">&nbsp;ID 저장</label>
@@ -227,62 +244,62 @@
 
 <!--login modal script-->
 <script>
-      const body = document.querySelector("body");
-      const modal = document.querySelector(".modal");
-      const btnOpenPopup = document.querySelector(".btn-open-popup");
+    const body = document.querySelector("body");
+    const modal = document.querySelector(".modal");
+    const btnOpenPopup = document.querySelector(".btn-open-popup");
 
-      btnOpenPopup.addEventListener("click", () => {
+    btnOpenPopup.addEventListener("click", () => {
         modal.classList.toggle("show");
 
         if (modal.classList.contains("show")) {
-          body.style.overflow = "hidden";
+            body.style.overflow = "hidden";
         }
-      });
+    });
 
-      modal.addEventListener("click", (event) => {
+    modal.addEventListener("click", (event) => {
         if (event.target === modal) {
-          modal.classList.toggle("show");
+            modal.classList.toggle("show");
 
-          if (!modal.classList.contains("show")) {
-            body.style.overflow = "auto";
-          }
+            if (!modal.classList.contains("show")) {
+                body.style.overflow = "auto";
+            }
         }
-      });
+    });
 
-      // 장현경 : 로그인 모달 창 "나가기"
-      $('.out').click(function() {
+    // 장현경 : 로그인 모달 창 "나가기"
+    $('.out').click(function() {
         $('.modal').removeClass('show')
-      })
-    </script>
+    })
+</script>
 <!--로그인 모달 창 끝-->
 
-    <!--신고하기 모달 창-->
-    <script>
-      const reportBody = document.querySelector(".modal-report-body");
-      const reportModal = document.querySelector(".modal-report");
-      const reportBtnOpenPopup = document.querySelector(".reportBtn-open-popup");
-      const reasonDetail = document.querySelector(".modal-report-form-rsn2");
+<!--신고하기 모달 창-->
+<script>
+    const reportBody = document.querySelector(".modal-report-body");
+    const reportModal = document.querySelector(".modal-report");
+    const reportBtnOpenPopup = document.querySelector(".reportBtn-open-popup");
+    const reasonDetail = document.querySelector(".modal-report-form-rsn2");
 
-      reportBtnOpenPopup.addEventListener("click", () => {
+    reportBtnOpenPopup.addEventListener("click", () => {
         reportModal.classList.toggle("show");
 
         if (reportModal.classList.contains("show")) {
-          body.style.overflow = "hidden";
+            body.style.overflow = "hidden";
         }
-      });
+    });
 
-      reportModal.addEventListener("click", (event) => {
+    reportModal.addEventListener("click", (event) => {
         if (event.target === reportModal) {
-          reportModal.classList.toggle("show");
+            reportModal.classList.toggle("show");
 
-          if (!reportModal.classList.contains("show")) {
-            body.style.overflow = "auto";
-            reasonDetail.value = '';
-          }
+            if (!reportModal.classList.contains("show")) {
+                body.style.overflow = "auto";
+                reasonDetail.value = '';
+            }
         }
-      });
-    </script>
-    <!--신고하기 모달 창 끝-->
+    });
+</script>
+<!—신고하기 모달 창 끝—>
 
 <script src="../js/recommendation/recommendationReport.js"></script>
 
